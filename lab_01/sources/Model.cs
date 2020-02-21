@@ -24,6 +24,10 @@ namespace lab_01
         private Quadrangle _currentQuadrangle = null;
         private double _currentSquare = 0;
 
+        public Pen circlePen = new Pen(Color.Red, 1);
+        public Pen tangetPen = new Pen(Color.Black, 1);
+        public Pen quadranglePen = new Pen(Color.Blue, 1);
+
         public Model(List<PointF> firstSet, List<PointF> secondSet)
         {
             this._firstSet = firstSet;
@@ -69,11 +73,13 @@ namespace lab_01
                 {
                     for (int k = 0; k < _secondCircles.Count; k++)
                     {
+                        Circle tempFirstCircle = _firstCircles[i];
+                        Circle tempSecondCircle = _secondCircles[k];
                         List<Section> generalTangents = _firstCircles[i].GeneralTangents(_secondCircles[k]);
                         for (int j = 0; j < generalTangents.Count; j++)
                         {
-                            Quadrangle temp = new Quadrangle(new Section(generalTangents[i].first, _firstCircle.centre),
-                                                             new Section(generalTangents[i].second, _secondCircle.centre));
+                            Quadrangle temp = new Quadrangle(new Section(generalTangents[i].first, tempFirstCircle.centre),
+                                                             new Section(generalTangents[i].second, tempSecondCircle.centre));
                             if ((_currentQuadrangle?.Square ?? 0) < temp.Square)
                             {
                                 _firstCircle = _firstCircles[i];
@@ -112,6 +118,12 @@ namespace lab_01
             }
 
             return circles;
+        }
+
+        public void Draw(Graphics g, Converter converter)
+        {
+            g.DrawEllipse(circlePen, new Rectangle(50, 50,
+                                                   10, 10));
         }
     }
 }

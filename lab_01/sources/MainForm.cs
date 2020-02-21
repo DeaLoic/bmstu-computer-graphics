@@ -13,9 +13,14 @@ namespace lab_01
     public partial class MainForm : Form
     {
 
+        private Graphics g;
+        private Converter converter;
+
         public MainForm()
         {
             InitializeComponent();
+
+            g = Graphics.FromHwnd(pictureBox1.Handle);
         }
 
         private void DataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -48,31 +53,31 @@ namespace lab_01
             if (dataGridView1.Rows.Count < 4)
             {
                 errorReached = true;
-                errorMessage.Concat("Введите не менее трех точек в первой последовательности.\n");
+                errorMessage += "Введите не менее трех точек в первой последовательности.\n";
             }
 
             if (dataGridView2.Rows.Count < 4)
             {
                 errorReached = true;
-                errorMessage.Concat("Введите не менее трех точек во второй последовательности.\n");
+                errorMessage += "Введите не менее трех точек во второй последовательности.\n";
             }
 
             if (!ParseCoordinatsGrid(dataGridView1, out var firstCoordsSet) | !ParseCoordinatsGrid(dataGridView2, out var secondCoordsSet))
             {
                 errorReached = true;
-                errorMessage.Concat("В поля с ошибкой введены не числа с плавающей точкой\n");
+                errorMessage += "В поля с ошибкой введены не числа с плавающей точкой\n";
             }
 
             if (errorReached)
             {
-                MessageBox.Show(errorMessage, "Ошибка ввода");
+                MessageBox.Show(errorMessage, "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 Model model = new Model(firstCoordsSet, secondCoordsSet);
                 if (model.IsCorrect)
                 {
-
+                    model.Draw(g, new Converter();
                 }
                 else
                 {
@@ -88,17 +93,18 @@ namespace lab_01
             float x, y;
             bool is_error_reached = false;
 
-            for (int i = 0; i < dataGrid.Rows.Count - 2; i++)
+            for (int i = 0; i < dataGrid.Rows.Count - 1; i++)
             {
                 if (!(dataGrid.Rows[i].Cells[0].Value is null) && !(dataGrid.Rows[i].Cells[1].Value is null) &&
                     float.TryParse(dataGrid.Rows[i].Cells[0].Value.ToString(), out x) && float.TryParse(dataGrid.Rows[i].Cells[1].Value.ToString(), out y))
                 {
                     parsedCoordinats.Add(new PointF(x, y));
+                    dataGrid.Rows[i].ErrorText = "";
                 }
                 else
                 {
                     is_error_reached = true;
-                    dataGrid.Rows[i].HeaderCell.Value = "Incorrect value";
+                    dataGrid.Rows[i].ErrorText = "Incorrect value";
                 }
             }
 

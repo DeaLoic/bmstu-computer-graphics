@@ -58,7 +58,7 @@ namespace lab_01
 
         private double TriangleSquare(double a, double b, double c)
         {
-            double p = 1 / 2 * (a + b + c);
+            double p = 1.0 / 2 * (a + b + c);
             return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
         }
     }
