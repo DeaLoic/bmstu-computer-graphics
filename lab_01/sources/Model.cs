@@ -14,6 +14,9 @@ namespace lab_01
         private List<PointF> _firstSet;
         private List<PointF> _secondSet;
 
+        private PointF _minCoords;
+        private PointF _maxCoords;
+
         private List<Circle> _firstCircles = null;
         private List<Circle> _secondCircles = null;
 
@@ -25,16 +28,41 @@ namespace lab_01
         private double _currentSquare = 0;
 
         public Pen circlePen = new Pen(Color.Red, 1);
+        public Pen circlePenSecond = new Pen(Color.Green, 1);
         public Pen tangetPen = new Pen(Color.Black, 1);
         public Pen quadranglePen = new Pen(Color.Blue, 1);
 
+        public Model()
+        {
+
+        }
         public Model(List<PointF> firstSet, List<PointF> secondSet)
         {
-            this._firstSet = firstSet;
-            this._secondSet = secondSet;
+            SetDots(firstSet, secondSet);
+        }
 
-            this._firstCircles = FormCircles(firstSet);
-            this._secondCircles = FormCircles(secondSet);
+        private void Reset()
+        {
+            _firstSet = null;
+            _secondSet = null;
+
+            _firstCircles = null;
+            _secondCircles = null;
+
+            _firstCircle = null;
+            _secondCircle = null;
+            _currentTangent = null;
+
+            _currentQuadrangle = null;
+            _currentSquare = 0;
+        }
+
+        public void SetDots(List<PointF> firstSet, List<PointF> secondSet)
+        {
+            Reset();
+
+            _firstSet = firstSet;
+            _secondSet = secondSet;
 
             FormModel();
         }
@@ -67,6 +95,9 @@ namespace lab_01
 
         private void FormModel()
         {
+            _firstCircles = FormCircles(_firstSet);
+            _secondCircles = FormCircles(_secondSet);
+
             if ((_firstCircles?.Count ?? 0) >= 1 && (_secondCircles?.Count ?? 0) >= 1)
             {
                 for (int i = 0; i < _firstCircles.Count; i++)
@@ -78,8 +109,8 @@ namespace lab_01
                         List<Section> generalTangents = _firstCircles[i].GeneralTangents(_secondCircles[k]);
                         for (int j = 0; j < generalTangents.Count; j++)
                         {
-                            Quadrangle temp = new Quadrangle(new Section(generalTangents[i].first, tempFirstCircle.centre),
-                                                             new Section(generalTangents[i].second, tempSecondCircle.centre));
+                            Quadrangle temp = new Quadrangle(new Section(generalTangents[j].first, tempFirstCircle.centre),
+                                                             new Section(generalTangents[j].second, tempSecondCircle.centre));
                             if ((_currentQuadrangle?.Square ?? 0) < temp.Square)
                             {
                                 _firstCircle = _firstCircles[i];
@@ -93,6 +124,8 @@ namespace lab_01
                     }
                 }
             }
+
+            SetMinMaxCoords();
         }
 
         private List<Circle> FormCircles(List<PointF> points)
@@ -120,10 +153,50 @@ namespace lab_01
             return circles;
         }
 
-        public void Draw(Graphics g, Converter converter)
+        private void SetMinMaxCoords()
         {
-            g.DrawEllipse(circlePen, new Rectangle(50, 50,
-                                                   10, 10));
+            if (IsCorrect)
+            {
+                PointF firstCentre = _firstCircle.centre;
+                PointF secondCentre = _secondCircle.centre;
+
+                double firstRadius = _firstCircle.radius;
+                double secondRadius = _secondCircle.radius;
+
+                _minCoords.X = (float)Math.Min(firstCentre.X - firstRadius, secondCentre.X - secondRadius);
+                _minCoords.Y = (float)Math.Min(firstCentre.Y - firstRadius, secondCentre.Y - secondRadius);
+
+                _maxCoords.X = (float)Math.Max(firstCentre.X + firstRadius, secondCentre.X + secondRadius);
+                _maxCoords.Y = (float)Math.Max(firstCentre.Y + firstRadius, secondCentre.Y + secondRadius);
+            }
+        }
+
+        public void Draw(Graphics g, Size areaSize, int indent = 20)
+        {
+            Converter converter = new Converter(_minCoords, _maxCoords, areaSize, indent);
+
+            PointF tempConvertedDot = converter.ConvertDot(_firstCircle.centre);
+            float newRadius = converter.ConvertSize((float)_firstCircle.radius);
+            g.DrawEllipse(circlePen, tempConvertedDot.X - newRadius, tempConvertedDot.Y - newRadius,
+                                     newRadius * 2, newRadius * 2);
+            /*
+            g.DrawEllipse(circlePen, new Rectangle((int)tempConvertedDot.X, (int)tempConvertedDot.Y,
+                                                   (int)_firstCircle.radius, (int)_firstCircle.radius));
+
+            */
+            tempConvertedDot = converter.ConvertDot(_secondCircle.centre);
+            newRadius = converter.ConvertSize((float)_secondCircle.radius);
+            g.DrawEllipse(circlePenSecond, tempConvertedDot.X - newRadius, tempConvertedDot.Y - newRadius,
+                                     newRadius * 2, newRadius * 2);
+
+
+            g.DrawPolygon(quadranglePen, _currentQuadrangle.points.Select(x => converter.ConvertDot(x)).ToArray());
+
+            
+            tempConvertedDot = converter.ConvertDot(_currentTangent.first);
+            PointF secondTempConvDot = converter.ConvertDot(_currentTangent.second);
+
+            g.DrawLine(tangetPen, tempConvertedDot, secondTempConvDot);
         }
     }
 }

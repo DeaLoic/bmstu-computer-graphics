@@ -54,7 +54,10 @@ namespace lab_01
                 Straight firstChordStraight = new Straight(firstDot, secondDot);
                 Straight secondChordStraight = new Straight(secondDot, thirdDot);
 
-                this.centre = firstChordStraight.Perpendecular(firstDot).Intersection(secondChordStraight.Perpendecular(thirdDot));
+                PointF firstCentre = (new Section(firstDot, secondDot)).GetCentre();
+                PointF secondCentre = (new Section(secondDot, thirdDot)).GetCentre();
+
+                this.centre = firstChordStraight.Perpendecular(firstCentre).Intersection(secondChordStraight.Perpendecular(secondCentre));
                 if (this.centre.IsEmpty)
                 {
                     isCorrect = false;
@@ -74,44 +77,48 @@ namespace lab_01
             List<Section> generalTangents = new List<Section>();
             if (isCorrect && (secondCircle?.isCorrect ?? false))
             {
-                Straight tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                    secondCircle.radius, radius);
-                tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                if (tanget.isCorrect)
                 {
-                    generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                    tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
+                    Straight tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
+                                                                        secondCircle.radius, radius);
+                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
+                    if (tanget.isCorrect)
+                    {
+                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
+                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
+                    }
+
+
+                    tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
+                                                                        -secondCircle.radius, -radius);
+                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
+                    if (tanget.isCorrect)
+                    {
+                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
+                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
+                    }
+
+
+                    tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
+                                                                        secondCircle.radius, -radius);
+                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
+                    if (tanget.isCorrect)
+                    {
+                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
+                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
+                    }
+
+
+                    tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
+                                                                        -secondCircle.radius, radius);
+                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
+                    if (tanget.isCorrect)
+                    {
+                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
+                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
+                    }
                 }
 
-
-                tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                    -secondCircle.radius, -radius);
-                tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                if (tanget.isCorrect)
-                {
-                    generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                    tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
-                }
-
-
-                tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                    secondCircle.radius, -radius);
-                tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                if (tanget.isCorrect)
-                {
-                    generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                    tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
-                }
-
-
-                tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                    -secondCircle.radius, radius);
-                tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                if (tanget.isCorrect)
-                {
-                    generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                    tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
-                }
+                //generalTangents.AddRange(ExternalGeneralTangets(secondCircle));
             }
 
             return generalTangents;
@@ -135,6 +142,41 @@ namespace lab_01
             }
 
             return tanget;
+        }
+
+        private List<Section> ExternalGeneralTangets(Circle secondCircle)
+        {
+            List<Section> externalTangets = new List<Section>();
+
+            PointF generalTangetsRoot = new PointF();
+
+            generalTangetsRoot.X = (float)(centre.X - radius / secondCircle.radius * secondCircle.centre.X) / (float)(1 - radius / secondCircle.radius);
+            generalTangetsRoot.Y = (float)(centre.Y - radius / secondCircle.radius * secondCircle.centre.Y) / (float)(1 - radius / secondCircle.radius);
+
+            Section AC = new Section(generalTangetsRoot, secondCircle.centre);
+
+            PointF unitVectorAC = new PointF((AC.second.X - AC.first.X) / (float)AC.Len, (AC.second.Y - AC.first.Y) / (float)AC.Len);
+
+            double AB = Math.Sqrt(AC.Len * AC.Len - secondCircle.radius * secondCircle.radius);
+            // cos и sin угла поворота
+            double cosACB = secondCircle.radius / AC.Len;
+            double sinACB = AB / AC.Len;
+
+            PointF vectorByAC = new PointF((float)(unitVectorAC.X * AB), (float)(unitVectorAC.Y * AB));
+
+            PointF coordsALeft = new PointF((float)(vectorByAC.X * cosACB - vectorByAC.Y * sinACB), (float)(vectorByAC.X * sinACB + vectorByAC.Y * cosACB));
+            PointF coordsARight = new PointF((float)(vectorByAC.X * cosACB + vectorByAC.Y * sinACB), (float)(- vectorByAC.X * sinACB + vectorByAC.Y * cosACB));
+
+            vectorByAC.X *= (float)(radius / secondCircle.radius);
+            vectorByAC.Y *= (float)(radius / secondCircle.radius);
+
+            PointF coordsBLeft = new PointF((float)(vectorByAC.X * cosACB - vectorByAC.Y * sinACB), (float)(vectorByAC.X * sinACB + vectorByAC.Y * cosACB));
+            PointF coordsBRight = new PointF((float)(vectorByAC.X * cosACB + vectorByAC.Y * sinACB), (float)(-vectorByAC.X * sinACB + vectorByAC.Y * cosACB));
+
+            externalTangets.Add(new Section(coordsALeft, coordsBLeft));
+            externalTangets.Add(new Section(coordsALeft, coordsBLeft));
+
+            return externalTangets;
         }
     }
 }

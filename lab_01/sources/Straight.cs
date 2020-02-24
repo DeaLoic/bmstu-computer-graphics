@@ -24,7 +24,7 @@ namespace lab_01
         public Straight(double A, double B, double C)
         {
             isCorrect = false;
-            if (MathSupport.CompareDouble(A, 0) != 0 && MathSupport.CompareDouble(B, 0) != 0)
+            if (MathSupport.CompareDouble(A, 0) != 0 || MathSupport.CompareDouble(B, 0) != 0)
             {
                 this.A = A;
                 this.B = B;

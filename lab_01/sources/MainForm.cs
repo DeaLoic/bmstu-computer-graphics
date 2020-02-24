@@ -14,7 +14,7 @@ namespace lab_01
     {
 
         private Graphics g;
-        private Converter converter;
+        private Model _model = new Model();
 
         public MainForm()
         {
@@ -74,14 +74,17 @@ namespace lab_01
             }
             else
             {
-                Model model = new Model(firstCoordsSet, secondCoordsSet);
-                if (model.IsCorrect)
+                g.Clear(pictureBox1.BackColor);
+                pictureBox1.Update();
+                _model.SetDots(firstCoordsSet, secondCoordsSet);
+                if (_model.IsCorrect)
                 {
-                    model.Draw(g, new Converter();
+
+                    _model.Draw(g, pictureBox1.Size);
                 }
                 else
                 {
-                    MessageBox.Show(model.ErrorMessage, "Ошибка");
+                    MessageBox.Show(_model.ErrorMessage, "Ошибка");
                 }
             }
 

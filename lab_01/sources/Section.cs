@@ -17,10 +17,6 @@ namespace lab_01
         {
             get
             {
-                if (IsEmpty)
-                {
-                    throw new ArgumentNullException();
-                }
                 return Math.Sqrt(Math.Pow(first.X - second.X, 2) + Math.Pow(first.Y - second.Y, 2));
             }
         }
@@ -36,5 +32,9 @@ namespace lab_01
 
         }
 
+        public PointF GetCentre()
+        {
+            return new PointF(first.X - (first.X - second.X) / 2, first.Y - (first.Y - second.Y) / 2);
+        }
     }
 }

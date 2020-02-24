@@ -9,18 +9,7 @@ namespace lab_01
 {
     class Quadrangle
     {
-        public PointF A;
-        public PointF B;
-        public PointF C;
-        public PointF D;
-
-        public Section AB;
-        public Section BC;
-        public Section CD;
-        public Section DA;
-
-        public Section AC;
-        public Section BD;
+        public PointF[] points;
 
         public double Square;
 
@@ -40,20 +29,16 @@ namespace lab_01
                 secondRadius.second = temp;
             }
 
-            A = firstRadius.first;
-            B = firstRadius.second;
-            C = secondRadius.second;
-            D = secondRadius.first;
+            PointF A = firstRadius.first;
+            PointF B = firstRadius.second;
+            PointF C = secondRadius.second;
+            PointF D = secondRadius.first;
 
-            AB = new Section(A, B);
-            BC = new Section(B, C);
-            CD = new Section(C, D);
-            DA = new Section(D, A);
+            points = new PointF[] { A, B, C, D };
 
-            AC = new Section(A, C);
-            BD = new Section(B, D);
 
-            Square = TriangleSquare(AB.Len, BC.Len, AC.Len) + TriangleSquare(CD.Len, DA.Len, AC.Len);
+            Square = TriangleSquare(new Section(A, B).Len, new Section(B, C).Len, new Section(A, C).Len) + 
+                     TriangleSquare(new Section(C, D).Len, new Section(D, A).Len, new Section(A, C).Len);
         }
 
         private double TriangleSquare(double a, double b, double c)

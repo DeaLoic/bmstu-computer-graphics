@@ -12,8 +12,7 @@ namespace lab_01
         private PointF max;
         private Size area;
         private int indent;
-        private double scaleX;
-        private double scaleY;
+        private float scale;
 
         public Converter(PointF min, PointF max, Size area, int indent = 20)
         {
@@ -22,28 +21,31 @@ namespace lab_01
             this.area = area;
             this.indent = indent;
 
-            scaleX = (area.Width - indent * 2) / (max.X - min.X);
-            scaleY = (area.Height - indent * 2) / (max.Y - min.Y);
+            scale = Math.Min((area.Width - indent * 2) / (max.X - min.X), (area.Height - indent * 2) / (max.Y - min.Y));
         }
 
         public PointF ConvertDot(PointF point)
         {
             PointF resultPoint = new PointF();
 
-            resultPoint.X = (float) ConvertX(point.X);
-            resultPoint.Y = (float) ConvertY(point.Y);
+            resultPoint.X = ConvertX(point.X);
+            resultPoint.Y = ConvertY(point.Y);
 
             return resultPoint;
         }
 
-        private double ConvertY(double y)
+        public float ConvertSize(float size)
         {
-            return ((max.Y - y) * scaleY + indent);
+            return size * scale;
+        }
+        private float ConvertY(float y)
+        {
+            return ((max.Y - y) * scale) + indent;
         }
 
-        private double ConvertX(double x)
+        private float ConvertX(float x)
         {
-            return ((x - min.X) * scaleX + indent);
+            return ((x - min.X) * scale) + indent;
         }
     }
 }
