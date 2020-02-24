@@ -141,7 +141,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 17);
+            this.label1.Size = new System.Drawing.Size(105, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Первое множество";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -151,7 +151,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(820, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 17);
+            this.label2.Size = new System.Drawing.Size(103, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Второе множество";
             // 
