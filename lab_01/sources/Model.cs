@@ -74,12 +74,21 @@ namespace lab_01
                 string message = "";
                 if (_firstCircles is null || _firstCircles.Count == 0)
                 {
-                    message.Concat("Невозможно построить ни один круг из точек первого множества.\n");
+                    message += "Невозможно построить ни один круг из точек первого множества.\n";
                 }
                 if (_secondCircles is null || _secondCircles.Count == 0)
                 {
-                    message.Concat("Невозможно построить ни один круг из точек второго множества.\n");
+                    message += "\nНевозможно построить ни один круг из точек второго множества.\n";
                 }
+                if (message == "")
+                {
+                    if (_currentQuadrangle is null)
+                    {
+                        message += "Невозможно построить четырехугольник\n" +
+                                   "(у всех кругов только одна общая касательная или их нет совсем).\n";
+                    }
+                }
+                
 
                 return message;
             }
