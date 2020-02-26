@@ -99,7 +99,8 @@ namespace lab_01
             for (int i = 0; i < dataGrid.Rows.Count - 1; i++)
             {
                 if (!(dataGrid.Rows[i].Cells[0].Value is null) && !(dataGrid.Rows[i].Cells[1].Value is null) &&
-                    float.TryParse(dataGrid.Rows[i].Cells[0].Value.ToString(), out x) && float.TryParse(dataGrid.Rows[i].Cells[1].Value.ToString(), out y))
+                    float.TryParse(dataGrid.Rows[i].Cells[0].Value.ToString().Replace('.',','), out x) &&
+                    float.TryParse(dataGrid.Rows[i].Cells[1].Value.ToString().Replace('.',','), out y))
                 {
                     parsedCoordinats.Add(new PointF(x, y));
                     dataGrid.Rows[i].ErrorText = "";
@@ -117,6 +118,22 @@ namespace lab_01
             }
 
             return !is_error_reached;
+        }
+
+        private void ClearAllFirstBtn_Click(object sender, EventArgs e)
+        {
+            ClearDataGridView(dataGridView1);
+        }
+
+        private void ClearAllSecondBtn_Click(object sender, EventArgs e)
+        {
+            ClearDataGridView(dataGridView2);
+        }
+
+        private void ClearDataGridView(DataGridView dataGridView)
+        {
+            dataGridView.Rows.Clear();
+            dataGridView.Update();
         }
     }
 }

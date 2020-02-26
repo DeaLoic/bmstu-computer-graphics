@@ -37,22 +37,22 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.clearAllFirstBtn = new System.Windows.Forms.Button();
+            this.calculateBtn = new System.Windows.Forms.Button();
+            this.textOut = new System.Windows.Forms.TextBox();
+            this.enterDotFirstBtn = new System.Windows.Forms.Button();
+            this.xEnterFirst = new System.Windows.Forms.TextBox();
+            this.yEnterFirst = new System.Windows.Forms.TextBox();
+            this.deleteDotFirstBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.deleteDotSecondBtn = new System.Windows.Forms.Button();
+            this.yEnterSecond = new System.Windows.Forms.TextBox();
+            this.xEnterSecond = new System.Windows.Forms.TextBox();
+            this.enterDotSecondBtn = new System.Windows.Forms.Button();
+            this.clearAllSecondBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -155,74 +155,75 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Второе множество";
             // 
-            // button1
+            // clearAllFirstBtn
             // 
-            this.button1.Location = new System.Drawing.Point(12, 444);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 36);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Очистить все";
-            this.button1.UseVisualStyleBackColor = true;
+            this.clearAllFirstBtn.Location = new System.Drawing.Point(12, 444);
+            this.clearAllFirstBtn.Name = "clearAllFirstBtn";
+            this.clearAllFirstBtn.Size = new System.Drawing.Size(171, 36);
+            this.clearAllFirstBtn.TabIndex = 5;
+            this.clearAllFirstBtn.Text = "Очистить все";
+            this.clearAllFirstBtn.UseVisualStyleBackColor = true;
+            this.clearAllFirstBtn.Click += new System.EventHandler(this.ClearAllFirstBtn_Click);
             // 
-            // button3
+            // calculateBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.LightCoral;
-            this.button3.Location = new System.Drawing.Point(189, 486);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(195, 54);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Рассчет";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.calculateBtn.BackColor = System.Drawing.Color.LightCoral;
+            this.calculateBtn.Location = new System.Drawing.Point(189, 486);
+            this.calculateBtn.Name = "calculateBtn";
+            this.calculateBtn.Size = new System.Drawing.Size(195, 54);
+            this.calculateBtn.TabIndex = 7;
+            this.calculateBtn.Text = "Рассчет";
+            this.calculateBtn.UseVisualStyleBackColor = false;
+            this.calculateBtn.Click += new System.EventHandler(this.Button3_Click);
             // 
-            // textBox1
+            // textOut
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(390, 486);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(403, 50);
-            this.textBox1.TabIndex = 8;
+            this.textOut.BackColor = System.Drawing.SystemColors.Info;
+            this.textOut.Location = new System.Drawing.Point(390, 486);
+            this.textOut.Multiline = true;
+            this.textOut.Name = "textOut";
+            this.textOut.ReadOnly = true;
+            this.textOut.Size = new System.Drawing.Size(403, 50);
+            this.textOut.TabIndex = 8;
             // 
-            // button4
+            // enterDotFirstBtn
             // 
-            this.button4.Location = new System.Drawing.Point(32, 567);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(137, 29);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Ввести точку";
-            this.button4.UseVisualStyleBackColor = true;
+            this.enterDotFirstBtn.Location = new System.Drawing.Point(32, 567);
+            this.enterDotFirstBtn.Name = "enterDotFirstBtn";
+            this.enterDotFirstBtn.Size = new System.Drawing.Size(137, 29);
+            this.enterDotFirstBtn.TabIndex = 9;
+            this.enterDotFirstBtn.Text = "Ввести точку";
+            this.enterDotFirstBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // xEnterFirst
             // 
-            this.textBox2.Location = new System.Drawing.Point(32, 539);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(58, 22);
-            this.textBox2.TabIndex = 10;
+            this.xEnterFirst.Location = new System.Drawing.Point(32, 539);
+            this.xEnterFirst.Name = "xEnterFirst";
+            this.xEnterFirst.Size = new System.Drawing.Size(58, 20);
+            this.xEnterFirst.TabIndex = 10;
             // 
-            // textBox3
+            // yEnterFirst
             // 
-            this.textBox3.Location = new System.Drawing.Point(121, 539);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(62, 22);
-            this.textBox3.TabIndex = 11;
+            this.yEnterFirst.Location = new System.Drawing.Point(121, 539);
+            this.yEnterFirst.Name = "yEnterFirst";
+            this.yEnterFirst.Size = new System.Drawing.Size(62, 20);
+            this.yEnterFirst.TabIndex = 11;
             // 
-            // button5
+            // deleteDotFirstBtn
             // 
-            this.button5.Location = new System.Drawing.Point(12, 486);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(171, 36);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "Удалить точку";
-            this.button5.UseVisualStyleBackColor = true;
+            this.deleteDotFirstBtn.Location = new System.Drawing.Point(12, 486);
+            this.deleteDotFirstBtn.Name = "deleteDotFirstBtn";
+            this.deleteDotFirstBtn.Size = new System.Drawing.Size(171, 36);
+            this.deleteDotFirstBtn.TabIndex = 12;
+            this.deleteDotFirstBtn.Text = "Удалить точку";
+            this.deleteDotFirstBtn.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 542);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 17);
+            this.label3.Size = new System.Drawing.Size(17, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "X:";
             // 
@@ -231,7 +232,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(96, 542);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 17);
+            this.label4.Size = new System.Drawing.Size(17, 13);
             this.label4.TabIndex = 14;
             this.label4.Text = "Y:";
             // 
@@ -240,7 +241,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(883, 542);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 17);
+            this.label5.Size = new System.Drawing.Size(17, 13);
             this.label5.TabIndex = 21;
             this.label5.Text = "Y:";
             // 
@@ -249,70 +250,71 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(796, 542);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(21, 17);
+            this.label6.Size = new System.Drawing.Size(17, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "X:";
             // 
-            // button6
+            // deleteDotSecondBtn
             // 
-            this.button6.Location = new System.Drawing.Point(799, 486);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(171, 36);
-            this.button6.TabIndex = 19;
-            this.button6.Text = "Удалить точку";
-            this.button6.UseVisualStyleBackColor = true;
+            this.deleteDotSecondBtn.Location = new System.Drawing.Point(799, 486);
+            this.deleteDotSecondBtn.Name = "deleteDotSecondBtn";
+            this.deleteDotSecondBtn.Size = new System.Drawing.Size(171, 36);
+            this.deleteDotSecondBtn.TabIndex = 19;
+            this.deleteDotSecondBtn.Text = "Удалить точку";
+            this.deleteDotSecondBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // yEnterSecond
             // 
-            this.textBox4.Location = new System.Drawing.Point(908, 539);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(62, 22);
-            this.textBox4.TabIndex = 18;
+            this.yEnterSecond.Location = new System.Drawing.Point(908, 539);
+            this.yEnterSecond.Name = "yEnterSecond";
+            this.yEnterSecond.Size = new System.Drawing.Size(62, 20);
+            this.yEnterSecond.TabIndex = 18;
             // 
-            // textBox5
+            // xEnterSecond
             // 
-            this.textBox5.Location = new System.Drawing.Point(819, 539);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(58, 22);
-            this.textBox5.TabIndex = 17;
+            this.xEnterSecond.Location = new System.Drawing.Point(819, 539);
+            this.xEnterSecond.Name = "xEnterSecond";
+            this.xEnterSecond.Size = new System.Drawing.Size(58, 20);
+            this.xEnterSecond.TabIndex = 17;
             // 
-            // button7
+            // enterDotSecondBtn
             // 
-            this.button7.Location = new System.Drawing.Point(819, 567);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(137, 29);
-            this.button7.TabIndex = 16;
-            this.button7.Text = "Ввести точку";
-            this.button7.UseVisualStyleBackColor = true;
+            this.enterDotSecondBtn.Location = new System.Drawing.Point(819, 567);
+            this.enterDotSecondBtn.Name = "enterDotSecondBtn";
+            this.enterDotSecondBtn.Size = new System.Drawing.Size(137, 29);
+            this.enterDotSecondBtn.TabIndex = 16;
+            this.enterDotSecondBtn.Text = "Ввести точку";
+            this.enterDotSecondBtn.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // clearAllSecondBtn
             // 
-            this.button8.Location = new System.Drawing.Point(799, 444);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(171, 36);
-            this.button8.TabIndex = 15;
-            this.button8.Text = "Очистить все";
-            this.button8.UseVisualStyleBackColor = true;
+            this.clearAllSecondBtn.Location = new System.Drawing.Point(799, 444);
+            this.clearAllSecondBtn.Name = "clearAllSecondBtn";
+            this.clearAllSecondBtn.Size = new System.Drawing.Size(171, 36);
+            this.clearAllSecondBtn.TabIndex = 15;
+            this.clearAllSecondBtn.Text = "Очистить все";
+            this.clearAllSecondBtn.UseVisualStyleBackColor = true;
+            this.clearAllSecondBtn.Click += new System.EventHandler(this.ClearAllSecondBtn_Click);
             // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(982, 606);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.deleteDotSecondBtn);
+            this.Controls.Add(this.yEnterSecond);
+            this.Controls.Add(this.xEnterSecond);
+            this.Controls.Add(this.enterDotSecondBtn);
+            this.Controls.Add(this.clearAllSecondBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.deleteDotFirstBtn);
+            this.Controls.Add(this.yEnterFirst);
+            this.Controls.Add(this.xEnterFirst);
+            this.Controls.Add(this.enterDotFirstBtn);
+            this.Controls.Add(this.textOut);
+            this.Controls.Add(this.calculateBtn);
+            this.Controls.Add(this.clearAllFirstBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
@@ -338,21 +340,21 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn X;
         private System.Windows.Forms.DataGridViewTextBoxColumn Y;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button clearAllFirstBtn;
+        private System.Windows.Forms.Button calculateBtn;
+        private System.Windows.Forms.TextBox textOut;
+        private System.Windows.Forms.Button enterDotFirstBtn;
+        private System.Windows.Forms.TextBox xEnterFirst;
+        private System.Windows.Forms.TextBox yEnterFirst;
+        private System.Windows.Forms.Button deleteDotFirstBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button deleteDotSecondBtn;
+        private System.Windows.Forms.TextBox yEnterSecond;
+        private System.Windows.Forms.TextBox xEnterSecond;
+        private System.Windows.Forms.Button enterDotSecondBtn;
+        private System.Windows.Forms.Button clearAllSecondBtn;
     }
 }
