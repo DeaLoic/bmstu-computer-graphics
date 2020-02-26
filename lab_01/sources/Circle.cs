@@ -75,62 +75,37 @@ namespace lab_01
         public List<Section> GeneralTangents(Circle secondCircle)
         {
             List<Section> generalTangents = new List<Section>();
+            List<Straight> tangents = new List<Straight>();
             if (isCorrect && (secondCircle?.isCorrect ?? false))
             {
+                for (int i = -1; i <= 1; i += 2)
                 {
-                    Straight tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                        secondCircle.radius, radius);
-                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                    if (tanget.isCorrect)
+                    for (int j = -1; j <= 1; j += 2)
                     {
-                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
-                    }
-
-
-                    tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                        -secondCircle.radius, -radius);
-                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                    if (tanget.isCorrect)
-                    {
-                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
-                    }
-
-
-                    tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                        secondCircle.radius, -radius);
-                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                    if (tanget.isCorrect)
-                    {
-                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
-                    }
-
-
-                    tanget = this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                                        -secondCircle.radius, radius);
-                    tanget.C -= tanget.A * centre.X + tanget.B * centre.Y;
-                    if (tanget.isCorrect)
-                    {
-                        generalTangents.Add(new Section(tanget.Intersection(tanget.Perpendecular(centre)),
-                                                        tanget.Intersection(tanget.Perpendecular(secondCircle.centre))));
+                        tangents.Add(this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
+                                                        radius * i, secondCircle.radius * j));
                     }
                 }
-
+                    
+                for (int i = 0; i < tangents.Count; i++)
+                {
+                    tangents[i].C -= tangents[i].A * centre.X + tangents[i].B * centre.Y;
+                    generalTangents.Add(new Section(tangents[i].Intersection(tangents[i].Perpendecular(centre)),
+                                                    tangents[i].Intersection(tangents[i].Perpendecular(secondCircle.centre))));
+                }
                 //generalTangents.AddRange(ExternalGeneralTangets(secondCircle));
             }
 
             return generalTangents;
         }
 
-        private Straight GeneralTanget(PointF normalizedSecondCentre, double r2, double r1)
+        private Straight GeneralTanget(PointF normalizedSecondCentre, double r1, double r2)
         {
             Straight tanget = new Straight();
 
             double r = r2 - r1;
-            double z = Math.Sqrt(normalizedSecondCentre.X) + Math.Sqrt(normalizedSecondCentre.Y);
-            double d = z - Math.Sqrt(r);
+            double z = Math.Pow(normalizedSecondCentre.X, 2) + Math.Pow(normalizedSecondCentre.Y, 2);
+            double d = z - Math.Pow(r, 2);
             if (d >= 1e-7)
             {
                 d = Math.Sqrt(Math.Abs(d));
