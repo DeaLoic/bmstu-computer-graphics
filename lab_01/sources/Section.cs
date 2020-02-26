@@ -12,7 +12,7 @@ namespace lab_01
         public PointF first;
         public PointF second;
 
-        public bool IsEmpty { get => first.IsEmpty || second.IsEmpty; }
+        public bool IsCorrect { get => first != second; }
         public double Len
         {
             get

@@ -93,6 +93,8 @@ namespace lab_01
                     generalTangents.Add(new Section(tangents[i].Intersection(tangents[i].Perpendecular(centre)),
                                                     tangents[i].Intersection(tangents[i].Perpendecular(secondCircle.centre))));
                 }
+
+                 generalTangents = generalTangents.Where(t => t.IsCorrect).ToList();
                 //generalTangents.AddRange(ExternalGeneralTangets(secondCircle));
             }
 
