@@ -196,6 +196,7 @@
             this.enterDotFirstBtn.TabIndex = 9;
             this.enterDotFirstBtn.Text = "Ввести точку";
             this.enterDotFirstBtn.UseVisualStyleBackColor = true;
+            this.enterDotFirstBtn.Click += new System.EventHandler(this.EnterDotFirstBtn_Click);
             // 
             // xEnterFirst
             // 
@@ -280,6 +281,7 @@
             this.enterDotSecondBtn.TabIndex = 16;
             this.enterDotSecondBtn.Text = "Ввести точку";
             this.enterDotSecondBtn.UseVisualStyleBackColor = true;
+            this.enterDotSecondBtn.Click += new System.EventHandler(this.EnterDotSecondBtn_Click);
             // 
             // clearAllSecondBtn
             // 

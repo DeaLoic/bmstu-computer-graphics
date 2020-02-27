@@ -141,7 +141,7 @@ namespace lab_01
 
         private void DeleteDotFirstBtn_Click(object sender, EventArgs e)
         {
-            int position = -1;
+            int position;
 
             leftDotDelNumber.BackColor = _errorColor;
             if (int.TryParse(this.leftDotDelNumber.Text, out position))
@@ -156,7 +156,7 @@ namespace lab_01
 
         private void DeleteDotSecondBtn_Click(object sender, EventArgs e)
         {
-            int position = -1;
+            int position;
 
             rightDotDelNumber.BackColor = _errorColor;
             if (int.TryParse(this.rightDotDelNumber.Text, out position))
@@ -166,6 +166,62 @@ namespace lab_01
                 {
                     dataGridView2.Rows.Remove(dataGridView2.Rows[--position]);
                 }
+            }
+        }
+
+        private void EnterDotFirstBtn_Click(object sender, EventArgs e)
+        {
+            float x, y;
+
+            bool isCorrectX = false;
+            bool isCorrectY = false;
+
+            xEnterFirst.BackColor = _errorColor;
+            yEnterFirst.BackColor = _errorColor;
+
+            if (float.TryParse(xEnterFirst.Text.Replace('.', ','), out x))
+            {
+                isCorrectX = true;
+                xEnterFirst.BackColor = _correctColor;
+            }
+
+            if (float.TryParse(yEnterFirst.Text.Replace('.', ','), out y))
+            {
+                isCorrectY = true;
+                yEnterFirst.BackColor = _correctColor;
+            }
+
+            if (isCorrectX && isCorrectY)
+            {
+                dataGridView1.Rows.Add(x, y);
+            }
+        }
+
+        private void EnterDotSecondBtn_Click(object sender, EventArgs e)
+        {
+            float x, y;
+
+            bool isCorrectX = false;
+            bool isCorrectY = false;
+
+            xEnterSecond.BackColor = _errorColor;
+            yEnterSecond.BackColor = _errorColor;
+
+            if (float.TryParse(xEnterSecond.Text.Replace('.', ','), out x))
+            {
+                isCorrectX = true;
+                xEnterSecond.BackColor = _correctColor;
+            }
+
+            if (float.TryParse(yEnterSecond.Text.Replace('.', ','), out y))
+            {
+                isCorrectY = true;
+                yEnterSecond.BackColor = _correctColor;
+            }
+
+            if (isCorrectX && isCorrectY)
+            {
+                dataGridView2.Rows.Add(x, y);
             }
         }
     }
