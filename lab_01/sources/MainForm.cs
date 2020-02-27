@@ -16,11 +16,14 @@ namespace lab_01
         private Graphics g;
         private Model _model = new Model();
 
+        private Color _correctColor;
+        private Color _errorColor = Color.Coral;
         public MainForm()
         {
             InitializeComponent();
 
             g = Graphics.FromHwnd(pictureBox1.Handle);
+            _correctColor = xEnterFirst.BackColor;
         }
 
         private void DataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -134,6 +137,36 @@ namespace lab_01
         {
             dataGridView.Rows.Clear();
             dataGridView.Update();
+        }
+
+        private void DeleteDotFirstBtn_Click(object sender, EventArgs e)
+        {
+            int position = -1;
+
+            leftDotDelNumber.BackColor = _errorColor;
+            if (int.TryParse(this.leftDotDelNumber.Text, out position))
+            {
+                leftDotDelNumber.BackColor = _correctColor;
+                if (position >= 1 && position < dataGridView1.Rows.Count)
+                {
+                    dataGridView1.Rows.Remove(dataGridView1.Rows[--position]);
+                }
+            }
+        }
+
+        private void DeleteDotSecondBtn_Click(object sender, EventArgs e)
+        {
+            int position = -1;
+
+            rightDotDelNumber.BackColor = _errorColor;
+            if (int.TryParse(this.rightDotDelNumber.Text, out position))
+            {
+                rightDotDelNumber.BackColor = _correctColor;
+                if (position >= 1 && position < dataGridView2.Rows.Count)
+                {
+                    dataGridView2.Rows.Remove(dataGridView2.Rows[--position]);
+                }
+            }
         }
     }
 }

@@ -48,11 +48,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.deleteDotSecondBtn = new System.Windows.Forms.Button();
             this.yEnterSecond = new System.Windows.Forms.TextBox();
             this.xEnterSecond = new System.Windows.Forms.TextBox();
             this.enterDotSecondBtn = new System.Windows.Forms.Button();
             this.clearAllSecondBtn = new System.Windows.Forms.Button();
+            this.leftDotDelNumber = new System.Windows.Forms.TextBox();
+            this.rightDotDelNumber = new System.Windows.Forms.TextBox();
+            this.deleteDotSecondBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -141,7 +143,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
+            this.label1.Size = new System.Drawing.Size(132, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Первое множество";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -151,7 +153,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(820, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 13);
+            this.label2.Size = new System.Drawing.Size(131, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Второе множество";
             // 
@@ -199,31 +201,33 @@
             // 
             this.xEnterFirst.Location = new System.Drawing.Point(32, 539);
             this.xEnterFirst.Name = "xEnterFirst";
-            this.xEnterFirst.Size = new System.Drawing.Size(58, 20);
+            this.xEnterFirst.Size = new System.Drawing.Size(58, 22);
             this.xEnterFirst.TabIndex = 10;
             // 
             // yEnterFirst
             // 
             this.yEnterFirst.Location = new System.Drawing.Point(121, 539);
             this.yEnterFirst.Name = "yEnterFirst";
-            this.yEnterFirst.Size = new System.Drawing.Size(62, 20);
+            this.yEnterFirst.Size = new System.Drawing.Size(62, 22);
             this.yEnterFirst.TabIndex = 11;
             // 
             // deleteDotFirstBtn
             // 
-            this.deleteDotFirstBtn.Location = new System.Drawing.Point(12, 486);
+            this.deleteDotFirstBtn.Location = new System.Drawing.Point(12, 490);
             this.deleteDotFirstBtn.Name = "deleteDotFirstBtn";
-            this.deleteDotFirstBtn.Size = new System.Drawing.Size(171, 36);
+            this.deleteDotFirstBtn.Size = new System.Drawing.Size(129, 29);
             this.deleteDotFirstBtn.TabIndex = 12;
-            this.deleteDotFirstBtn.Text = "Удалить точку";
+            this.deleteDotFirstBtn.Text = "Удалить точку :";
+            this.deleteDotFirstBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.deleteDotFirstBtn.UseVisualStyleBackColor = true;
+            this.deleteDotFirstBtn.Click += new System.EventHandler(this.DeleteDotFirstBtn_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 542);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(17, 13);
+            this.label3.Size = new System.Drawing.Size(21, 17);
             this.label3.TabIndex = 13;
             this.label3.Text = "X:";
             // 
@@ -232,7 +236,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(96, 542);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 13);
+            this.label4.Size = new System.Drawing.Size(21, 17);
             this.label4.TabIndex = 14;
             this.label4.Text = "Y:";
             // 
@@ -241,7 +245,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(883, 542);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 13);
+            this.label5.Size = new System.Drawing.Size(21, 17);
             this.label5.TabIndex = 21;
             this.label5.Text = "Y:";
             // 
@@ -250,31 +254,22 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(796, 542);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 13);
+            this.label6.Size = new System.Drawing.Size(21, 17);
             this.label6.TabIndex = 20;
             this.label6.Text = "X:";
-            // 
-            // deleteDotSecondBtn
-            // 
-            this.deleteDotSecondBtn.Location = new System.Drawing.Point(799, 486);
-            this.deleteDotSecondBtn.Name = "deleteDotSecondBtn";
-            this.deleteDotSecondBtn.Size = new System.Drawing.Size(171, 36);
-            this.deleteDotSecondBtn.TabIndex = 19;
-            this.deleteDotSecondBtn.Text = "Удалить точку";
-            this.deleteDotSecondBtn.UseVisualStyleBackColor = true;
             // 
             // yEnterSecond
             // 
             this.yEnterSecond.Location = new System.Drawing.Point(908, 539);
             this.yEnterSecond.Name = "yEnterSecond";
-            this.yEnterSecond.Size = new System.Drawing.Size(62, 20);
+            this.yEnterSecond.Size = new System.Drawing.Size(62, 22);
             this.yEnterSecond.TabIndex = 18;
             // 
             // xEnterSecond
             // 
             this.xEnterSecond.Location = new System.Drawing.Point(819, 539);
             this.xEnterSecond.Name = "xEnterSecond";
-            this.xEnterSecond.Size = new System.Drawing.Size(58, 20);
+            this.xEnterSecond.Size = new System.Drawing.Size(58, 22);
             this.xEnterSecond.TabIndex = 17;
             // 
             // enterDotSecondBtn
@@ -296,12 +291,39 @@
             this.clearAllSecondBtn.UseVisualStyleBackColor = true;
             this.clearAllSecondBtn.Click += new System.EventHandler(this.ClearAllSecondBtn_Click);
             // 
+            // leftDotDelNumber
+            // 
+            this.leftDotDelNumber.Location = new System.Drawing.Point(147, 493);
+            this.leftDotDelNumber.Name = "leftDotDelNumber";
+            this.leftDotDelNumber.Size = new System.Drawing.Size(36, 22);
+            this.leftDotDelNumber.TabIndex = 22;
+            // 
+            // rightDotDelNumber
+            // 
+            this.rightDotDelNumber.Location = new System.Drawing.Point(934, 496);
+            this.rightDotDelNumber.Name = "rightDotDelNumber";
+            this.rightDotDelNumber.Size = new System.Drawing.Size(36, 22);
+            this.rightDotDelNumber.TabIndex = 24;
+            // 
+            // deleteDotSecondBtn
+            // 
+            this.deleteDotSecondBtn.Location = new System.Drawing.Point(799, 493);
+            this.deleteDotSecondBtn.Name = "deleteDotSecondBtn";
+            this.deleteDotSecondBtn.Size = new System.Drawing.Size(129, 29);
+            this.deleteDotSecondBtn.TabIndex = 23;
+            this.deleteDotSecondBtn.Text = "Удалить точку :";
+            this.deleteDotSecondBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteDotSecondBtn.UseVisualStyleBackColor = true;
+            this.deleteDotSecondBtn.Click += new System.EventHandler(this.DeleteDotSecondBtn_Click);
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(982, 606);
+            this.Controls.Add(this.rightDotDelNumber);
+            this.Controls.Add(this.deleteDotSecondBtn);
+            this.Controls.Add(this.leftDotDelNumber);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.deleteDotSecondBtn);
             this.Controls.Add(this.yEnterSecond);
             this.Controls.Add(this.xEnterSecond);
             this.Controls.Add(this.enterDotSecondBtn);
@@ -351,10 +373,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button deleteDotSecondBtn;
         private System.Windows.Forms.TextBox yEnterSecond;
         private System.Windows.Forms.TextBox xEnterSecond;
         private System.Windows.Forms.Button enterDotSecondBtn;
         private System.Windows.Forms.Button clearAllSecondBtn;
+        private System.Windows.Forms.TextBox leftDotDelNumber;
+        private System.Windows.Forms.TextBox rightDotDelNumber;
+        private System.Windows.Forms.Button deleteDotSecondBtn;
     }
 }
