@@ -34,6 +34,14 @@ namespace lab_01
             return resultPoint;
         }
 
+        public PointF ConvertDotOffset(PointF point)
+        {
+            point = ConvertDot(point);
+            point.X += 4;
+            point.X += 4;
+            return point;
+        }
+
         public float ConvertSize(float size)
         {
             return size * scale;

@@ -32,6 +32,11 @@ namespace lab_01
         public Pen tangetPen = new Pen(Color.Black, 1);
         public Pen quadranglePen = new Pen(Color.Blue, 1);
 
+        public Font dotFont = new Font("Arial", 8);
+        public SolidBrush brush = new SolidBrush(Color.Red);
+
+        private int dotRadius = 2;
+
         public Model()
         {
 
@@ -188,24 +193,50 @@ namespace lab_01
             float newRadius = converter.ConvertSize((float)_firstCircle.radius);
             g.DrawEllipse(circlePen, tempConvertedDot.X - newRadius, tempConvertedDot.Y - newRadius,
                                      newRadius * 2, newRadius * 2);
-            /*
-            g.DrawEllipse(circlePen, new Rectangle((int)tempConvertedDot.X, (int)tempConvertedDot.Y,
-                                                   (int)_firstCircle.radius, (int)_firstCircle.radius));
 
-            */
+            brush.Color = circlePen.Color;
+            for (int i = 0; i < 3; i++)
+            {
+                DrawDot(g, circlePen, new SolidBrush(circlePen.Color), _firstCircle.dotsSet[i], converter);
+            }
+            
             tempConvertedDot = converter.ConvertDot(_secondCircle.centre);
             newRadius = converter.ConvertSize((float)_secondCircle.radius);
             g.DrawEllipse(circlePenSecond, tempConvertedDot.X - newRadius, tempConvertedDot.Y - newRadius,
                                      newRadius * 2, newRadius * 2);
 
+            brush.Color = circlePenSecond.Color;
+            for (int i = 0; i < 3; i++)
+            {
+                DrawDot(g, circlePenSecond, brush, _secondCircle.dotsSet[i], converter);
+            }
 
+            brush.Color = quadranglePen.Color;
             g.DrawPolygon(quadranglePen, _currentQuadrangle.points.Select(x => converter.ConvertDot(x)).ToArray());
+            for (int i = 0; i < 4; i++)
+            {
+                DrawDot(g, circlePenSecond, brush, _currentQuadrangle.points[i], converter);
+            }
 
-            
             tempConvertedDot = converter.ConvertDot(_currentTangent.first);
             PointF secondTempConvDot = converter.ConvertDot(_currentTangent.second);
 
             g.DrawLine(tangetPen, tempConvertedDot, secondTempConvDot);
+        }
+
+
+        private void DrawDot(Graphics g, Pen pen, Brush brush, PointF dot, Converter converter)
+        {
+            PointF preProcessPoint = new PointF((float)Math.Round(dot.X, 3), (float)Math.Round(dot.Y, 3));
+
+            g.DrawString(preProcessPoint.ToString(),
+                         dotFont, brush, converter.ConvertDotOffset(dot));
+
+            dot = converter.ConvertDot(dot);
+
+            pen.Width = 5;
+            g.DrawEllipse(pen, dot.X - dotRadius, dot.Y - dotRadius, dotRadius * 2, dotRadius * 2);
+            pen.Width = 1;
         }
     }
 }
