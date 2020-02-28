@@ -9,7 +9,7 @@ namespace lab_01
 {
     class Circle
     {
-        public (PointF, PointF, PointF) dotsSet;
+        public List<PointF> dotsSet;
 
         public PointF centre;
         public double radius;
@@ -65,7 +65,7 @@ namespace lab_01
                 else
                 {
                     this.radius = MathSupport.SectionLenght(this.centre, secondDot);
-                    this.dotsSet = (firstDot, secondDot, thirdDot);
+                    this.dotsSet = new List<PointF> { firstDot, secondDot, thirdDot };
                 }
             }
         }
@@ -80,11 +80,8 @@ namespace lab_01
             {
                 for (int i = -1; i <= 1; i += 2)
                 {
-                    for (int j = -1; j <= 1; j += 2)
-                    {
-                        tangents.Add(this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
-                                                        radius * i, secondCircle.radius * j));
-                    }
+                    tangents.Add(this.GeneralTanget(new PointF(secondCircle.centre.X - centre.X, secondCircle.centre.Y - centre.Y),
+                                                    radius * i, secondCircle.radius * i));
                 }
                     
                 for (int i = 0; i < tangents.Count; i++)
