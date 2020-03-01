@@ -32,6 +32,43 @@ namespace lab_02
             GenerateHatching();
         }
 
+        public void Scale(Point scalingCenter, PointF scailingCoeffs)
+        {
+
+        }
+
+        public void Moving(Point delta)
+        {
+            MovingCircle(delta);
+            MovingParabola(delta);
+            MovingHatching(delta);
+        }
+
+        private Point MovingPoint(Point point, Point delta)
+        {
+            return new Point(point.X += delta.X, point.Y += delta.Y);
+        }
+
+        private Section MovingSection(Section section, Point delta)
+        {
+            return new Section(new Point((int)section.first.X + delta.X, (int)section.first.Y + delta.Y),
+                               new Point((int)section.second.X + delta.X, (int)section.second.Y + delta.Y));
+        }
+        private void MovingCircle(Point delta)
+        {
+            circle = circle.Select(x => MovingPoint(x, delta)).ToList();
+        }
+
+        private void MovingParabola(Point delta)
+        {
+            parabola = parabola.Select(x => MovingPoint(x, delta)).ToList();
+        }
+
+        private void MovingHatching(Point delta)
+        {
+            hatching = hatching.Select(x => MovingSection(x, delta)).ToList();
+        }
+
         private void GenerateCircle(Point center, int radius)
         {
             circleCentre = center;
