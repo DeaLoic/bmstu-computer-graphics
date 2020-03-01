@@ -9,14 +9,14 @@ namespace lab_02
 {
     class Model
     {
-        public List<Point> circle;
-        public List<Point> parabola;
+        public List<PointF> circle;
+        public List<PointF> parabola;
         public List<Section> hatching;
 
-        private Point circleCentre;
-        private int radius;
+        private PointF circleCentre;
+        private float radius;
 
-        private Point parabolaVertex;
+        private PointF parabolaVertex;
 
         private int hatchingStep = 20;
 
@@ -25,18 +25,59 @@ namespace lab_02
 
         }
 
-        public void GenerateModel(Point circleCentre, int radius, Point parabolaVertex)
+        public void GenerateModel(PointF circleCentre, int radius, PointF parabolaVertex)
         {
             GenerateCircle(circleCentre, radius);
             GenerateParabola(parabolaVertex);
+            hatchingStep = radius / 6;
             GenerateHatching();
         }
 
-        public void Scale(Point scalingCenter, PointF scailingCoeffs)
-        {
 
+        #region Scaling
+
+        public void Scale(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            ScaleCircle(scalingCenter, scalingCoeffs);
+            ScaleParabola(scalingCenter, scalingCoeffs);
+            ScaleHatching(scalingCenter, scalingCoeffs);
         }
 
+        private void ScaleCircle(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            List<PointF>  newCircle = circle.Select(x => ScalePoint(x, scalingCenter, scalingCoeffs)).ToList();
+            circle.Clear();
+            circle = newCircle;
+        }
+
+        private void ScaleParabola(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            List<PointF> newParabola = parabola.Select(x => ScalePoint(x, scalingCenter, scalingCoeffs)).ToList();
+            parabola.Clear();
+            parabola = newParabola;
+        }
+
+        private void ScaleHatching(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            hatching = hatching.Select(x => ScaleSection(x, scalingCenter, scalingCoeffs)).ToList();
+        }
+
+        private PointF ScalePoint(PointF targetPoint, PointF scalingCenter, PointF scalingCoeffs)
+        {
+            double x = scalingCoeffs.X * targetPoint.X + scalingCenter.X * (1 - scalingCoeffs.X);
+            double y = scalingCoeffs.Y * targetPoint.Y + scalingCenter.Y * (1 - scalingCoeffs.Y);
+            return new PointF((float)x, (float)y);
+        }
+
+        private Section ScaleSection(Section section, PointF scalingCenter, PointF scalingCoeffs)
+        {
+            return new Section(ScalePoint(section.first, scalingCenter, scalingCoeffs),
+                               ScalePoint(section.second, scalingCenter, scalingCoeffs));
+        }
+
+        #endregion Scaling
+
+        #region Moving
         public void Moving(Point delta)
         {
             MovingCircle(delta);
@@ -44,73 +85,113 @@ namespace lab_02
             MovingHatching(delta);
         }
 
-        private Point MovingPoint(Point point, Point delta)
+        private PointF MovingPoint(PointF point, PointF delta)
         {
-            return new Point(point.X += delta.X, point.Y += delta.Y);
+            return new PointF(point.X += delta.X, point.Y += delta.Y);
         }
 
-        private Section MovingSection(Section section, Point delta)
+        private Section MovingSection(Section section, PointF delta)
         {
-            return new Section(new Point((int)section.first.X + delta.X, (int)section.first.Y + delta.Y),
-                               new Point((int)section.second.X + delta.X, (int)section.second.Y + delta.Y));
+            return new Section(new PointF(section.first.X + delta.X, section.first.Y + delta.Y),
+                               new PointF(section.second.X + delta.X, section.second.Y + delta.Y));
         }
-        private void MovingCircle(Point delta)
+        private void MovingCircle(PointF delta)
         {
             circle = circle.Select(x => MovingPoint(x, delta)).ToList();
         }
 
-        private void MovingParabola(Point delta)
+        private void MovingParabola(PointF delta)
         {
             parabola = parabola.Select(x => MovingPoint(x, delta)).ToList();
         }
 
-        private void MovingHatching(Point delta)
+        private void MovingHatching(PointF delta)
         {
             hatching = hatching.Select(x => MovingSection(x, delta)).ToList();
         }
 
-        private void GenerateCircle(Point center, int radius)
+        #endregion Moving
+
+        #region Rotation
+
+        public void Rotate(PointF center, double angle)
+        {
+            RotateCircle(center, angle);
+            RotateParabola(center, angle);
+            RotateHatching(center, angle);
+        }
+
+        private PointF RotatePoint(PointF point, PointF center, double angle)
+        {
+            float x = (float)(center.X + (point.X - center.X) * Math.Cos(angle) + (point.Y - center.Y) * Math.Sin(angle));
+            float y = (float)(center.Y - (point.X - center.X) * Math.Sin(angle) + (point.Y - center.Y) * Math.Cos(angle));
+            return new PointF(x, y);
+        }
+
+        private Section RotateSection(Section section, PointF center, double angle)
+        {
+            return new Section(RotatePoint(section.first, center, angle), RotatePoint(section.second, center, angle));
+        }
+
+        private void RotateCircle(PointF center, double angle)
+        {
+            circle = circle.Select(x => RotatePoint(x, center, angle)).ToList();
+        }
+
+        private void RotateParabola(PointF center, double angle)
+        {
+            parabola = parabola.Select(x => RotatePoint(x, center, angle)).ToList();
+        }
+
+        private void RotateHatching(PointF center, double angle)
+        {
+            hatching = hatching.Select(x => RotateSection(x, center, angle)).ToList();
+        }
+
+        #endregion Rotation
+
+        private void GenerateCircle(PointF center, int radius)
         {
             circleCentre = center;
             this.radius = radius;
 
             double angle = 0;
-            double delta = (1.0 / radius);
+            double delta = (1.0 / (2 * radius));
 
-            circle = new List<Point>();
+            circle = new List<PointF>();
 
             while (angle <= Math.PI * 2)
             {
-                int x = center.X + (int)(radius * Math.Cos(angle));
-                int y = center.Y - (int)(radius * Math.Sin(angle));
-                circle.Add(new Point(x, y));
+                double x = center.X + (radius * Math.Cos(angle));
+                double y = center.Y - (radius * Math.Sin(angle));
+                circle.Add(new PointF((float)x, (float)y));
                 angle += delta;
             }
         }
 
-        private void GenerateParabola(Point vertex)
+        private void GenerateParabola(PointF vertex)
         {
             parabolaVertex = vertex;
-            parabola = new List<Point>();
+            parabola = new List<PointF>();
 
-            int y;
+            double y;
             double root;
-            int rightBorder = circleCentre.X + radius + 10;
+            int rightBorder = (int)(circleCentre.X + radius + 10);
 
             if (vertex.X + radius + 10 > rightBorder)
             {
-                rightBorder = vertex.X + radius + 10;
+                rightBorder = (int)(vertex.X + radius + 10);
             }
 
-            for (int x = vertex.X; x < circleCentre.X + radius + 10; x++)
+            for (float x = vertex.X; x < rightBorder; x += 0.5f)
             {
                 root = Math.Sqrt(x - vertex.X);
 
-                y = (int)(root + vertex.Y);
-                parabola.Add(new Point(x, y));
+                y = (root + vertex.Y);
+                parabola.Add(new PointF(x, (float)y));
 
-                y = (int)(-root + vertex.Y);
-                parabola.Add(new Point(x, y));
+                y = (-root + vertex.Y);
+                parabola.Add(new PointF(x, (float)y));
             }
         }
 
@@ -120,7 +201,7 @@ namespace lab_02
             Section currentHatchingLine;
             Straight straight = new Straight(parabolaVertex, new PointF(parabolaVertex.X - 1, parabolaVertex.Y + 1));
 
-            for (int x = parabolaVertex.X + 1; x < circleCentre.X + radius - 2; x += hatchingStep)
+            for (int x = (int)parabolaVertex.X + 1; x < circleCentre.X + radius * 2; x += hatchingStep)
             {
                 straight.C -= hatchingStep;
                 currentHatchingLine = GetHatchingStep(straight);
@@ -134,10 +215,10 @@ namespace lab_02
         private Section GetHatchingStep(Straight straight)
         {
             Section section = new Section();
-            List<Point> intersectionCircle = FindCircleIntersection(straight);
+            List<PointF> intersectionCircle = FindCircleIntersection(straight);
             if (intersectionCircle.Count == 2)
             {
-                List<Point> intersectionParabola = FindParabolaIntersection(straight);
+                List<PointF> intersectionParabola = FindParabolaIntersection(straight);
                 if (intersectionParabola.Count == 2)
                 {
                     Section toFirst = new Section(circleCentre, intersectionParabola[0]);
@@ -199,27 +280,27 @@ namespace lab_02
             return section;
         }
 
-        private List<Point> FindParabolaIntersection(Straight straight)
+        private List<PointF> FindParabolaIntersection(Straight straight)
         {
-            List<Point> points = new List<Point>();
+            List<PointF> points = new List<PointF>();
 
-            int A = (int)straight.C;
-            int C = parabolaVertex.X;
-            int D = parabolaVertex.Y;
+            float A = (float)straight.C;
+            float C = parabolaVertex.X;
+            float D = parabolaVertex.Y;
 
-            int mainSqrt = -4 * A - 4 * C - 4 * D + 1;
+            float mainSqrt = -4 * A - 4 * C - 4 * D + 1;
             if (mainSqrt >= 0)
             {
-                int x1 = (int)(1.0 / 2.0 * (-Math.Sqrt(mainSqrt) - 2 * A - 2 * D + 1));
-                int x2 = (int)(1.0 / 2.0 * (Math.Sqrt(mainSqrt) - 2 * A - 2 * D + 1));
+                float x1 = (float)(1.0 / 2.0 * (-Math.Sqrt(mainSqrt) - 2 * A - 2 * D + 1));
+                float x2 = (float)(1.0 / 2.0 * (Math.Sqrt(mainSqrt) - 2 * A - 2 * D + 1));
 
-                int y1 = (int)(1.0 / 2.0 * (Math.Sqrt(mainSqrt) + 2 * D - 1));
-                int y2 = (int)(1.0 / 2.0 * (-Math.Sqrt(mainSqrt) + 2 * D - 1));
+                float y1 = (float)(1.0 / 2.0 * (Math.Sqrt(mainSqrt) + 2 * D - 1));
+                float y2 = (float)(1.0 / 2.0 * (-Math.Sqrt(mainSqrt) + 2 * D - 1));
 
-                points.Add(new Point(x1, y1));
+                points.Add(new PointF(x1, y1));
                 if (x1 != x2 && y1 != y2)
                 {
-                    points.Add(new Point(x2, y2));
+                    points.Add(new PointF(x2, y2));
                 }
             }
             
@@ -245,27 +326,27 @@ namespace lab_02
             return points;
         }
 
-        private List<Point> FindCircleIntersection(Straight straight)
+        private List<PointF> FindCircleIntersection(Straight straight)
         {
-            List<Point> points = new List<Point>();
+            List<PointF> points = new List<PointF>();
 
-            int A = circleCentre.X;
-            int B = circleCentre.Y;
-            int C = (int)straight.C;
+            float A = circleCentre.X;
+            float B = circleCentre.Y;
+            float C = (float)straight.C;
 
-            int mainSqrt = (int)-Math.Pow(A, 2) - 2 * A * B - 2 * A * C - (int)Math.Pow(B, 2) - 2 * B * C - (int)Math.Pow(C, 2) + 2 * (int)Math.Pow(radius, 2);
+            float mainSqrt = (float)(-Math.Pow(A, 2) - 2 * A * B - 2 * A * C - Math.Pow(B, 2) - 2 * B * C - Math.Pow(C, 2) + 2 * Math.Pow(radius, 2));
             if (mainSqrt >= 0)
             {
-                int x1 = (int)(1.0 / 2.0 * (-Math.Sqrt(mainSqrt) + A - B - C));
-                int x2 = (int)(1.0 / 2.0 * (Math.Sqrt(mainSqrt) + A - B - C));
+                float x1 = (float)(1.0 / 2.0 * (-Math.Sqrt(mainSqrt) + A - B - C));
+                float x2 = (float)(1.0 / 2.0 * (Math.Sqrt(mainSqrt) + A - B - C));
 
-                int y1 = (int)(-C - x1);
-                int y2 = (int)(-C - x2);
+                float y1 = (-C - x1);
+                float y2 = (-C - x2);
 
-                points.Add(new Point(x1, y1));
+                points.Add(new PointF(x1, y1));
                 if (x1 != x2 && y1 != y2)
                 {
-                    points.Add(new Point(x2, y2));
+                    points.Add(new PointF(x2, y2));
                 }
             }
             /*
@@ -291,4 +372,3 @@ namespace lab_02
         }
     }
 }
-

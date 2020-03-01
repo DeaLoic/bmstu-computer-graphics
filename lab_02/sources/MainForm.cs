@@ -12,7 +12,7 @@ namespace lab_02
 {
     public partial class MainForm : Form
     {
-        Model model;
+        Model model = new Model();
         View view;
 
         public MainForm()
@@ -25,12 +25,19 @@ namespace lab_02
             rTextBox.Text = (MainCanvas.Width / 5).ToString();
             cTextBox.Text = (MainCanvas.Width / 2).ToString();
             dTextBox.Text = (MainCanvas.Height / 2).ToString();
+
+            scaleXtextBox.Text = aTextBox.Text;
+            scaleYtextBox.Text = bTextBox.Text;
+
+            rotateXTextBox.Text = aTextBox.Text;
+            rotateYTextBox.Text = bTextBox.Text;
+
+            model.GenerateModel(new Point(MainCanvas.Width / 2, MainCanvas.Height / 2), MainCanvas.Width / 5,
+                                new Point(MainCanvas.Width / 2, MainCanvas.Height / 2));
         }
 
         private void ImageBuildButton_Click(object sender, EventArgs e)
         {
-            model = new Model();
-
             int a, b, r, c, d;
 
             try
@@ -50,33 +57,37 @@ namespace lab_02
             view.Clear();
             model.GenerateModel(new Point(a, b), r, new Point(c, d));
 
-            view.PrintDots(ref model.circle);
-            view.PrintDots(ref model.parabola);
+            view.PrintPolygon(ref model.circle);
+            view.PrintParabola(ref model.parabola);
             view.PrintHatching(ref model.hatching);
         }
 
         private void ScaleButton_Click(object sender, EventArgs e)
         {
-            int xScale, yScale;
+            double xScale, yScale;
 
             double xScaleCoeff, yScaleCoeff;
 
             try
             {
-                xScale = Convert.ToInt32(scaleXtextBox.Text);
-                yScale = Convert.ToInt32(scaleYtextBox.Text);
-                xScaleCoeff = Convert.ToDouble(scaleKXtextBox.Text);
-                yScaleCoeff = Convert.ToDouble(scaleKYtextBox.Text);
+                xScale = Convert.ToDouble(scaleXtextBox.Text.Replace('.', ','));
+                yScale = Convert.ToDouble(scaleYtextBox.Text.Replace('.', ','));
+                xScaleCoeff = Convert.ToDouble(scaleKXtextBox.Text.Replace('.', ','));
+                yScaleCoeff = Convert.ToDouble(scaleKYtextBox.Text.Replace('.', ','));
             }
             catch
             {
-                MessageBox.Show("Некорректные данные.\nkX и kY должны быть вещественными числами\n" +
-                                "X и Y должны быть целыми", "Ошибка");
+                MessageBox.Show("Некорректные данные.\nkX, kY, X и Y должны быть вещественными числами\n", "Ошибка");
                 return;
             }
 
-            model.Scale(new Point(xScale, yScale), new PointF((float)xScaleCoeff, (float)yScaleCoeff));
+            model.Scale(new PointF((float)xScale, (float)yScale), new PointF((float)xScaleCoeff, (float)yScaleCoeff));
 
+            view.Clear();
+
+            view.PrintPolygon(ref model.circle);
+            view.PrintParabola(ref model.parabola);
+            view.PrintHatching(ref model.hatching);
         }
 
         private void MoveButton_Click(object sender, EventArgs e)
@@ -84,8 +95,8 @@ namespace lab_02
             double dX, dY;
             try
             {
-                dX = Convert.ToDouble(moveDXTextBox.Text);
-                dY = Convert.ToDouble(moveDYTextBox.Text);
+                dX = Convert.ToDouble(moveDXTextBox.Text.Replace('.', ','));
+                dY = Convert.ToDouble(moveDYTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -96,8 +107,35 @@ namespace lab_02
             model.Moving(new Point((int)dX, (int)dY));
             view.Clear();
 
-            view.PrintDots(ref model.circle);
-            view.PrintDots(ref model.parabola);
+            view.PrintPolygon(ref model.circle);
+            view.PrintParabola(ref model.parabola);
+            view.PrintHatching(ref model.hatching);
+        }
+
+        private void RotateButton_Click(object sender, EventArgs e)
+        {
+            float X, Y;
+
+            double angle;
+
+            try
+            {
+                X = (float)Convert.ToDouble(rotateXTextBox.Text.Replace('.', ','));
+                Y = (float)Convert.ToDouble(rotateYTextBox.Text.Replace('.', ','));
+                angle = Convert.ToDouble(rotateAngleTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+                MessageBox.Show("Некорректные данные.\nX, Y и значение угла должны быть вещественными числами", "Ошибка");
+                return;
+            }
+
+            model.Rotate(new PointF(X, Y), angle * Math.PI / 180);
+
+            view.Clear();
+
+            view.PrintPolygon(ref model.circle);
+            view.PrintParabola(ref model.parabola);
             view.PrintHatching(ref model.hatching);
         }
     }

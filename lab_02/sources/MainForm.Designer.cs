@@ -390,6 +390,7 @@
             this.rotateButton.TabIndex = 0;
             this.rotateButton.Text = "Поворот";
             this.rotateButton.UseVisualStyleBackColor = true;
+            this.rotateButton.Click += new System.EventHandler(this.RotateButton_Click);
             // 
             // rotateWelcomeX
             // 
