@@ -69,6 +69,7 @@
             this.moveWelcomeDX = new System.Windows.Forms.Label();
             this.restoreButton = new System.Windows.Forms.Button();
             this.lastStepButton = new System.Windows.Forms.Button();
+            this.coordsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MainCanvas)).BeginInit();
             this.imageGroup.SuspendLayout();
             this.scaleGroup.SuspendLayout();
@@ -84,6 +85,7 @@
             this.MainCanvas.Size = new System.Drawing.Size(820, 660);
             this.MainCanvas.TabIndex = 0;
             this.MainCanvas.TabStop = false;
+            this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
             // 
             // imageGroup
             // 
@@ -469,6 +471,7 @@
             this.restoreButton.TabIndex = 5;
             this.restoreButton.Text = "Восстановить исходное изображение";
             this.restoreButton.UseVisualStyleBackColor = true;
+            this.restoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
             // 
             // lastStepButton
             // 
@@ -479,11 +482,21 @@
             this.lastStepButton.Text = "На шаг назад";
             this.lastStepButton.UseVisualStyleBackColor = true;
             // 
+            // coordsLabel
+            // 
+            this.coordsLabel.AutoSize = true;
+            this.coordsLabel.Location = new System.Drawing.Point(33, 677);
+            this.coordsLabel.Name = "coordsLabel";
+            this.coordsLabel.Size = new System.Drawing.Size(42, 17);
+            this.coordsLabel.TabIndex = 7;
+            this.coordsLabel.Text = "(0, 0)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 705);
+            this.Controls.Add(this.coordsLabel);
             this.Controls.Add(this.lastStepButton);
             this.Controls.Add(this.restoreButton);
             this.Controls.Add(this.movingBox);
@@ -503,6 +516,7 @@
             this.movingBox.ResumeLayout(false);
             this.movingBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -549,6 +563,7 @@
         private System.Windows.Forms.Button moveButton;
         private System.Windows.Forms.Label moveWelcomeDY;
         private System.Windows.Forms.Label moveWelcomeDX;
+        private System.Windows.Forms.Label coordsLabel;
     }
 }
 

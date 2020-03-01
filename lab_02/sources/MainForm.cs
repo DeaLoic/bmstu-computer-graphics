@@ -15,16 +15,20 @@ namespace lab_02
         Model model = new Model();
         View view;
 
+        PointF startCircle;
+        float startRadius;
+        PointF startParabola;
+
         public MainForm()
         {
             InitializeComponent();
-            view = new View(MainCanvas.CreateGraphics());
+            view = new View(MainCanvas.CreateGraphics(), MainCanvas.Size);
 
-            aTextBox.Text = (MainCanvas.Width / 2).ToString();
-            bTextBox.Text = (MainCanvas.Height / 2).ToString();
-            rTextBox.Text = (MainCanvas.Width / 5).ToString();
-            cTextBox.Text = (MainCanvas.Width / 2).ToString();
-            dTextBox.Text = (MainCanvas.Height / 2).ToString();
+            aTextBox.Text = (MainCanvas.Width / 2 - 10).ToString();
+            bTextBox.Text = (MainCanvas.Height / 2 - 10).ToString();
+            rTextBox.Text = (MainCanvas.Width / 5 - 10).ToString();
+            cTextBox.Text = (MainCanvas.Width / 2 - 10).ToString();
+            dTextBox.Text = (MainCanvas.Height / 2 - 10).ToString();
 
             scaleXtextBox.Text = aTextBox.Text;
             scaleYtextBox.Text = bTextBox.Text;
@@ -32,8 +36,11 @@ namespace lab_02
             rotateXTextBox.Text = aTextBox.Text;
             rotateYTextBox.Text = bTextBox.Text;
 
-            model.GenerateModel(new Point(MainCanvas.Width / 2, MainCanvas.Height / 2), MainCanvas.Width / 5,
-                                new Point(MainCanvas.Width / 2, MainCanvas.Height / 2));
+            startCircle = new PointF(MainCanvas.Width / 2, MainCanvas.Height / 2);
+            startRadius = MainCanvas.Width / 5;
+            startParabola = new PointF(MainCanvas.Width / 2, MainCanvas.Height / 2);
+
+            model.GenerateModel(startCircle, startRadius, startParabola);
         }
 
         private void ImageBuildButton_Click(object sender, EventArgs e)
@@ -50,16 +57,18 @@ namespace lab_02
             }
             catch
             {
-                MessageBox.Show("Некорректные данные.\nНачальные параметры должны быть целыми положительными числами.", "Ошибка");
+                MessageBox.Show("Некорректные данные.\nНачальные параметры должны быть целыми числами.", "Ошибка");
                 return;
             }
 
-            view.Clear();
-            model.GenerateModel(new Point(a, b), r, new Point(c, d));
+            startCircle = new PointF(a + 10, b + 10);
+            startRadius = r;
+            startParabola = new PointF(c + 10, d + 10);
 
-            view.PrintPolygon(ref model.circle);
-            view.PrintParabola(ref model.parabola);
-            view.PrintHatching(ref model.hatching);
+            model.GenerateModel(startCircle, startRadius, startParabola);
+
+            view.Clear();
+            view.Show(ref model);
         }
 
         private void ScaleButton_Click(object sender, EventArgs e)
@@ -84,10 +93,7 @@ namespace lab_02
             model.Scale(new PointF((float)xScale, (float)yScale), new PointF((float)xScaleCoeff, (float)yScaleCoeff));
 
             view.Clear();
-
-            view.PrintPolygon(ref model.circle);
-            view.PrintParabola(ref model.parabola);
-            view.PrintHatching(ref model.hatching);
+            view.Show(ref model);
         }
 
         private void MoveButton_Click(object sender, EventArgs e)
@@ -105,11 +111,9 @@ namespace lab_02
             }
 
             model.Moving(new Point((int)dX, (int)dY));
-            view.Clear();
 
-            view.PrintPolygon(ref model.circle);
-            view.PrintParabola(ref model.parabola);
-            view.PrintHatching(ref model.hatching);
+            view.Clear();
+            view.Show(ref model);
         }
 
         private void RotateButton_Click(object sender, EventArgs e)
@@ -133,10 +137,21 @@ namespace lab_02
             model.Rotate(new PointF(X, Y), angle * Math.PI / 180);
 
             view.Clear();
+            view.Show(ref model);
+        }
 
-            view.PrintPolygon(ref model.circle);
-            view.PrintParabola(ref model.parabola);
-            view.PrintHatching(ref model.hatching);
+        private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point newCoord = new Point(e.Location.X - 10, e.Location.Y - 10);
+            coordsLabel.Text = newCoord.ToString();
+        }
+
+        private void RestoreButton_Click(object sender, EventArgs e)
+        {
+            model.GenerateModel(startCircle, startRadius, startParabola);
+
+            view.Clear();
+            view.Show(ref model);
         }
     }
 }

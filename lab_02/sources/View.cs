@@ -10,12 +10,41 @@ namespace lab_02
     class View
     {
         Graphics g;
+        Size size;
+
         Brush brush = new SolidBrush(Color.Black);
         Pen pen = new Pen(Color.Black, 1);
 
-        public View(Graphics g)
+        Font font = new Font("Arial", 14);
+
+        public View(Graphics g, Size size)
         {
             this.g = g;
+            this.size = size;
+        }
+
+        public void Show(ref Model model)
+        {
+            PrintAxis();
+            PrintParabola(ref model.parabola);
+            PrintPolygon(ref model.circle);
+            PrintHatching(ref model.hatching);
+
+        }
+
+        public void PrintAxis()
+        {
+            g.DrawLine(pen, 10, 0, 10, size.Height);
+            g.DrawLine(pen, 10, size.Height, 5, size.Height - 7);
+            g.DrawLine(pen, 10, size.Height, 15, size.Height - 7);
+
+            g.DrawString("Y", font, brush, 20, size.Height - 20);
+
+            g.DrawLine(pen, 0, 10, size.Width, 10);
+            g.DrawLine(pen, size.Width, 10, size.Width - 7, 5);
+            g.DrawLine(pen, size.Width, 10, size.Width - 7, 15);
+
+            g.DrawString("X", font, brush, size.Width - 20, 20);
         }
 
         public void PrintDots(ref List<Point> points)

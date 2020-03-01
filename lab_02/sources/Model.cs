@@ -14,7 +14,7 @@ namespace lab_02
         public List<Section> hatching;
 
         private PointF circleCentre;
-        private float radius;
+        private double radius;
 
         private PointF parabolaVertex;
 
@@ -25,132 +25,17 @@ namespace lab_02
 
         }
 
-        public void GenerateModel(PointF circleCentre, int radius, PointF parabolaVertex)
+        #region Generation
+        public void GenerateModel(PointF circleCentre, double radius, PointF parabolaVertex)
         {
             GenerateCircle(circleCentre, radius);
             GenerateParabola(parabolaVertex);
-            hatchingStep = radius / 6;
+            hatchingStep = (int)(radius / 6);
             GenerateHatching();
         }
 
 
-        #region Scaling
-
-        public void Scale(PointF scalingCenter, PointF scalingCoeffs)
-        {
-            ScaleCircle(scalingCenter, scalingCoeffs);
-            ScaleParabola(scalingCenter, scalingCoeffs);
-            ScaleHatching(scalingCenter, scalingCoeffs);
-        }
-
-        private void ScaleCircle(PointF scalingCenter, PointF scalingCoeffs)
-        {
-            List<PointF>  newCircle = circle.Select(x => ScalePoint(x, scalingCenter, scalingCoeffs)).ToList();
-            circle.Clear();
-            circle = newCircle;
-        }
-
-        private void ScaleParabola(PointF scalingCenter, PointF scalingCoeffs)
-        {
-            List<PointF> newParabola = parabola.Select(x => ScalePoint(x, scalingCenter, scalingCoeffs)).ToList();
-            parabola.Clear();
-            parabola = newParabola;
-        }
-
-        private void ScaleHatching(PointF scalingCenter, PointF scalingCoeffs)
-        {
-            hatching = hatching.Select(x => ScaleSection(x, scalingCenter, scalingCoeffs)).ToList();
-        }
-
-        private PointF ScalePoint(PointF targetPoint, PointF scalingCenter, PointF scalingCoeffs)
-        {
-            double x = scalingCoeffs.X * targetPoint.X + scalingCenter.X * (1 - scalingCoeffs.X);
-            double y = scalingCoeffs.Y * targetPoint.Y + scalingCenter.Y * (1 - scalingCoeffs.Y);
-            return new PointF((float)x, (float)y);
-        }
-
-        private Section ScaleSection(Section section, PointF scalingCenter, PointF scalingCoeffs)
-        {
-            return new Section(ScalePoint(section.first, scalingCenter, scalingCoeffs),
-                               ScalePoint(section.second, scalingCenter, scalingCoeffs));
-        }
-
-        #endregion Scaling
-
-        #region Moving
-        public void Moving(Point delta)
-        {
-            MovingCircle(delta);
-            MovingParabola(delta);
-            MovingHatching(delta);
-        }
-
-        private PointF MovingPoint(PointF point, PointF delta)
-        {
-            return new PointF(point.X += delta.X, point.Y += delta.Y);
-        }
-
-        private Section MovingSection(Section section, PointF delta)
-        {
-            return new Section(new PointF(section.first.X + delta.X, section.first.Y + delta.Y),
-                               new PointF(section.second.X + delta.X, section.second.Y + delta.Y));
-        }
-        private void MovingCircle(PointF delta)
-        {
-            circle = circle.Select(x => MovingPoint(x, delta)).ToList();
-        }
-
-        private void MovingParabola(PointF delta)
-        {
-            parabola = parabola.Select(x => MovingPoint(x, delta)).ToList();
-        }
-
-        private void MovingHatching(PointF delta)
-        {
-            hatching = hatching.Select(x => MovingSection(x, delta)).ToList();
-        }
-
-        #endregion Moving
-
-        #region Rotation
-
-        public void Rotate(PointF center, double angle)
-        {
-            RotateCircle(center, angle);
-            RotateParabola(center, angle);
-            RotateHatching(center, angle);
-        }
-
-        private PointF RotatePoint(PointF point, PointF center, double angle)
-        {
-            float x = (float)(center.X + (point.X - center.X) * Math.Cos(angle) + (point.Y - center.Y) * Math.Sin(angle));
-            float y = (float)(center.Y - (point.X - center.X) * Math.Sin(angle) + (point.Y - center.Y) * Math.Cos(angle));
-            return new PointF(x, y);
-        }
-
-        private Section RotateSection(Section section, PointF center, double angle)
-        {
-            return new Section(RotatePoint(section.first, center, angle), RotatePoint(section.second, center, angle));
-        }
-
-        private void RotateCircle(PointF center, double angle)
-        {
-            circle = circle.Select(x => RotatePoint(x, center, angle)).ToList();
-        }
-
-        private void RotateParabola(PointF center, double angle)
-        {
-            parabola = parabola.Select(x => RotatePoint(x, center, angle)).ToList();
-        }
-
-        private void RotateHatching(PointF center, double angle)
-        {
-            hatching = hatching.Select(x => RotateSection(x, center, angle)).ToList();
-        }
-
-        #endregion Rotation
-
-        private void GenerateCircle(PointF center, int radius)
+        private void GenerateCircle(PointF center, double radius)
         {
             circleCentre = center;
             this.radius = radius;
@@ -279,7 +164,124 @@ namespace lab_02
 
             return section;
         }
+        #endregion Generation
 
+        #region Scaling
+
+        public void Scale(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            ScaleCircle(scalingCenter, scalingCoeffs);
+            ScaleParabola(scalingCenter, scalingCoeffs);
+            ScaleHatching(scalingCenter, scalingCoeffs);
+        }
+
+        private void ScaleCircle(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            List<PointF>  newCircle = circle.Select(x => ScalePoint(x, scalingCenter, scalingCoeffs)).ToList();
+            circle.Clear();
+            circle = newCircle;
+        }
+
+        private void ScaleParabola(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            List<PointF> newParabola = parabola.Select(x => ScalePoint(x, scalingCenter, scalingCoeffs)).ToList();
+            parabola.Clear();
+            parabola = newParabola;
+        }
+
+        private void ScaleHatching(PointF scalingCenter, PointF scalingCoeffs)
+        {
+            hatching = hatching.Select(x => ScaleSection(x, scalingCenter, scalingCoeffs)).ToList();
+        }
+
+        private PointF ScalePoint(PointF targetPoint, PointF scalingCenter, PointF scalingCoeffs)
+        {
+            double x = scalingCoeffs.X * targetPoint.X + scalingCenter.X * (1 - scalingCoeffs.X);
+            double y = scalingCoeffs.Y * targetPoint.Y + scalingCenter.Y * (1 - scalingCoeffs.Y);
+            return new PointF((float)x, (float)y);
+        }
+
+        private Section ScaleSection(Section section, PointF scalingCenter, PointF scalingCoeffs)
+        {
+            return new Section(ScalePoint(section.first, scalingCenter, scalingCoeffs),
+                               ScalePoint(section.second, scalingCenter, scalingCoeffs));
+        }
+
+        #endregion Scaling
+
+        #region Moving
+        public void Moving(Point delta)
+        {
+            MovingCircle(delta);
+            MovingParabola(delta);
+            MovingHatching(delta);
+        }
+
+        private PointF MovingPoint(PointF point, PointF delta)
+        {
+            return new PointF(point.X += delta.X, point.Y += delta.Y);
+        }
+
+        private Section MovingSection(Section section, PointF delta)
+        {
+            return new Section(new PointF(section.first.X + delta.X, section.first.Y + delta.Y),
+                               new PointF(section.second.X + delta.X, section.second.Y + delta.Y));
+        }
+        private void MovingCircle(PointF delta)
+        {
+            circle = circle.Select(x => MovingPoint(x, delta)).ToList();
+        }
+
+        private void MovingParabola(PointF delta)
+        {
+            parabola = parabola.Select(x => MovingPoint(x, delta)).ToList();
+        }
+
+        private void MovingHatching(PointF delta)
+        {
+            hatching = hatching.Select(x => MovingSection(x, delta)).ToList();
+        }
+
+        #endregion Moving
+
+        #region Rotation
+
+        public void Rotate(PointF center, double angle)
+        {
+            RotateCircle(center, angle);
+            RotateParabola(center, angle);
+            RotateHatching(center, angle);
+        }
+
+        private PointF RotatePoint(PointF point, PointF center, double angle)
+        {
+            float x = (float)(center.X + (point.X - center.X) * Math.Cos(angle) + (point.Y - center.Y) * Math.Sin(angle));
+            float y = (float)(center.Y - (point.X - center.X) * Math.Sin(angle) + (point.Y - center.Y) * Math.Cos(angle));
+            return new PointF(x, y);
+        }
+
+        private Section RotateSection(Section section, PointF center, double angle)
+        {
+            return new Section(RotatePoint(section.first, center, angle), RotatePoint(section.second, center, angle));
+        }
+
+        private void RotateCircle(PointF center, double angle)
+        {
+            circle = circle.Select(x => RotatePoint(x, center, angle)).ToList();
+        }
+
+        private void RotateParabola(PointF center, double angle)
+        {
+            parabola = parabola.Select(x => RotatePoint(x, center, angle)).ToList();
+        }
+
+        private void RotateHatching(PointF center, double angle)
+        {
+            hatching = hatching.Select(x => RotateSection(x, center, angle)).ToList();
+        }
+
+        #endregion Rotation
+        
         private List<PointF> FindParabolaIntersection(Straight straight)
         {
             List<PointF> points = new List<PointF>();
