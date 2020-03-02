@@ -13,6 +13,10 @@ namespace lab_02
         public List<PointF> parabola;
         public List<Section> hatching;
 
+        public List<PointF> prevCircle = new List<PointF>();
+        public List<PointF> prevParabola = new List<PointF>();
+        public List<Section> prevHatching = new List<Section>();
+
         private PointF circleCentre;
         private double radius;
 
@@ -371,6 +375,28 @@ namespace lab_02
             }
             */
             return points;
+        }
+
+        public void GetShot()
+        {
+            prevCircle = circle.ToList();
+            prevParabola = parabola.ToList();
+            prevHatching = hatching.ToList();
+        }
+
+        public void SwapShot()
+        {
+            List<PointF> pointBuf = circle.ToList();
+            circle = prevCircle.ToList();
+            prevCircle = pointBuf.ToList();
+
+            pointBuf = prevParabola.ToList();
+            prevParabola = parabola.ToList();
+            parabola = pointBuf.ToList();
+
+            List<Section> sectionBuf = prevHatching.ToList();
+            prevHatching = hatching.ToList();
+            hatching = sectionBuf.ToList();
         }
     }
 }

@@ -27,9 +27,18 @@ namespace lab_02
         {
             PrintAxis();
             PrintParabola(ref model.parabola);
-            PrintPolygon(ref model.circle);
+            g.DrawPolygon(pen, model.circle.ToArray());
+            //PrintPolygon(ref model.circle);
             PrintHatching(ref model.hatching);
+        }
 
+        public void ShowShot(ref Model model)
+        {
+            PrintAxis();
+            PrintParabola(ref model.prevParabola);
+            g.DrawPolygon(pen, model.prevCircle.ToArray());
+            //PrintPolygon(ref model.prevCircle);
+            PrintHatching(ref model.prevHatching);
         }
 
         public void PrintAxis()

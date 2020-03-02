@@ -80,9 +80,10 @@
             // MainCanvas
             // 
             this.MainCanvas.BackColor = System.Drawing.Color.Cornsilk;
-            this.MainCanvas.Location = new System.Drawing.Point(6, 7);
+            this.MainCanvas.Location = new System.Drawing.Point(4, 6);
+            this.MainCanvas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MainCanvas.Name = "MainCanvas";
-            this.MainCanvas.Size = new System.Drawing.Size(820, 660);
+            this.MainCanvas.Size = new System.Drawing.Size(615, 536);
             this.MainCanvas.TabIndex = 0;
             this.MainCanvas.TabStop = false;
             this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
@@ -102,63 +103,71 @@
             this.imageGroup.Controls.Add(this.bWelcome);
             this.imageGroup.Controls.Add(this.aWelcome);
             this.imageGroup.Controls.Add(this.circleEquation);
-            this.imageGroup.Location = new System.Drawing.Point(836, 14);
+            this.imageGroup.Location = new System.Drawing.Point(627, 11);
+            this.imageGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.imageGroup.Name = "imageGroup";
-            this.imageGroup.Size = new System.Drawing.Size(215, 217);
+            this.imageGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.imageGroup.Size = new System.Drawing.Size(161, 176);
             this.imageGroup.TabIndex = 1;
             this.imageGroup.TabStop = false;
             this.imageGroup.Text = "Задание изображения";
             // 
             // dTextBox
             // 
-            this.dTextBox.Location = new System.Drawing.Point(100, 127);
+            this.dTextBox.Location = new System.Drawing.Point(75, 103);
+            this.dTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dTextBox.Name = "dTextBox";
-            this.dTextBox.Size = new System.Drawing.Size(49, 22);
+            this.dTextBox.Size = new System.Drawing.Size(38, 20);
             this.dTextBox.TabIndex = 15;
             this.dTextBox.Text = "0";
             this.dTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cTextBox
             // 
-            this.cTextBox.Location = new System.Drawing.Point(31, 127);
+            this.cTextBox.Location = new System.Drawing.Point(23, 103);
+            this.cTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cTextBox.Name = "cTextBox";
-            this.cTextBox.Size = new System.Drawing.Size(47, 22);
+            this.cTextBox.Size = new System.Drawing.Size(36, 20);
             this.cTextBox.TabIndex = 14;
             this.cTextBox.Text = "0";
             this.cTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rTextBox
             // 
-            this.rTextBox.Location = new System.Drawing.Point(163, 57);
+            this.rTextBox.Location = new System.Drawing.Point(122, 46);
+            this.rTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rTextBox.Name = "rTextBox";
-            this.rTextBox.Size = new System.Drawing.Size(46, 22);
+            this.rTextBox.Size = new System.Drawing.Size(36, 20);
             this.rTextBox.TabIndex = 13;
             this.rTextBox.Text = "0";
             this.rTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // bTextBox
             // 
-            this.bTextBox.Location = new System.Drawing.Point(100, 57);
+            this.bTextBox.Location = new System.Drawing.Point(75, 46);
+            this.bTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bTextBox.Name = "bTextBox";
-            this.bTextBox.Size = new System.Drawing.Size(49, 22);
+            this.bTextBox.Size = new System.Drawing.Size(38, 20);
             this.bTextBox.TabIndex = 9;
             this.bTextBox.Text = "0";
             this.bTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // aTextBox
             // 
-            this.aTextBox.Location = new System.Drawing.Point(31, 57);
+            this.aTextBox.Location = new System.Drawing.Point(23, 46);
+            this.aTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.aTextBox.Name = "aTextBox";
-            this.aTextBox.Size = new System.Drawing.Size(47, 22);
+            this.aTextBox.Size = new System.Drawing.Size(36, 20);
             this.aTextBox.TabIndex = 8;
             this.aTextBox.Text = "0";
             this.aTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // imageBuildButton
             // 
-            this.imageBuildButton.Location = new System.Drawing.Point(31, 176);
+            this.imageBuildButton.Location = new System.Drawing.Point(23, 143);
+            this.imageBuildButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.imageBuildButton.Name = "imageBuildButton";
-            this.imageBuildButton.Size = new System.Drawing.Size(148, 30);
+            this.imageBuildButton.Size = new System.Drawing.Size(111, 24);
             this.imageBuildButton.TabIndex = 7;
             this.imageBuildButton.Text = "Построить";
             this.imageBuildButton.UseVisualStyleBackColor = true;
@@ -167,63 +176,70 @@
             // dWelcome
             // 
             this.dWelcome.AutoSize = true;
-            this.dWelcome.Location = new System.Drawing.Point(84, 130);
+            this.dWelcome.Location = new System.Drawing.Point(63, 106);
+            this.dWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dWelcome.Name = "dWelcome";
-            this.dWelcome.Size = new System.Drawing.Size(16, 17);
+            this.dWelcome.Size = new System.Drawing.Size(13, 13);
             this.dWelcome.TabIndex = 6;
             this.dWelcome.Text = "d";
             // 
             // cWelcome
             // 
             this.cWelcome.AutoSize = true;
-            this.cWelcome.Location = new System.Drawing.Point(13, 130);
+            this.cWelcome.Location = new System.Drawing.Point(10, 106);
+            this.cWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.cWelcome.Name = "cWelcome";
-            this.cWelcome.Size = new System.Drawing.Size(15, 17);
+            this.cWelcome.Size = new System.Drawing.Size(13, 13);
             this.cWelcome.TabIndex = 5;
             this.cWelcome.Text = "c";
             // 
             // parabolaEquation
             // 
             this.parabolaEquation.AutoSize = true;
-            this.parabolaEquation.Location = new System.Drawing.Point(12, 97);
+            this.parabolaEquation.Location = new System.Drawing.Point(9, 79);
+            this.parabolaEquation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.parabolaEquation.Name = "parabolaEquation";
-            this.parabolaEquation.Size = new System.Drawing.Size(106, 17);
+            this.parabolaEquation.Size = new System.Drawing.Size(80, 13);
             this.parabolaEquation.TabIndex = 4;
             this.parabolaEquation.Text = "x = c + (y - d)^2";
             // 
             // rWelcome
             // 
             this.rWelcome.AutoSize = true;
-            this.rWelcome.Location = new System.Drawing.Point(149, 60);
+            this.rWelcome.Location = new System.Drawing.Point(112, 49);
+            this.rWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.rWelcome.Name = "rWelcome";
-            this.rWelcome.Size = new System.Drawing.Size(13, 17);
+            this.rWelcome.Size = new System.Drawing.Size(10, 13);
             this.rWelcome.TabIndex = 3;
             this.rWelcome.Text = "r";
             // 
             // bWelcome
             // 
             this.bWelcome.AutoSize = true;
-            this.bWelcome.Location = new System.Drawing.Point(84, 60);
+            this.bWelcome.Location = new System.Drawing.Point(63, 49);
+            this.bWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.bWelcome.Name = "bWelcome";
-            this.bWelcome.Size = new System.Drawing.Size(16, 17);
+            this.bWelcome.Size = new System.Drawing.Size(13, 13);
             this.bWelcome.TabIndex = 2;
             this.bWelcome.Text = "b";
             // 
             // aWelcome
             // 
             this.aWelcome.AutoSize = true;
-            this.aWelcome.Location = new System.Drawing.Point(12, 60);
+            this.aWelcome.Location = new System.Drawing.Point(9, 49);
+            this.aWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.aWelcome.Name = "aWelcome";
-            this.aWelcome.Size = new System.Drawing.Size(16, 17);
+            this.aWelcome.Size = new System.Drawing.Size(13, 13);
             this.aWelcome.TabIndex = 1;
             this.aWelcome.Text = "a";
             // 
             // circleEquation
             // 
             this.circleEquation.AutoSize = true;
-            this.circleEquation.Location = new System.Drawing.Point(12, 28);
+            this.circleEquation.Location = new System.Drawing.Point(9, 23);
+            this.circleEquation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.circleEquation.Name = "circleEquation";
-            this.circleEquation.Size = new System.Drawing.Size(165, 17);
+            this.circleEquation.Size = new System.Drawing.Size(122, 13);
             this.circleEquation.TabIndex = 0;
             this.circleEquation.Text = "(x - a)^2 + (y - b)^2 = r^2";
             // 
@@ -238,70 +254,79 @@
             this.scaleGroup.Controls.Add(this.scaleButton);
             this.scaleGroup.Controls.Add(this.ScaleWelcomeY);
             this.scaleGroup.Controls.Add(this.ScaleWelcomeX);
-            this.scaleGroup.Location = new System.Drawing.Point(836, 245);
+            this.scaleGroup.Location = new System.Drawing.Point(627, 199);
+            this.scaleGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scaleGroup.Name = "scaleGroup";
-            this.scaleGroup.Size = new System.Drawing.Size(214, 120);
+            this.scaleGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.scaleGroup.Size = new System.Drawing.Size(160, 98);
             this.scaleGroup.TabIndex = 2;
             this.scaleGroup.TabStop = false;
             this.scaleGroup.Text = "Масштабировать";
             // 
             // scaleKYtextBox
             // 
-            this.scaleKYtextBox.Location = new System.Drawing.Point(134, 57);
+            this.scaleKYtextBox.Location = new System.Drawing.Point(100, 46);
+            this.scaleKYtextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scaleKYtextBox.Name = "scaleKYtextBox";
-            this.scaleKYtextBox.Size = new System.Drawing.Size(41, 22);
+            this.scaleKYtextBox.Size = new System.Drawing.Size(32, 20);
             this.scaleKYtextBox.TabIndex = 16;
             this.scaleKYtextBox.Text = "1";
             this.scaleKYtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scaleYtextBox
             // 
-            this.scaleYtextBox.Location = new System.Drawing.Point(40, 55);
+            this.scaleYtextBox.Location = new System.Drawing.Point(30, 45);
+            this.scaleYtextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scaleYtextBox.Name = "scaleYtextBox";
-            this.scaleYtextBox.Size = new System.Drawing.Size(41, 22);
+            this.scaleYtextBox.Size = new System.Drawing.Size(32, 20);
             this.scaleYtextBox.TabIndex = 15;
             this.scaleYtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scaleKXtextBox
             // 
-            this.scaleKXtextBox.Location = new System.Drawing.Point(134, 25);
+            this.scaleKXtextBox.Location = new System.Drawing.Point(100, 20);
+            this.scaleKXtextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scaleKXtextBox.Name = "scaleKXtextBox";
-            this.scaleKXtextBox.Size = new System.Drawing.Size(41, 22);
+            this.scaleKXtextBox.Size = new System.Drawing.Size(32, 20);
             this.scaleKXtextBox.TabIndex = 14;
             this.scaleKXtextBox.Text = "1";
             this.scaleKXtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scaleXtextBox
             // 
-            this.scaleXtextBox.Location = new System.Drawing.Point(40, 25);
+            this.scaleXtextBox.Location = new System.Drawing.Point(30, 20);
+            this.scaleXtextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scaleXtextBox.Name = "scaleXtextBox";
-            this.scaleXtextBox.Size = new System.Drawing.Size(41, 22);
+            this.scaleXtextBox.Size = new System.Drawing.Size(32, 20);
             this.scaleXtextBox.TabIndex = 13;
             this.scaleXtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scaleWelcomeKY
             // 
             this.scaleWelcomeKY.AutoSize = true;
-            this.scaleWelcomeKY.Location = new System.Drawing.Point(104, 60);
+            this.scaleWelcomeKY.Location = new System.Drawing.Point(78, 49);
+            this.scaleWelcomeKY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scaleWelcomeKY.Name = "scaleWelcomeKY";
-            this.scaleWelcomeKY.Size = new System.Drawing.Size(24, 17);
+            this.scaleWelcomeKY.Size = new System.Drawing.Size(20, 13);
             this.scaleWelcomeKY.TabIndex = 4;
             this.scaleWelcomeKY.Text = "kY";
             // 
             // scaleWelcomeKX
             // 
             this.scaleWelcomeKX.AutoSize = true;
-            this.scaleWelcomeKX.Location = new System.Drawing.Point(104, 30);
+            this.scaleWelcomeKX.Location = new System.Drawing.Point(78, 24);
+            this.scaleWelcomeKX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scaleWelcomeKX.Name = "scaleWelcomeKX";
-            this.scaleWelcomeKX.Size = new System.Drawing.Size(24, 17);
+            this.scaleWelcomeKX.Size = new System.Drawing.Size(20, 13);
             this.scaleWelcomeKX.TabIndex = 3;
             this.scaleWelcomeKX.Text = "kX";
             // 
             // scaleButton
             // 
-            this.scaleButton.Location = new System.Drawing.Point(31, 80);
+            this.scaleButton.Location = new System.Drawing.Point(23, 65);
+            this.scaleButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scaleButton.Name = "scaleButton";
-            this.scaleButton.Size = new System.Drawing.Size(148, 34);
+            this.scaleButton.Size = new System.Drawing.Size(111, 28);
             this.scaleButton.TabIndex = 2;
             this.scaleButton.Text = "Масштабирование";
             this.scaleButton.UseVisualStyleBackColor = true;
@@ -310,18 +335,20 @@
             // ScaleWelcomeY
             // 
             this.ScaleWelcomeY.AutoSize = true;
-            this.ScaleWelcomeY.Location = new System.Drawing.Point(17, 60);
+            this.ScaleWelcomeY.Location = new System.Drawing.Point(13, 49);
+            this.ScaleWelcomeY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ScaleWelcomeY.Name = "ScaleWelcomeY";
-            this.ScaleWelcomeY.Size = new System.Drawing.Size(17, 17);
+            this.ScaleWelcomeY.Size = new System.Drawing.Size(14, 13);
             this.ScaleWelcomeY.TabIndex = 1;
             this.ScaleWelcomeY.Text = "Y";
             // 
             // ScaleWelcomeX
             // 
             this.ScaleWelcomeX.AutoSize = true;
-            this.ScaleWelcomeX.Location = new System.Drawing.Point(17, 30);
+            this.ScaleWelcomeX.Location = new System.Drawing.Point(13, 24);
+            this.ScaleWelcomeX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ScaleWelcomeX.Name = "ScaleWelcomeX";
-            this.ScaleWelcomeX.Size = new System.Drawing.Size(17, 17);
+            this.ScaleWelcomeX.Size = new System.Drawing.Size(14, 13);
             this.ScaleWelcomeX.TabIndex = 0;
             this.ScaleWelcomeX.Text = "X";
             // 
@@ -334,61 +361,69 @@
             this.rotateGroup.Controls.Add(this.rotateWelcomeY);
             this.rotateGroup.Controls.Add(this.rotateButton);
             this.rotateGroup.Controls.Add(this.rotateWelcomeX);
-            this.rotateGroup.Location = new System.Drawing.Point(836, 380);
+            this.rotateGroup.Location = new System.Drawing.Point(627, 309);
+            this.rotateGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotateGroup.Name = "rotateGroup";
-            this.rotateGroup.Size = new System.Drawing.Size(213, 120);
+            this.rotateGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rotateGroup.Size = new System.Drawing.Size(160, 98);
             this.rotateGroup.TabIndex = 3;
             this.rotateGroup.TabStop = false;
             this.rotateGroup.Text = "Повернуть";
             // 
             // rotateAngleTextBox
             // 
-            this.rotateAngleTextBox.Location = new System.Drawing.Point(134, 52);
+            this.rotateAngleTextBox.Location = new System.Drawing.Point(100, 42);
+            this.rotateAngleTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotateAngleTextBox.Name = "rotateAngleTextBox";
-            this.rotateAngleTextBox.Size = new System.Drawing.Size(41, 22);
+            this.rotateAngleTextBox.Size = new System.Drawing.Size(32, 20);
             this.rotateAngleTextBox.TabIndex = 19;
             this.rotateAngleTextBox.Text = "0";
             this.rotateAngleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rotateYTextBox
             // 
-            this.rotateYTextBox.Location = new System.Drawing.Point(134, 26);
+            this.rotateYTextBox.Location = new System.Drawing.Point(100, 21);
+            this.rotateYTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotateYTextBox.Name = "rotateYTextBox";
-            this.rotateYTextBox.Size = new System.Drawing.Size(41, 22);
+            this.rotateYTextBox.Size = new System.Drawing.Size(32, 20);
             this.rotateYTextBox.TabIndex = 18;
             this.rotateYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rotateXTextBox
             // 
-            this.rotateXTextBox.Location = new System.Drawing.Point(40, 26);
+            this.rotateXTextBox.Location = new System.Drawing.Point(30, 21);
+            this.rotateXTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotateXTextBox.Name = "rotateXTextBox";
-            this.rotateXTextBox.Size = new System.Drawing.Size(41, 22);
+            this.rotateXTextBox.Size = new System.Drawing.Size(32, 20);
             this.rotateXTextBox.TabIndex = 17;
             this.rotateXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // angleWelcome
             // 
             this.angleWelcome.AutoSize = true;
-            this.angleWelcome.Location = new System.Drawing.Point(17, 55);
+            this.angleWelcome.Location = new System.Drawing.Point(13, 45);
+            this.angleWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.angleWelcome.Name = "angleWelcome";
-            this.angleWelcome.Size = new System.Drawing.Size(120, 17);
+            this.angleWelcome.Size = new System.Drawing.Size(95, 13);
             this.angleWelcome.TabIndex = 7;
             this.angleWelcome.Text = "Угол (в градусах)";
             // 
             // rotateWelcomeY
             // 
             this.rotateWelcomeY.AutoSize = true;
-            this.rotateWelcomeY.Location = new System.Drawing.Point(111, 29);
+            this.rotateWelcomeY.Location = new System.Drawing.Point(83, 24);
+            this.rotateWelcomeY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.rotateWelcomeY.Name = "rotateWelcomeY";
-            this.rotateWelcomeY.Size = new System.Drawing.Size(17, 17);
+            this.rotateWelcomeY.Size = new System.Drawing.Size(14, 13);
             this.rotateWelcomeY.TabIndex = 6;
             this.rotateWelcomeY.Text = "Y";
             // 
             // rotateButton
             // 
-            this.rotateButton.Location = new System.Drawing.Point(31, 85);
+            this.rotateButton.Location = new System.Drawing.Point(23, 69);
+            this.rotateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotateButton.Name = "rotateButton";
-            this.rotateButton.Size = new System.Drawing.Size(148, 29);
+            this.rotateButton.Size = new System.Drawing.Size(111, 24);
             this.rotateButton.TabIndex = 0;
             this.rotateButton.Text = "Поворот";
             this.rotateButton.UseVisualStyleBackColor = true;
@@ -397,9 +432,10 @@
             // rotateWelcomeX
             // 
             this.rotateWelcomeX.AutoSize = true;
-            this.rotateWelcomeX.Location = new System.Drawing.Point(17, 29);
+            this.rotateWelcomeX.Location = new System.Drawing.Point(13, 24);
+            this.rotateWelcomeX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.rotateWelcomeX.Name = "rotateWelcomeX";
-            this.rotateWelcomeX.Size = new System.Drawing.Size(17, 17);
+            this.rotateWelcomeX.Size = new System.Drawing.Size(14, 13);
             this.rotateWelcomeX.TabIndex = 5;
             this.rotateWelcomeX.Text = "X";
             // 
@@ -410,36 +446,41 @@
             this.movingBox.Controls.Add(this.moveButton);
             this.movingBox.Controls.Add(this.moveWelcomeDY);
             this.movingBox.Controls.Add(this.moveWelcomeDX);
-            this.movingBox.Location = new System.Drawing.Point(836, 507);
+            this.movingBox.Location = new System.Drawing.Point(627, 412);
+            this.movingBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.movingBox.Name = "movingBox";
-            this.movingBox.Size = new System.Drawing.Size(212, 120);
+            this.movingBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.movingBox.Size = new System.Drawing.Size(159, 98);
             this.movingBox.TabIndex = 4;
             this.movingBox.TabStop = false;
             this.movingBox.Text = "Переместить";
             // 
             // moveDYTextBox
             // 
-            this.moveDYTextBox.Location = new System.Drawing.Point(59, 55);
+            this.moveDYTextBox.Location = new System.Drawing.Point(44, 45);
+            this.moveDYTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.moveDYTextBox.Name = "moveDYTextBox";
-            this.moveDYTextBox.Size = new System.Drawing.Size(78, 22);
+            this.moveDYTextBox.Size = new System.Drawing.Size(60, 20);
             this.moveDYTextBox.TabIndex = 21;
             this.moveDYTextBox.Text = "0";
             this.moveDYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // moveDXTextBox
             // 
-            this.moveDXTextBox.Location = new System.Drawing.Point(59, 27);
+            this.moveDXTextBox.Location = new System.Drawing.Point(44, 22);
+            this.moveDXTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.moveDXTextBox.Name = "moveDXTextBox";
-            this.moveDXTextBox.Size = new System.Drawing.Size(78, 22);
+            this.moveDXTextBox.Size = new System.Drawing.Size(60, 20);
             this.moveDXTextBox.TabIndex = 20;
             this.moveDXTextBox.Text = "0";
             this.moveDXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // moveButton
             // 
-            this.moveButton.Location = new System.Drawing.Point(31, 79);
+            this.moveButton.Location = new System.Drawing.Point(23, 64);
+            this.moveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.moveButton.Name = "moveButton";
-            this.moveButton.Size = new System.Drawing.Size(148, 35);
+            this.moveButton.Size = new System.Drawing.Size(111, 28);
             this.moveButton.TabIndex = 2;
             this.moveButton.Text = "Перемещение";
             this.moveButton.UseVisualStyleBackColor = true;
@@ -448,26 +489,29 @@
             // moveWelcomeDY
             // 
             this.moveWelcomeDY.AutoSize = true;
-            this.moveWelcomeDY.Location = new System.Drawing.Point(18, 58);
+            this.moveWelcomeDY.Location = new System.Drawing.Point(14, 47);
+            this.moveWelcomeDY.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moveWelcomeDY.Name = "moveWelcomeDY";
-            this.moveWelcomeDY.Size = new System.Drawing.Size(25, 17);
+            this.moveWelcomeDY.Size = new System.Drawing.Size(20, 13);
             this.moveWelcomeDY.TabIndex = 1;
             this.moveWelcomeDY.Text = "dY";
             // 
             // moveWelcomeDX
             // 
             this.moveWelcomeDX.AutoSize = true;
-            this.moveWelcomeDX.Location = new System.Drawing.Point(18, 32);
+            this.moveWelcomeDX.Location = new System.Drawing.Point(14, 26);
+            this.moveWelcomeDX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moveWelcomeDX.Name = "moveWelcomeDX";
-            this.moveWelcomeDX.Size = new System.Drawing.Size(25, 17);
+            this.moveWelcomeDX.Size = new System.Drawing.Size(20, 13);
             this.moveWelcomeDX.TabIndex = 0;
             this.moveWelcomeDX.Text = "dX";
             // 
             // restoreButton
             // 
-            this.restoreButton.Location = new System.Drawing.Point(836, 633);
+            this.restoreButton.Location = new System.Drawing.Point(627, 514);
+            this.restoreButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(215, 64);
+            this.restoreButton.Size = new System.Drawing.Size(161, 52);
             this.restoreButton.TabIndex = 5;
             this.restoreButton.Text = "Восстановить исходное изображение";
             this.restoreButton.UseVisualStyleBackColor = true;
@@ -475,27 +519,30 @@
             // 
             // lastStepButton
             // 
-            this.lastStepButton.Location = new System.Drawing.Point(362, 674);
+            this.lastStepButton.Location = new System.Drawing.Point(272, 548);
+            this.lastStepButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lastStepButton.Name = "lastStepButton";
-            this.lastStepButton.Size = new System.Drawing.Size(118, 23);
+            this.lastStepButton.Size = new System.Drawing.Size(88, 19);
             this.lastStepButton.TabIndex = 6;
             this.lastStepButton.Text = "На шаг назад";
             this.lastStepButton.UseVisualStyleBackColor = true;
+            this.lastStepButton.Click += new System.EventHandler(this.LastStepButton_Click);
             // 
             // coordsLabel
             // 
             this.coordsLabel.AutoSize = true;
-            this.coordsLabel.Location = new System.Drawing.Point(33, 677);
+            this.coordsLabel.Location = new System.Drawing.Point(25, 550);
+            this.coordsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.coordsLabel.Name = "coordsLabel";
-            this.coordsLabel.Size = new System.Drawing.Size(42, 17);
+            this.coordsLabel.Size = new System.Drawing.Size(31, 13);
             this.coordsLabel.TabIndex = 7;
             this.coordsLabel.Text = "(0, 0)";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 705);
+            this.ClientSize = new System.Drawing.Size(796, 573);
             this.Controls.Add(this.coordsLabel);
             this.Controls.Add(this.lastStepButton);
             this.Controls.Add(this.restoreButton);
@@ -504,6 +551,7 @@
             this.Controls.Add(this.scaleGroup);
             this.Controls.Add(this.imageGroup);
             this.Controls.Add(this.MainCanvas);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "Лабораторная работа 2";
             ((System.ComponentModel.ISupportInitialize)(this.MainCanvas)).EndInit();

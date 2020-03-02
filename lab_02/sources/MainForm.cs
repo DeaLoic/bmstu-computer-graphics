@@ -65,6 +65,7 @@ namespace lab_02
             startRadius = r;
             startParabola = new PointF(c + 10, d + 10);
 
+            model.GetShot();
             model.GenerateModel(startCircle, startRadius, startParabola);
 
             view.Clear();
@@ -90,7 +91,8 @@ namespace lab_02
                 return;
             }
 
-            model.Scale(new PointF((float)xScale, (float)yScale), new PointF((float)xScaleCoeff, (float)yScaleCoeff));
+            model.GetShot();
+            model.Scale(new PointF((float)xScale + 10, (float)yScale + 10), new PointF((float)xScaleCoeff, (float)yScaleCoeff));
 
             view.Clear();
             view.Show(ref model);
@@ -110,6 +112,7 @@ namespace lab_02
                 return;
             }
 
+            model.GetShot();
             model.Moving(new Point((int)dX, (int)dY));
 
             view.Clear();
@@ -134,7 +137,8 @@ namespace lab_02
                 return;
             }
 
-            model.Rotate(new PointF(X, Y), angle * Math.PI / 180);
+            model.GetShot();
+            model.Rotate(new PointF(X + 10, Y + 10), angle * Math.PI / 180);
 
             view.Clear();
             view.Show(ref model);
@@ -148,9 +152,17 @@ namespace lab_02
 
         private void RestoreButton_Click(object sender, EventArgs e)
         {
+            model.GetShot();
             model.GenerateModel(startCircle, startRadius, startParabola);
 
             view.Clear();
+            view.Show(ref model);
+        }
+
+        private void LastStepButton_Click(object sender, EventArgs e)
+        {
+            view.Clear();
+            model.SwapShot();
             view.Show(ref model);
         }
     }
