@@ -68,7 +68,7 @@ namespace lab_01
             if (!ParseCoordinatsGrid(dataGridView1, out var firstCoordsSet) | !ParseCoordinatsGrid(dataGridView2, out var secondCoordsSet))
             {
                 errorReached = true;
-                errorMessage += "В поля с ошибкой введены не числа с плавающей точкой\n";
+                errorMessage += "В поля с ошибкой введены не вещественные числа\n";
             }
 
             if (errorReached)
@@ -84,6 +84,7 @@ namespace lab_01
                 {
 
                     _model.Draw(g, pictureBox1.Size);
+                    textOut.Text = FormTextOut();
                 }
                 else
                 {
@@ -91,6 +92,11 @@ namespace lab_01
                 }
             }
 
+        }
+
+        private string FormTextOut()
+        {
+            return _model.FormAnswer();
         }
 
         private bool ParseCoordinatsGrid(DataGridView dataGrid, out List<PointF> parsedCoordinats)
@@ -146,11 +152,19 @@ namespace lab_01
             leftDotDelNumber.BackColor = _errorColor;
             if (int.TryParse(this.leftDotDelNumber.Text, out position))
             {
-                leftDotDelNumber.BackColor = _correctColor;
                 if (position >= 1 && position < dataGridView1.Rows.Count)
                 {
+                    leftDotDelNumber.BackColor = _correctColor;
                     dataGridView1.Rows.Remove(dataGridView1.Rows[--position]);
                 }
+                else
+                {
+                    MessageBox.Show("Нет точки по этому номеру. Невозможно удалить.", "Ошибка");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вводите корректное целое число (номер точки)", "Ошибка");
             }
         }
 
@@ -165,7 +179,16 @@ namespace lab_01
                 if (position >= 1 && position < dataGridView2.Rows.Count)
                 {
                     dataGridView2.Rows.Remove(dataGridView2.Rows[--position]);
+
                 }
+                else
+                {
+                    MessageBox.Show("Нет точки по этому номеру. Невозможно удалить.", "Ошибка");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вводите корректное целое число (номер точки)", "Ошибка");
             }
         }
 
@@ -195,6 +218,10 @@ namespace lab_01
             {
                 dataGridView1.Rows.Add(x, y);
             }
+            else
+            {
+                MessageBox.Show("Вводите вещественное число", "Ошибка");
+            }
         }
 
         private void EnterDotSecondBtn_Click(object sender, EventArgs e)
@@ -222,6 +249,10 @@ namespace lab_01
             if (isCorrectX && isCorrectY)
             {
                 dataGridView2.Rows.Add(x, y);
+            }
+            else
+            {
+                MessageBox.Show("Вводите вещественное число", "Ошибка");
             }
         }
     }

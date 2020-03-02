@@ -215,7 +215,7 @@ namespace lab_01
             g.DrawPolygon(quadranglePen, _currentQuadrangle.points.Select(x => converter.ConvertDot(x)).ToArray());
             for (int i = 0; i < 4; i++)
             {
-                DrawDot(g, circlePenSecond, brush, _currentQuadrangle.points[i], converter);
+                DrawDot(g, quadranglePen, brush, _currentQuadrangle.points[i], converter);
             }
 
             tempConvertedDot = converter.ConvertDot(_currentTangent.first);
@@ -229,7 +229,7 @@ namespace lab_01
         {
             PointF preProcessPoint = new PointF((float)Math.Round(dot.X, 3), (float)Math.Round(dot.Y, 3));
 
-            g.DrawString(preProcessPoint.ToString(),
+            g.DrawString(FormatDot(preProcessPoint),
                          dotFont, brush, converter.ConvertDotOffset(dot));
 
             dot = converter.ConvertDot(dot);
@@ -238,5 +238,23 @@ namespace lab_01
             g.DrawEllipse(pen, dot.X - dotRadius, dot.Y - dotRadius, dotRadius * 2, dotRadius * 2);
             pen.Width = 1;
         }
+
+        public string FormAnswer()
+        {
+            return String.Format("Круг из первого множества (красный) построен на точках \r\n{0}, {1}, {2}. Центр: {3}. Радиус: {4}\r\n" +
+                         "Круг из второго множества (зеленый) построен на точках \r\n{5}, {6}, {7}. Центр: {8}. Радиус: {9}\r\n\r\n" +
+                         "Четырех угольник построен на центрах окружностях и точках касания общей касательной {10} и {11}. Площадь: {12}",
+                         FormatDot(_firstCircle.dotsSet[0]), FormatDot(_firstCircle.dotsSet[1]), FormatDot(_firstCircle.dotsSet[2]),
+                         FormatDot(_firstCircle.centre), Math.Round(_firstCircle.radius, 3).ToString(),
+                         FormatDot(_secondCircle.dotsSet[0]), FormatDot(_secondCircle.dotsSet[1]), FormatDot(_secondCircle.dotsSet[2]),
+                         FormatDot(_secondCircle.centre), Math.Round(_secondCircle.radius, 3).ToString(),
+                         FormatDot(_currentTangent.first), FormatDot(_currentTangent.second), Math.Round(_currentQuadrangle.Square, 3).ToString());
+        }
+
+        private string FormatDot(PointF point)
+        {
+            return String.Format("({0}, {1})", Math.Round(point.X, 3).ToString(), Math.Round(point.Y, 3).ToString());
+        }
     }
+
 }

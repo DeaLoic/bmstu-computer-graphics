@@ -143,7 +143,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 17);
+            this.label1.Size = new System.Drawing.Size(105, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Первое множество";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -153,7 +153,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(820, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 17);
+            this.label2.Size = new System.Drawing.Size(103, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Второе множество";
             // 
@@ -185,7 +185,7 @@
             this.textOut.Multiline = true;
             this.textOut.Name = "textOut";
             this.textOut.ReadOnly = true;
-            this.textOut.Size = new System.Drawing.Size(403, 50);
+            this.textOut.Size = new System.Drawing.Size(403, 110);
             this.textOut.TabIndex = 8;
             // 
             // enterDotFirstBtn
@@ -202,14 +202,14 @@
             // 
             this.xEnterFirst.Location = new System.Drawing.Point(32, 539);
             this.xEnterFirst.Name = "xEnterFirst";
-            this.xEnterFirst.Size = new System.Drawing.Size(58, 22);
+            this.xEnterFirst.Size = new System.Drawing.Size(58, 20);
             this.xEnterFirst.TabIndex = 10;
             // 
             // yEnterFirst
             // 
             this.yEnterFirst.Location = new System.Drawing.Point(121, 539);
             this.yEnterFirst.Name = "yEnterFirst";
-            this.yEnterFirst.Size = new System.Drawing.Size(62, 22);
+            this.yEnterFirst.Size = new System.Drawing.Size(62, 20);
             this.yEnterFirst.TabIndex = 11;
             // 
             // deleteDotFirstBtn
@@ -228,7 +228,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 542);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 17);
+            this.label3.Size = new System.Drawing.Size(17, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "X:";
             // 
@@ -237,7 +237,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(96, 542);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 17);
+            this.label4.Size = new System.Drawing.Size(17, 13);
             this.label4.TabIndex = 14;
             this.label4.Text = "Y:";
             // 
@@ -246,7 +246,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(883, 542);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 17);
+            this.label5.Size = new System.Drawing.Size(17, 13);
             this.label5.TabIndex = 21;
             this.label5.Text = "Y:";
             // 
@@ -255,7 +255,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(796, 542);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(21, 17);
+            this.label6.Size = new System.Drawing.Size(17, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "X:";
             // 
@@ -263,14 +263,14 @@
             // 
             this.yEnterSecond.Location = new System.Drawing.Point(908, 539);
             this.yEnterSecond.Name = "yEnterSecond";
-            this.yEnterSecond.Size = new System.Drawing.Size(62, 22);
+            this.yEnterSecond.Size = new System.Drawing.Size(62, 20);
             this.yEnterSecond.TabIndex = 18;
             // 
             // xEnterSecond
             // 
             this.xEnterSecond.Location = new System.Drawing.Point(819, 539);
             this.xEnterSecond.Name = "xEnterSecond";
-            this.xEnterSecond.Size = new System.Drawing.Size(58, 22);
+            this.xEnterSecond.Size = new System.Drawing.Size(58, 20);
             this.xEnterSecond.TabIndex = 17;
             // 
             // enterDotSecondBtn
@@ -297,14 +297,14 @@
             // 
             this.leftDotDelNumber.Location = new System.Drawing.Point(147, 493);
             this.leftDotDelNumber.Name = "leftDotDelNumber";
-            this.leftDotDelNumber.Size = new System.Drawing.Size(36, 22);
+            this.leftDotDelNumber.Size = new System.Drawing.Size(36, 20);
             this.leftDotDelNumber.TabIndex = 22;
             // 
             // rightDotDelNumber
             // 
             this.rightDotDelNumber.Location = new System.Drawing.Point(934, 496);
             this.rightDotDelNumber.Name = "rightDotDelNumber";
-            this.rightDotDelNumber.Size = new System.Drawing.Size(36, 22);
+            this.rightDotDelNumber.Size = new System.Drawing.Size(36, 20);
             this.rightDotDelNumber.TabIndex = 24;
             // 
             // deleteDotSecondBtn
