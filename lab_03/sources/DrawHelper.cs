@@ -33,7 +33,7 @@ namespace lab_03
             
             for (int i = 0; i < lenght + 1; i++)
             {
-                workBitmap.SetPixel((int)X, (int)Y, workColor);
+                workBitmap.SetPixel((int)Math.Round(X), (int)Math.Round(Y), workColor);
                 X += deltaX;
                 Y += deltaY;
             }
@@ -221,11 +221,22 @@ namespace lab_03
             }
         }
 
+        public static void DrawSunStandart(Point center, Graphics workGraphics, Color workColor, int lenght, double angle)
+        {
+            Point endPoint;
+            Pen newPen = new Pen(workColor);
+            for (double i = 0; i < 360; i += angle)
+            {
+                endPoint = GetEndPoint(center, i, lenght);
+                workGraphics.DrawLine(newPen, center, endPoint);
+            }
+        }
+
         public static void SwapInt(ref int first, ref int second)
         {
             int temp = first;
             first = second;
-            second = first;
+            second = temp;
         }
         
         public static void DrawLineVu(Point firstPoint, Point secondPoint, Bitmap workBitmap, Color workColor)
@@ -241,7 +252,7 @@ namespace lab_03
             int secondY = secondPoint.Y;
 
             bool change = false;
-            if (dY > dX)
+            if (Math.Abs(dY) > Math.Abs(dX))
             {
                 SwapInt(ref firstX, ref firstY);
                 SwapInt(ref secondX, ref secondY);
@@ -249,7 +260,7 @@ namespace lab_03
                 change = true;
             }
 
-            if (secondPoint.X < firstPoint.X)
+            if (secondX < firstX)
             {
                 SwapInt(ref firstX, ref secondX);
                 SwapInt(ref firstY, ref secondY);
@@ -261,10 +272,10 @@ namespace lab_03
                 tg = (float)dY / dX;
             }
 
-            double Y = firstY;
             double d1, d2;
+            double Y = firstY;
 
-            for (int X = firstX; X < secondX; X++)
+            for (int X = firstX; X <= secondX; X++)
             {
                 d1 = iMax * (Y - (int)Y);
                 d2 = iMax - d1;
@@ -297,13 +308,25 @@ namespace lab_03
             return start;
         }
 
-        public static void DrawSun(Point center, Bitmap workBitmap, Color workColor, int lenght,  double angle, DrawLineMethod method)
+        public static void DrawSun(Point center, Bitmap workBitmap, Graphics graph, Color workColor, int lenght,  double angle, DrawLineMethod method)
         {
             Point endPoint;
-            for (double i = 0; i < 360; i += angle)
+            for (double i = angle; Math.Abs(i) < 360 + Math.Abs(angle); i += angle)
             {
                 endPoint = GetEndPoint(center, i, lenght);
+                Color prevColor = workBitmap.GetPixel(endPoint.X, endPoint.Y);
                 method(center, endPoint, workBitmap, workColor);
+
+                Color endPixelColor = workBitmap.GetPixel(endPoint.X, endPoint.Y);
+                if (endPixelColor == prevColor)
+                {
+                    workBitmap.SetPixel(endPoint.X, endPoint.Y, Color.Blue);
+                    graph.DrawEllipse(new Pen(Color.Blue), endPoint.X - 10, endPoint.Y - 10, 20, 20);
+                }
+
+
+                graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(workBitmap.Width, workBitmap.Height, graph);
             }
         }
     }

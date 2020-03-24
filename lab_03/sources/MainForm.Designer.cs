@@ -68,8 +68,42 @@
             this.labelYSecond = new System.Windows.Forms.Label();
             this.labelXFirst = new System.Windows.Forms.Label();
             this.groupSun = new System.Windows.Forms.GroupBox();
+            this.textBoxLenght = new System.Windows.Forms.TextBox();
+            this.textBoxAngle = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.DDABackSunAct = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.DDAColorSunAct = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DDASunColorButton = new System.Windows.Forms.Button();
+            this.bresenhamSunColorButton = new System.Windows.Forms.Button();
+            this.standartBackSunAct = new System.Windows.Forms.Button();
+            this.bresenhamIntSunColorButton = new System.Windows.Forms.Button();
+            this.standartColorSunAct = new System.Windows.Forms.Button();
+            this.bresenhamFlatSunColorButton = new System.Windows.Forms.Button();
+            this.vuBackSunAct = new System.Windows.Forms.Button();
+            this.vuSunColorButton = new System.Windows.Forms.Button();
+            this.vuColorSunAct = new System.Windows.Forms.Button();
+            this.standartSunColorButton = new System.Windows.Forms.Button();
+            this.bresenhamFlatBackSunAct = new System.Windows.Forms.Button();
+            this.bresenhamColorSunAct = new System.Windows.Forms.Button();
+            this.bresenhamFlatColorSunAct = new System.Windows.Forms.Button();
+            this.bresenhamBackSunAct = new System.Windows.Forms.Button();
+            this.bresenhamIntBackSunAct = new System.Windows.Forms.Button();
+            this.bresenhamIntColorSunAct = new System.Windows.Forms.Button();
+            this.clearButtno = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainCanvas)).BeginInit();
             this.groupSimpleDraw.SuspendLayout();
+            this.groupSun.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainCanvas
@@ -94,6 +128,7 @@
             // 
             // groupSimpleDraw
             // 
+            this.groupSimpleDraw.Controls.Add(this.clearButtno);
             this.groupSimpleDraw.Controls.Add(this.textBoxY1);
             this.groupSimpleDraw.Controls.Add(this.textBoxX1);
             this.groupSimpleDraw.Controls.Add(this.textBoxY0);
@@ -143,6 +178,7 @@
             this.textBoxY1.Name = "textBoxY1";
             this.textBoxY1.Size = new System.Drawing.Size(74, 20);
             this.textBoxY1.TabIndex = 45;
+            this.textBoxY1.Text = "200";
             // 
             // textBoxX1
             // 
@@ -150,6 +186,7 @@
             this.textBoxX1.Name = "textBoxX1";
             this.textBoxX1.Size = new System.Drawing.Size(74, 20);
             this.textBoxX1.TabIndex = 44;
+            this.textBoxX1.Text = "200";
             // 
             // textBoxY0
             // 
@@ -157,6 +194,7 @@
             this.textBoxY0.Name = "textBoxY0";
             this.textBoxY0.Size = new System.Drawing.Size(74, 20);
             this.textBoxY0.TabIndex = 43;
+            this.textBoxY0.Text = "100";
             // 
             // textBoxX0
             // 
@@ -164,6 +202,7 @@
             this.textBoxX0.Name = "textBoxX0";
             this.textBoxX0.Size = new System.Drawing.Size(74, 20);
             this.textBoxX0.TabIndex = 42;
+            this.textBoxX0.Text = "100";
             // 
             // backColorSimpleLabel
             // 
@@ -472,12 +511,357 @@
             // 
             // groupSun
             // 
+            this.groupSun.Controls.Add(this.textBoxLenght);
+            this.groupSun.Controls.Add(this.textBoxAngle);
+            this.groupSun.Controls.Add(this.label12);
+            this.groupSun.Controls.Add(this.label11);
+            this.groupSun.Controls.Add(this.label1);
+            this.groupSun.Controls.Add(this.label8);
+            this.groupSun.Controls.Add(this.label2);
+            this.groupSun.Controls.Add(this.label10);
+            this.groupSun.Controls.Add(this.label3);
+            this.groupSun.Controls.Add(this.label9);
+            this.groupSun.Controls.Add(this.label4);
+            this.groupSun.Controls.Add(this.label7);
+            this.groupSun.Controls.Add(this.DDABackSunAct);
+            this.groupSun.Controls.Add(this.label6);
+            this.groupSun.Controls.Add(this.DDAColorSunAct);
+            this.groupSun.Controls.Add(this.label5);
+            this.groupSun.Controls.Add(this.DDASunColorButton);
+            this.groupSun.Controls.Add(this.bresenhamSunColorButton);
+            this.groupSun.Controls.Add(this.standartBackSunAct);
+            this.groupSun.Controls.Add(this.bresenhamIntSunColorButton);
+            this.groupSun.Controls.Add(this.standartColorSunAct);
+            this.groupSun.Controls.Add(this.bresenhamFlatSunColorButton);
+            this.groupSun.Controls.Add(this.vuBackSunAct);
+            this.groupSun.Controls.Add(this.vuSunColorButton);
+            this.groupSun.Controls.Add(this.vuColorSunAct);
+            this.groupSun.Controls.Add(this.standartSunColorButton);
+            this.groupSun.Controls.Add(this.bresenhamFlatBackSunAct);
+            this.groupSun.Controls.Add(this.bresenhamColorSunAct);
+            this.groupSun.Controls.Add(this.bresenhamFlatColorSunAct);
+            this.groupSun.Controls.Add(this.bresenhamBackSunAct);
+            this.groupSun.Controls.Add(this.bresenhamIntBackSunAct);
+            this.groupSun.Controls.Add(this.bresenhamIntColorSunAct);
             this.groupSun.Location = new System.Drawing.Point(635, 290);
             this.groupSun.Name = "groupSun";
             this.groupSun.Size = new System.Drawing.Size(332, 267);
             this.groupSun.TabIndex = 9;
             this.groupSun.TabStop = false;
-            this.groupSun.Text = "groupSimpleDraw";
+            this.groupSun.Text = "Cолнышко";
+            // 
+            // textBoxLenght
+            // 
+            this.textBoxLenght.Location = new System.Drawing.Point(210, 18);
+            this.textBoxLenght.Name = "textBoxLenght";
+            this.textBoxLenght.Size = new System.Drawing.Size(74, 20);
+            this.textBoxLenght.TabIndex = 76;
+            this.textBoxLenght.Text = "200";
+            // 
+            // textBoxAngle
+            // 
+            this.textBoxAngle.Location = new System.Drawing.Point(73, 18);
+            this.textBoxAngle.Name = "textBoxAngle";
+            this.textBoxAngle.Size = new System.Drawing.Size(74, 20);
+            this.textBoxAngle.TabIndex = 46;
+            this.textBoxAngle.Text = "10";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(163, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(40, 13);
+            this.label12.TabIndex = 75;
+            this.label12.Text = "Длина";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(15, 21);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.TabIndex = 74;
+            this.label11.Text = "Шаг угла";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(258, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 27);
+            this.label1.TabIndex = 73;
+            this.label1.Text = "Рисовать фоновым";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 147);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(151, 13);
+            this.label8.TabIndex = 48;
+            this.label8.Text = "Брезенхейм целочисленный";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(206, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 26);
+            this.label2.TabIndex = 72;
+            this.label2.Text = "Рисовать цветом";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(9, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.TabIndex = 46;
+            this.label10.Text = "ЦДА";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(111, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 71;
+            this.label3.Text = "Выбранный цвет";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 117);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 13);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Брезенхейм";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 70;
+            this.label4.Text = "Метод";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 177);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(147, 13);
+            this.label7.TabIndex = 49;
+            this.label7.Text = "Брезенхейм с устранением";
+            // 
+            // DDABackSunAct
+            // 
+            this.DDABackSunAct.Location = new System.Drawing.Point(261, 86);
+            this.DDABackSunAct.Name = "DDABackSunAct";
+            this.DDABackSunAct.Size = new System.Drawing.Size(53, 22);
+            this.DDABackSunAct.TabIndex = 69;
+            this.DDABackSunAct.Text = "Фон";
+            this.DDABackSunAct.UseVisualStyleBackColor = true;
+            this.DDABackSunAct.Click += new System.EventHandler(this.DDABackSunAct_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 207);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(19, 13);
+            this.label6.TabIndex = 50;
+            this.label6.Text = "Ву";
+            // 
+            // DDAColorSunAct
+            // 
+            this.DDAColorSunAct.Location = new System.Drawing.Point(203, 85);
+            this.DDAColorSunAct.Name = "DDAColorSunAct";
+            this.DDAColorSunAct.Size = new System.Drawing.Size(53, 23);
+            this.DDAColorSunAct.TabIndex = 68;
+            this.DDAColorSunAct.Text = "Цвет";
+            this.DDAColorSunAct.UseVisualStyleBackColor = true;
+            this.DDAColorSunAct.Click += new System.EventHandler(this.DDAColorSunAct_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 237);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 13);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "Библиотечный";
+            // 
+            // DDASunColorButton
+            // 
+            this.DDASunColorButton.BackColor = System.Drawing.Color.Red;
+            this.DDASunColorButton.Location = new System.Drawing.Point(158, 86);
+            this.DDASunColorButton.Name = "DDASunColorButton";
+            this.DDASunColorButton.Size = new System.Drawing.Size(30, 22);
+            this.DDASunColorButton.TabIndex = 67;
+            this.DDASunColorButton.UseVisualStyleBackColor = false;
+            this.DDASunColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // bresenhamSunColorButton
+            // 
+            this.bresenhamSunColorButton.BackColor = System.Drawing.Color.Red;
+            this.bresenhamSunColorButton.Location = new System.Drawing.Point(157, 117);
+            this.bresenhamSunColorButton.Name = "bresenhamSunColorButton";
+            this.bresenhamSunColorButton.Size = new System.Drawing.Size(30, 22);
+            this.bresenhamSunColorButton.TabIndex = 52;
+            this.bresenhamSunColorButton.UseVisualStyleBackColor = false;
+            this.bresenhamSunColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // standartBackSunAct
+            // 
+            this.standartBackSunAct.Location = new System.Drawing.Point(261, 236);
+            this.standartBackSunAct.Name = "standartBackSunAct";
+            this.standartBackSunAct.Size = new System.Drawing.Size(53, 23);
+            this.standartBackSunAct.TabIndex = 66;
+            this.standartBackSunAct.Text = "Фон";
+            this.standartBackSunAct.UseVisualStyleBackColor = true;
+            this.standartBackSunAct.Click += new System.EventHandler(this.standartBackSunAct_Click);
+            // 
+            // bresenhamIntSunColorButton
+            // 
+            this.bresenhamIntSunColorButton.BackColor = System.Drawing.Color.Red;
+            this.bresenhamIntSunColorButton.Location = new System.Drawing.Point(157, 147);
+            this.bresenhamIntSunColorButton.Name = "bresenhamIntSunColorButton";
+            this.bresenhamIntSunColorButton.Size = new System.Drawing.Size(30, 23);
+            this.bresenhamIntSunColorButton.TabIndex = 53;
+            this.bresenhamIntSunColorButton.UseVisualStyleBackColor = false;
+            this.bresenhamIntSunColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // standartColorSunAct
+            // 
+            this.standartColorSunAct.Location = new System.Drawing.Point(202, 236);
+            this.standartColorSunAct.Name = "standartColorSunAct";
+            this.standartColorSunAct.Size = new System.Drawing.Size(53, 23);
+            this.standartColorSunAct.TabIndex = 65;
+            this.standartColorSunAct.Text = "Цвет";
+            this.standartColorSunAct.UseVisualStyleBackColor = true;
+            this.standartColorSunAct.Click += new System.EventHandler(this.standartColorSunAct_Click);
+            // 
+            // bresenhamFlatSunColorButton
+            // 
+            this.bresenhamFlatSunColorButton.BackColor = System.Drawing.Color.Red;
+            this.bresenhamFlatSunColorButton.Location = new System.Drawing.Point(157, 176);
+            this.bresenhamFlatSunColorButton.Name = "bresenhamFlatSunColorButton";
+            this.bresenhamFlatSunColorButton.Size = new System.Drawing.Size(30, 23);
+            this.bresenhamFlatSunColorButton.TabIndex = 54;
+            this.bresenhamFlatSunColorButton.UseVisualStyleBackColor = false;
+            this.bresenhamFlatSunColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // vuBackSunAct
+            // 
+            this.vuBackSunAct.Location = new System.Drawing.Point(261, 206);
+            this.vuBackSunAct.Name = "vuBackSunAct";
+            this.vuBackSunAct.Size = new System.Drawing.Size(53, 23);
+            this.vuBackSunAct.TabIndex = 64;
+            this.vuBackSunAct.Text = "Фон";
+            this.vuBackSunAct.UseVisualStyleBackColor = true;
+            this.vuBackSunAct.Click += new System.EventHandler(this.vuBackSunAct_Click);
+            // 
+            // vuSunColorButton
+            // 
+            this.vuSunColorButton.BackColor = System.Drawing.Color.Red;
+            this.vuSunColorButton.Location = new System.Drawing.Point(157, 206);
+            this.vuSunColorButton.Name = "vuSunColorButton";
+            this.vuSunColorButton.Size = new System.Drawing.Size(30, 23);
+            this.vuSunColorButton.TabIndex = 55;
+            this.vuSunColorButton.UseVisualStyleBackColor = false;
+            this.vuSunColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // vuColorSunAct
+            // 
+            this.vuColorSunAct.Location = new System.Drawing.Point(202, 206);
+            this.vuColorSunAct.Name = "vuColorSunAct";
+            this.vuColorSunAct.Size = new System.Drawing.Size(53, 23);
+            this.vuColorSunAct.TabIndex = 63;
+            this.vuColorSunAct.Text = "Цвет";
+            this.vuColorSunAct.UseVisualStyleBackColor = true;
+            this.vuColorSunAct.Click += new System.EventHandler(this.vuColorSunAct_Click);
+            // 
+            // standartSunColorButton
+            // 
+            this.standartSunColorButton.BackColor = System.Drawing.Color.Red;
+            this.standartSunColorButton.Location = new System.Drawing.Point(157, 236);
+            this.standartSunColorButton.Name = "standartSunColorButton";
+            this.standartSunColorButton.Size = new System.Drawing.Size(30, 23);
+            this.standartSunColorButton.TabIndex = 56;
+            this.standartSunColorButton.UseVisualStyleBackColor = false;
+            this.standartSunColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
+            // bresenhamFlatBackSunAct
+            // 
+            this.bresenhamFlatBackSunAct.Location = new System.Drawing.Point(261, 176);
+            this.bresenhamFlatBackSunAct.Name = "bresenhamFlatBackSunAct";
+            this.bresenhamFlatBackSunAct.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamFlatBackSunAct.TabIndex = 62;
+            this.bresenhamFlatBackSunAct.Text = "Фон";
+            this.bresenhamFlatBackSunAct.UseVisualStyleBackColor = true;
+            this.bresenhamFlatBackSunAct.Click += new System.EventHandler(this.bresenhamFlatBackSunAct_Click);
+            // 
+            // bresenhamColorSunAct
+            // 
+            this.bresenhamColorSunAct.Location = new System.Drawing.Point(202, 116);
+            this.bresenhamColorSunAct.Name = "bresenhamColorSunAct";
+            this.bresenhamColorSunAct.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamColorSunAct.TabIndex = 57;
+            this.bresenhamColorSunAct.Text = "Цвет";
+            this.bresenhamColorSunAct.UseVisualStyleBackColor = true;
+            this.bresenhamColorSunAct.Click += new System.EventHandler(this.bresenhamColorSunAct_Click);
+            // 
+            // bresenhamFlatColorSunAct
+            // 
+            this.bresenhamFlatColorSunAct.Location = new System.Drawing.Point(202, 176);
+            this.bresenhamFlatColorSunAct.Name = "bresenhamFlatColorSunAct";
+            this.bresenhamFlatColorSunAct.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamFlatColorSunAct.TabIndex = 61;
+            this.bresenhamFlatColorSunAct.Text = "Цвет";
+            this.bresenhamFlatColorSunAct.UseVisualStyleBackColor = true;
+            this.bresenhamFlatColorSunAct.Click += new System.EventHandler(this.bresenhamFlatColorSunAct_Click);
+            // 
+            // bresenhamBackSunAct
+            // 
+            this.bresenhamBackSunAct.Location = new System.Drawing.Point(261, 117);
+            this.bresenhamBackSunAct.Name = "bresenhamBackSunAct";
+            this.bresenhamBackSunAct.Size = new System.Drawing.Size(53, 22);
+            this.bresenhamBackSunAct.TabIndex = 58;
+            this.bresenhamBackSunAct.Text = "Фон";
+            this.bresenhamBackSunAct.UseVisualStyleBackColor = true;
+            this.bresenhamBackSunAct.Click += new System.EventHandler(this.bresenhamBackSunAct_Click);
+            // 
+            // bresenhamIntBackSunAct
+            // 
+            this.bresenhamIntBackSunAct.Location = new System.Drawing.Point(261, 147);
+            this.bresenhamIntBackSunAct.Name = "bresenhamIntBackSunAct";
+            this.bresenhamIntBackSunAct.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamIntBackSunAct.TabIndex = 60;
+            this.bresenhamIntBackSunAct.Text = "Фон";
+            this.bresenhamIntBackSunAct.UseVisualStyleBackColor = true;
+            this.bresenhamIntBackSunAct.Click += new System.EventHandler(this.bresenhamIntBackSunAct_Click);
+            // 
+            // bresenhamIntColorSunAct
+            // 
+            this.bresenhamIntColorSunAct.Location = new System.Drawing.Point(202, 147);
+            this.bresenhamIntColorSunAct.Name = "bresenhamIntColorSunAct";
+            this.bresenhamIntColorSunAct.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamIntColorSunAct.TabIndex = 59;
+            this.bresenhamIntColorSunAct.Text = "Цвет";
+            this.bresenhamIntColorSunAct.UseVisualStyleBackColor = true;
+            this.bresenhamIntColorSunAct.Click += new System.EventHandler(this.bresenhamIntColorSunAct_Click);
+            // 
+            // clearButtno
+            // 
+            this.clearButtno.Location = new System.Drawing.Point(252, 17);
+            this.clearButtno.Name = "clearButtno";
+            this.clearButtno.Size = new System.Drawing.Size(62, 37);
+            this.clearButtno.TabIndex = 46;
+            this.clearButtno.Text = "Очистить";
+            this.clearButtno.UseVisualStyleBackColor = true;
+            this.clearButtno.Click += new System.EventHandler(this.clearButtno_Click);
             // 
             // MainForm
             // 
@@ -490,10 +874,12 @@
             this.Controls.Add(this.mainCanvas);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
-            this.Text = "Лабораторная работа 2";
+            this.Text = "Лабораторная работа 3. Хетагуров Павел";
             ((System.ComponentModel.ISupportInitialize)(this.mainCanvas)).EndInit();
             this.groupSimpleDraw.ResumeLayout(false);
             this.groupSimpleDraw.PerformLayout();
+            this.groupSun.ResumeLayout(false);
+            this.groupSun.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -541,6 +927,39 @@
         private System.Windows.Forms.TextBox textBoxX1;
         private System.Windows.Forms.TextBox textBoxY0;
         private System.Windows.Forms.TextBox textBoxX0;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button DDABackSunAct;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button DDAColorSunAct;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button DDASunColorButton;
+        private System.Windows.Forms.Button bresenhamSunColorButton;
+        private System.Windows.Forms.Button standartBackSunAct;
+        private System.Windows.Forms.Button bresenhamIntSunColorButton;
+        private System.Windows.Forms.Button standartColorSunAct;
+        private System.Windows.Forms.Button bresenhamFlatSunColorButton;
+        private System.Windows.Forms.Button vuBackSunAct;
+        private System.Windows.Forms.Button vuSunColorButton;
+        private System.Windows.Forms.Button vuColorSunAct;
+        private System.Windows.Forms.Button standartSunColorButton;
+        private System.Windows.Forms.Button bresenhamFlatBackSunAct;
+        private System.Windows.Forms.Button bresenhamColorSunAct;
+        private System.Windows.Forms.Button bresenhamFlatColorSunAct;
+        private System.Windows.Forms.Button bresenhamBackSunAct;
+        private System.Windows.Forms.Button bresenhamIntBackSunAct;
+        private System.Windows.Forms.Button bresenhamIntColorSunAct;
+        private System.Windows.Forms.TextBox textBoxLenght;
+        private System.Windows.Forms.TextBox textBoxAngle;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button clearButtno;
     }
 }
 

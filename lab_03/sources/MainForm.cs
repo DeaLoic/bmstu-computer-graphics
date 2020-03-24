@@ -94,6 +94,62 @@ namespace lab_03
             return !error;
         }
 
+
+        private bool GetSunParameters(out double angle, out int lenght)
+        {
+            bool error = false;
+            if (!double.TryParse(textBoxAngle.Text.Replace('.', ','), out angle))
+            {
+                textBoxAngle.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxLenght.Text.Replace('.', ','), out lenght))
+            {
+                textBoxY1.BackColor = errorColor;
+                error = true;
+            }
+
+            if (error)
+            {
+                MessageBox.Show("Введите целые числа");
+            }
+
+            return !error;
+        }
+
+        private void SunProcessing(DrawHelper.DrawLineMethod method, Color workColor)
+        {
+            double angle;
+            int lenght;
+
+            if (GetSunParameters(out angle, out lenght))
+            {
+                Point center = Point.Empty;
+                center.X = workBitmap.Width / 2;
+                center.Y = workBitmap.Height / 2;
+
+                DrawHelper.DrawSun(center, workBitmap, graph, workColor, lenght, angle, method);
+                graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
+            }
+        }
+
+        private void SunProcessingStandart(Color workColor)
+        {
+            double angle;
+            int lenght;
+
+            if (GetSunParameters(out angle, out lenght))
+            {
+                Point center = Point.Empty;
+                center.X = workBitmap.Width / 2;
+                center.Y = workBitmap.Height / 2;
+
+                DrawHelper.DrawSunStandart(center, graph, workColor, lenght, angle);
+            }
+        }
+
         private void DDAColorSimpleBtn_Click(object sender, EventArgs e)
         {
             Point firstPoint;
@@ -103,6 +159,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineDDA(firstPoint, secondPoint, workBitmap, DDAColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -115,6 +172,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineDDA(firstPoint, secondPoint, workBitmap, workBackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -127,6 +185,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineBresenham(firstPoint, secondPoint, workBitmap, bresenhamColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -139,6 +198,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineBresenham(firstPoint, secondPoint, workBitmap, workBackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -151,6 +211,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineBresenhamInt(firstPoint, secondPoint, workBitmap, bresenhamIntColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -163,6 +224,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineBresenhamInt(firstPoint, secondPoint, workBitmap, workBackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -175,6 +237,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineBresenhamFlat(firstPoint, secondPoint, workBitmap, bresenhamFlatColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -187,6 +250,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineBresenhamFlat(firstPoint, secondPoint, workBitmap, workBackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -199,6 +263,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineVu(firstPoint, secondPoint, workBitmap, vuColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -211,6 +276,7 @@ namespace lab_03
             {
                 DrawHelper.DrawLineVu(firstPoint, secondPoint, workBitmap, workBackColor);
                 graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -233,6 +299,84 @@ namespace lab_03
             if (GetPointsWithError(out firstPoint, out secondPoint))
             {
                 graph.DrawLine(new Pen(workBackColor), firstPoint, secondPoint);
+            }
+        }
+
+        private void DDAColorSunAct_Click(object sender, EventArgs e)
+        {
+            Color workColor = DDASunColorButton.BackColor;
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineDDA), workColor);
+        }
+
+        private void DDABackSunAct_Click(object sender, EventArgs e)
+        {
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineDDA), workBackColor);
+        }
+
+        private void bresenhamColorSunAct_Click(object sender, EventArgs e)
+        {
+            Color workColor = bresenhamSunColorButton.BackColor;
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineBresenham), workColor);
+        }
+
+        private void bresenhamBackSunAct_Click(object sender, EventArgs e)
+        {
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineBresenham), workBackColor);
+        }
+
+        private void bresenhamIntColorSunAct_Click(object sender, EventArgs e)
+        {
+            Color workColor = bresenhamIntSunColorButton.BackColor;
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineBresenhamInt), workColor);
+        }
+
+        private void bresenhamIntBackSunAct_Click(object sender, EventArgs e)
+        {
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineBresenhamInt), workBackColor);
+        }
+
+        private void bresenhamFlatColorSunAct_Click(object sender, EventArgs e)
+        {
+            Color workColor = bresenhamFlatSunColorButton.BackColor;
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineBresenhamFlat), workColor);
+        }
+
+        private void bresenhamFlatBackSunAct_Click(object sender, EventArgs e)
+        {
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineBresenhamFlat), workBackColor);
+        }
+
+        private void vuColorSunAct_Click(object sender, EventArgs e)
+        {
+            Color workColor = vuSunColorButton.BackColor;
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineVu), workColor);
+        }
+
+        private void vuBackSunAct_Click(object sender, EventArgs e)
+        {
+            SunProcessing(new DrawHelper.DrawLineMethod(DrawHelper.DrawLineVu), workBackColor);
+        }
+
+        private void standartColorSunAct_Click(object sender, EventArgs e)
+        {
+            Color workColor = standartSunColorButton.BackColor;
+            SunProcessingStandart(workColor);
+        }
+
+        private void standartBackSunAct_Click(object sender, EventArgs e)
+        {
+            SunProcessingStandart(workBackColor);
+        }
+
+        private void clearButtno_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            colorDialog.Color = workBackColor;
+
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                graph.Clear(colorDialog.Color);
+                workBackColor = colorDialog.Color;
             }
         }
     }
