@@ -118,19 +118,19 @@ namespace lab_03
             }
         }
 
-        private void brazenheimColorSimpleButton_Click(object sender, EventArgs e)
+        private void bresenhamColorSimpleButton_Click(object sender, EventArgs e)
         {
             Point firstPoint;
             Point secondPoint;
 
             if (GetPointsWithError(out firstPoint, out secondPoint))
             {
-                DrawHelper.DrawLineBresenham(firstPoint, secondPoint, workBitmap, brezenheimColorButton.BackColor);
+                DrawHelper.DrawLineBresenham(firstPoint, secondPoint, workBitmap, bresenhamColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
             }
         }
 
-        private void brazenheimBackSimpleButton_Click(object sender, EventArgs e)
+        private void bresenhamBackSimpleButton_Click(object sender, EventArgs e)
         {
             Point firstPoint;
             Point secondPoint;
@@ -142,19 +142,19 @@ namespace lab_03
             }
         }
 
-        private void brazenheimIntColorSimpleButton_Click(object sender, EventArgs e)
+        private void bresenhamIntColorSimpleButton_Click(object sender, EventArgs e)
         {
             Point firstPoint;
             Point secondPoint;
 
             if (GetPointsWithError(out firstPoint, out secondPoint))
             {
-                DrawHelper.DrawLineBresenhamInt(firstPoint, secondPoint, workBitmap, brezenheimIntColorButton.BackColor);
+                DrawHelper.DrawLineBresenhamInt(firstPoint, secondPoint, workBitmap, bresenhamIntColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
             }
         }
 
-        private void brazenheimIntBackSimpleButton_Click(object sender, EventArgs e)
+        private void bresenhamIntBackSimpleButton_Click(object sender, EventArgs e)
         {
             Point firstPoint;
             Point secondPoint;
@@ -166,19 +166,19 @@ namespace lab_03
             }
         }
 
-        private void brazenheimFlatColorSimpleButton_Click(object sender, EventArgs e)
+        private void bresenhamFlatColorSimpleButton_Click(object sender, EventArgs e)
         {
             Point firstPoint;
             Point secondPoint;
 
             if (GetPointsWithError(out firstPoint, out secondPoint))
             {
-                DrawHelper.DrawLineBresenhamFlat(firstPoint, secondPoint, workBitmap, brezenheimFlatColorButton.BackColor);
+                DrawHelper.DrawLineBresenhamFlat(firstPoint, secondPoint, workBitmap, bresenhamFlatColorButton.BackColor);
                 graph.DrawImage(workBitmap, 0, 0);
             }
         }
 
-        private void brazenheimFlatBackSimpleButton_Click(object sender, EventArgs e)
+        private void bresenhamFlatBackSimpleButton_Click(object sender, EventArgs e)
         {
             Point firstPoint;
             Point secondPoint;

@@ -46,22 +46,22 @@
             this.standartColorSimpleButton = new System.Windows.Forms.Button();
             this.vuBackSimpleButton = new System.Windows.Forms.Button();
             this.vuColorSimpleButton = new System.Windows.Forms.Button();
-            this.brazenheimFlatBackSimpleButton = new System.Windows.Forms.Button();
-            this.brazenheimFlatColorSimpleButton = new System.Windows.Forms.Button();
-            this.brazenheimIntBackSimpleButton = new System.Windows.Forms.Button();
-            this.brazenheimIntColorSimpleButton = new System.Windows.Forms.Button();
-            this.brazenheimBackSimpleButton = new System.Windows.Forms.Button();
-            this.brazenheimColorSimpleButton = new System.Windows.Forms.Button();
+            this.bresenhamFlatBackSimpleButton = new System.Windows.Forms.Button();
+            this.bresenhamFlatColorSimpleButton = new System.Windows.Forms.Button();
+            this.bresenhamIntBackSimpleButton = new System.Windows.Forms.Button();
+            this.bresenhamIntColorSimpleButton = new System.Windows.Forms.Button();
+            this.bresenhamBackSimpleButton = new System.Windows.Forms.Button();
+            this.bresenhamColorSimpleButton = new System.Windows.Forms.Button();
             this.standartColorButton = new System.Windows.Forms.Button();
             this.vuColorButton = new System.Windows.Forms.Button();
-            this.brezenheimFlatColorButton = new System.Windows.Forms.Button();
-            this.brezenheimIntColorButton = new System.Windows.Forms.Button();
-            this.brezenheimColorButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.BrezenhaimSimpleLabel = new System.Windows.Forms.Label();
+            this.bresenhamFlatColorButton = new System.Windows.Forms.Button();
+            this.bresenhamIntColorButton = new System.Windows.Forms.Button();
+            this.bresenhamColorButton = new System.Windows.Forms.Button();
+            this.standartLabel = new System.Windows.Forms.Label();
+            this.vuLabel = new System.Windows.Forms.Label();
+            this.bresenhamFlatLabel = new System.Windows.Forms.Label();
+            this.bresenhamIntLabel = new System.Windows.Forms.Label();
+            this.bresenhamSimpleLabel = new System.Windows.Forms.Label();
             this.labelDigitAnalyzator = new System.Windows.Forms.Label();
             this.labelYFirst = new System.Windows.Forms.Label();
             this.labelXSecond = new System.Windows.Forms.Label();
@@ -109,22 +109,22 @@
             this.groupSimpleDraw.Controls.Add(this.standartColorSimpleButton);
             this.groupSimpleDraw.Controls.Add(this.vuBackSimpleButton);
             this.groupSimpleDraw.Controls.Add(this.vuColorSimpleButton);
-            this.groupSimpleDraw.Controls.Add(this.brazenheimFlatBackSimpleButton);
-            this.groupSimpleDraw.Controls.Add(this.brazenheimFlatColorSimpleButton);
-            this.groupSimpleDraw.Controls.Add(this.brazenheimIntBackSimpleButton);
-            this.groupSimpleDraw.Controls.Add(this.brazenheimIntColorSimpleButton);
-            this.groupSimpleDraw.Controls.Add(this.brazenheimBackSimpleButton);
-            this.groupSimpleDraw.Controls.Add(this.brazenheimColorSimpleButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamFlatBackSimpleButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamFlatColorSimpleButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamIntBackSimpleButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamIntColorSimpleButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamBackSimpleButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamColorSimpleButton);
             this.groupSimpleDraw.Controls.Add(this.standartColorButton);
             this.groupSimpleDraw.Controls.Add(this.vuColorButton);
-            this.groupSimpleDraw.Controls.Add(this.brezenheimFlatColorButton);
-            this.groupSimpleDraw.Controls.Add(this.brezenheimIntColorButton);
-            this.groupSimpleDraw.Controls.Add(this.brezenheimColorButton);
-            this.groupSimpleDraw.Controls.Add(this.label5);
-            this.groupSimpleDraw.Controls.Add(this.label4);
-            this.groupSimpleDraw.Controls.Add(this.label3);
-            this.groupSimpleDraw.Controls.Add(this.label2);
-            this.groupSimpleDraw.Controls.Add(this.BrezenhaimSimpleLabel);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamFlatColorButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamIntColorButton);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamColorButton);
+            this.groupSimpleDraw.Controls.Add(this.standartLabel);
+            this.groupSimpleDraw.Controls.Add(this.vuLabel);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamFlatLabel);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamIntLabel);
+            this.groupSimpleDraw.Controls.Add(this.bresenhamSimpleLabel);
             this.groupSimpleDraw.Controls.Add(this.labelDigitAnalyzator);
             this.groupSimpleDraw.Controls.Add(this.labelYFirst);
             this.groupSimpleDraw.Controls.Add(this.labelXSecond);
@@ -270,65 +270,65 @@
             this.vuColorSimpleButton.UseVisualStyleBackColor = true;
             this.vuColorSimpleButton.Click += new System.EventHandler(this.vuColorSimpleButton_Click);
             // 
-            // brazenheimFlatBackSimpleButton
+            // bresenhamFlatBackSimpleButton
             // 
-            this.brazenheimFlatBackSimpleButton.Location = new System.Drawing.Point(261, 175);
-            this.brazenheimFlatBackSimpleButton.Name = "brazenheimFlatBackSimpleButton";
-            this.brazenheimFlatBackSimpleButton.Size = new System.Drawing.Size(53, 23);
-            this.brazenheimFlatBackSimpleButton.TabIndex = 30;
-            this.brazenheimFlatBackSimpleButton.Text = "Фон";
-            this.brazenheimFlatBackSimpleButton.UseVisualStyleBackColor = true;
-            this.brazenheimFlatBackSimpleButton.Click += new System.EventHandler(this.brazenheimFlatBackSimpleButton_Click);
+            this.bresenhamFlatBackSimpleButton.Location = new System.Drawing.Point(261, 175);
+            this.bresenhamFlatBackSimpleButton.Name = "bresenhamFlatBackSimpleButton";
+            this.bresenhamFlatBackSimpleButton.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamFlatBackSimpleButton.TabIndex = 30;
+            this.bresenhamFlatBackSimpleButton.Text = "Фон";
+            this.bresenhamFlatBackSimpleButton.UseVisualStyleBackColor = true;
+            this.bresenhamFlatBackSimpleButton.Click += new System.EventHandler(this.bresenhamFlatBackSimpleButton_Click);
             // 
-            // brazenheimFlatColorSimpleButton
+            // bresenhamFlatColorSimpleButton
             // 
-            this.brazenheimFlatColorSimpleButton.Location = new System.Drawing.Point(202, 175);
-            this.brazenheimFlatColorSimpleButton.Name = "brazenheimFlatColorSimpleButton";
-            this.brazenheimFlatColorSimpleButton.Size = new System.Drawing.Size(53, 23);
-            this.brazenheimFlatColorSimpleButton.TabIndex = 29;
-            this.brazenheimFlatColorSimpleButton.Text = "Цвет";
-            this.brazenheimFlatColorSimpleButton.UseVisualStyleBackColor = true;
-            this.brazenheimFlatColorSimpleButton.Click += new System.EventHandler(this.brazenheimFlatColorSimpleButton_Click);
+            this.bresenhamFlatColorSimpleButton.Location = new System.Drawing.Point(202, 175);
+            this.bresenhamFlatColorSimpleButton.Name = "bresenhamFlatColorSimpleButton";
+            this.bresenhamFlatColorSimpleButton.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamFlatColorSimpleButton.TabIndex = 29;
+            this.bresenhamFlatColorSimpleButton.Text = "Цвет";
+            this.bresenhamFlatColorSimpleButton.UseVisualStyleBackColor = true;
+            this.bresenhamFlatColorSimpleButton.Click += new System.EventHandler(this.bresenhamFlatColorSimpleButton_Click);
             // 
-            // brazenheimIntBackSimpleButton
+            // bresenhamIntBackSimpleButton
             // 
-            this.brazenheimIntBackSimpleButton.Location = new System.Drawing.Point(261, 146);
-            this.brazenheimIntBackSimpleButton.Name = "brazenheimIntBackSimpleButton";
-            this.brazenheimIntBackSimpleButton.Size = new System.Drawing.Size(53, 23);
-            this.brazenheimIntBackSimpleButton.TabIndex = 28;
-            this.brazenheimIntBackSimpleButton.Text = "Фон";
-            this.brazenheimIntBackSimpleButton.UseVisualStyleBackColor = true;
-            this.brazenheimIntBackSimpleButton.Click += new System.EventHandler(this.brazenheimIntBackSimpleButton_Click);
+            this.bresenhamIntBackSimpleButton.Location = new System.Drawing.Point(261, 146);
+            this.bresenhamIntBackSimpleButton.Name = "bresenhamIntBackSimpleButton";
+            this.bresenhamIntBackSimpleButton.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamIntBackSimpleButton.TabIndex = 28;
+            this.bresenhamIntBackSimpleButton.Text = "Фон";
+            this.bresenhamIntBackSimpleButton.UseVisualStyleBackColor = true;
+            this.bresenhamIntBackSimpleButton.Click += new System.EventHandler(this.bresenhamIntBackSimpleButton_Click);
             // 
-            // brazenheimIntColorSimpleButton
+            // bresenhamIntColorSimpleButton
             // 
-            this.brazenheimIntColorSimpleButton.Location = new System.Drawing.Point(202, 146);
-            this.brazenheimIntColorSimpleButton.Name = "brazenheimIntColorSimpleButton";
-            this.brazenheimIntColorSimpleButton.Size = new System.Drawing.Size(53, 23);
-            this.brazenheimIntColorSimpleButton.TabIndex = 27;
-            this.brazenheimIntColorSimpleButton.Text = "Цвет";
-            this.brazenheimIntColorSimpleButton.UseVisualStyleBackColor = true;
-            this.brazenheimIntColorSimpleButton.Click += new System.EventHandler(this.brazenheimIntColorSimpleButton_Click);
+            this.bresenhamIntColorSimpleButton.Location = new System.Drawing.Point(202, 146);
+            this.bresenhamIntColorSimpleButton.Name = "bresenhamIntColorSimpleButton";
+            this.bresenhamIntColorSimpleButton.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamIntColorSimpleButton.TabIndex = 27;
+            this.bresenhamIntColorSimpleButton.Text = "Цвет";
+            this.bresenhamIntColorSimpleButton.UseVisualStyleBackColor = true;
+            this.bresenhamIntColorSimpleButton.Click += new System.EventHandler(this.bresenhamIntColorSimpleButton_Click);
             // 
-            // brazenheimBackSimpleButton
+            // bresenhamBackSimpleButton
             // 
-            this.brazenheimBackSimpleButton.Location = new System.Drawing.Point(261, 116);
-            this.brazenheimBackSimpleButton.Name = "brazenheimBackSimpleButton";
-            this.brazenheimBackSimpleButton.Size = new System.Drawing.Size(53, 22);
-            this.brazenheimBackSimpleButton.TabIndex = 26;
-            this.brazenheimBackSimpleButton.Text = "Фон";
-            this.brazenheimBackSimpleButton.UseVisualStyleBackColor = true;
-            this.brazenheimBackSimpleButton.Click += new System.EventHandler(this.brazenheimBackSimpleButton_Click);
+            this.bresenhamBackSimpleButton.Location = new System.Drawing.Point(261, 116);
+            this.bresenhamBackSimpleButton.Name = "bresenhamBackSimpleButton";
+            this.bresenhamBackSimpleButton.Size = new System.Drawing.Size(53, 22);
+            this.bresenhamBackSimpleButton.TabIndex = 26;
+            this.bresenhamBackSimpleButton.Text = "Фон";
+            this.bresenhamBackSimpleButton.UseVisualStyleBackColor = true;
+            this.bresenhamBackSimpleButton.Click += new System.EventHandler(this.bresenhamBackSimpleButton_Click);
             // 
-            // brazenheimColorSimpleButton
+            // bresenhamColorSimpleButton
             // 
-            this.brazenheimColorSimpleButton.Location = new System.Drawing.Point(202, 115);
-            this.brazenheimColorSimpleButton.Name = "brazenheimColorSimpleButton";
-            this.brazenheimColorSimpleButton.Size = new System.Drawing.Size(53, 23);
-            this.brazenheimColorSimpleButton.TabIndex = 25;
-            this.brazenheimColorSimpleButton.Text = "Цвет";
-            this.brazenheimColorSimpleButton.UseVisualStyleBackColor = true;
-            this.brazenheimColorSimpleButton.Click += new System.EventHandler(this.brazenheimColorSimpleButton_Click);
+            this.bresenhamColorSimpleButton.Location = new System.Drawing.Point(202, 115);
+            this.bresenhamColorSimpleButton.Name = "bresenhamColorSimpleButton";
+            this.bresenhamColorSimpleButton.Size = new System.Drawing.Size(53, 23);
+            this.bresenhamColorSimpleButton.TabIndex = 25;
+            this.bresenhamColorSimpleButton.Text = "Цвет";
+            this.bresenhamColorSimpleButton.UseVisualStyleBackColor = true;
+            this.bresenhamColorSimpleButton.Click += new System.EventHandler(this.bresenhamColorSimpleButton_Click);
             // 
             // standartColorButton
             // 
@@ -350,80 +350,80 @@
             this.vuColorButton.UseVisualStyleBackColor = false;
             this.vuColorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
-            // brezenheimFlatColorButton
+            // bresenhamFlatColorButton
             // 
-            this.brezenheimFlatColorButton.BackColor = System.Drawing.Color.Red;
-            this.brezenheimFlatColorButton.Location = new System.Drawing.Point(157, 175);
-            this.brezenheimFlatColorButton.Name = "brezenheimFlatColorButton";
-            this.brezenheimFlatColorButton.Size = new System.Drawing.Size(30, 23);
-            this.brezenheimFlatColorButton.TabIndex = 22;
-            this.brezenheimFlatColorButton.UseVisualStyleBackColor = false;
-            this.brezenheimFlatColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            this.bresenhamFlatColorButton.BackColor = System.Drawing.Color.Red;
+            this.bresenhamFlatColorButton.Location = new System.Drawing.Point(157, 175);
+            this.bresenhamFlatColorButton.Name = "bresenhamFlatColorButton";
+            this.bresenhamFlatColorButton.Size = new System.Drawing.Size(30, 23);
+            this.bresenhamFlatColorButton.TabIndex = 22;
+            this.bresenhamFlatColorButton.UseVisualStyleBackColor = false;
+            this.bresenhamFlatColorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
-            // brezenheimIntColorButton
+            // bresenhamIntColorButton
             // 
-            this.brezenheimIntColorButton.BackColor = System.Drawing.Color.Red;
-            this.brezenheimIntColorButton.Location = new System.Drawing.Point(157, 146);
-            this.brezenheimIntColorButton.Name = "brezenheimIntColorButton";
-            this.brezenheimIntColorButton.Size = new System.Drawing.Size(30, 23);
-            this.brezenheimIntColorButton.TabIndex = 21;
-            this.brezenheimIntColorButton.UseVisualStyleBackColor = false;
-            this.brezenheimIntColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            this.bresenhamIntColorButton.BackColor = System.Drawing.Color.Red;
+            this.bresenhamIntColorButton.Location = new System.Drawing.Point(157, 146);
+            this.bresenhamIntColorButton.Name = "bresenhamIntColorButton";
+            this.bresenhamIntColorButton.Size = new System.Drawing.Size(30, 23);
+            this.bresenhamIntColorButton.TabIndex = 21;
+            this.bresenhamIntColorButton.UseVisualStyleBackColor = false;
+            this.bresenhamIntColorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
-            // brezenheimColorButton
+            // bresenhamColorButton
             // 
-            this.brezenheimColorButton.BackColor = System.Drawing.Color.Red;
-            this.brezenheimColorButton.Location = new System.Drawing.Point(157, 116);
-            this.brezenheimColorButton.Name = "brezenheimColorButton";
-            this.brezenheimColorButton.Size = new System.Drawing.Size(30, 22);
-            this.brezenheimColorButton.TabIndex = 20;
-            this.brezenheimColorButton.UseVisualStyleBackColor = false;
-            this.brezenheimColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            this.bresenhamColorButton.BackColor = System.Drawing.Color.Red;
+            this.bresenhamColorButton.Location = new System.Drawing.Point(157, 116);
+            this.bresenhamColorButton.Name = "bresenhamColorButton";
+            this.bresenhamColorButton.Size = new System.Drawing.Size(30, 22);
+            this.bresenhamColorButton.TabIndex = 20;
+            this.bresenhamColorButton.UseVisualStyleBackColor = false;
+            this.bresenhamColorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
-            // label5
+            // standartLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 236);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Библиотечный";
+            this.standartLabel.AutoSize = true;
+            this.standartLabel.Location = new System.Drawing.Point(9, 236);
+            this.standartLabel.Name = "standartLabel";
+            this.standartLabel.Size = new System.Drawing.Size(80, 13);
+            this.standartLabel.TabIndex = 19;
+            this.standartLabel.Text = "Библиотечный";
             // 
-            // label4
+            // vuLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 206);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Ву";
+            this.vuLabel.AutoSize = true;
+            this.vuLabel.Location = new System.Drawing.Point(9, 206);
+            this.vuLabel.Name = "vuLabel";
+            this.vuLabel.Size = new System.Drawing.Size(19, 13);
+            this.vuLabel.TabIndex = 18;
+            this.vuLabel.Text = "Ву";
             // 
-            // label3
+            // bresenhamFlatLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 176);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(147, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Брезенхейм с устранением";
+            this.bresenhamFlatLabel.AutoSize = true;
+            this.bresenhamFlatLabel.Location = new System.Drawing.Point(9, 176);
+            this.bresenhamFlatLabel.Name = "bresenhamFlatLabel";
+            this.bresenhamFlatLabel.Size = new System.Drawing.Size(147, 13);
+            this.bresenhamFlatLabel.TabIndex = 17;
+            this.bresenhamFlatLabel.Text = "Брезенхейм с устранением";
             // 
-            // label2
+            // bresenhamIntLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 146);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Брезенхейм целочисленный";
+            this.bresenhamIntLabel.AutoSize = true;
+            this.bresenhamIntLabel.Location = new System.Drawing.Point(9, 146);
+            this.bresenhamIntLabel.Name = "bresenhamIntLabel";
+            this.bresenhamIntLabel.Size = new System.Drawing.Size(151, 13);
+            this.bresenhamIntLabel.TabIndex = 16;
+            this.bresenhamIntLabel.Text = "Брезенхейм целочисленный";
             // 
-            // BrezenhaimSimpleLabel
+            // bresenhamSimpleLabel
             // 
-            this.BrezenhaimSimpleLabel.AutoSize = true;
-            this.BrezenhaimSimpleLabel.Location = new System.Drawing.Point(9, 116);
-            this.BrezenhaimSimpleLabel.Name = "BrezenhaimSimpleLabel";
-            this.BrezenhaimSimpleLabel.Size = new System.Drawing.Size(69, 13);
-            this.BrezenhaimSimpleLabel.TabIndex = 15;
-            this.BrezenhaimSimpleLabel.Text = "Брезенхейм";
+            this.bresenhamSimpleLabel.AutoSize = true;
+            this.bresenhamSimpleLabel.Location = new System.Drawing.Point(9, 116);
+            this.bresenhamSimpleLabel.Name = "bresenhamSimpleLabel";
+            this.bresenhamSimpleLabel.Size = new System.Drawing.Size(69, 13);
+            this.bresenhamSimpleLabel.TabIndex = 15;
+            this.bresenhamSimpleLabel.Text = "Брезенхейм";
             // 
             // labelDigitAnalyzator
             // 
@@ -516,22 +516,22 @@
         private System.Windows.Forms.Button standartColorSimpleButton;
         private System.Windows.Forms.Button vuBackSimpleButton;
         private System.Windows.Forms.Button vuColorSimpleButton;
-        private System.Windows.Forms.Button brazenheimFlatBackSimpleButton;
-        private System.Windows.Forms.Button brazenheimFlatColorSimpleButton;
-        private System.Windows.Forms.Button brazenheimIntBackSimpleButton;
-        private System.Windows.Forms.Button brazenheimIntColorSimpleButton;
-        private System.Windows.Forms.Button brazenheimBackSimpleButton;
-        private System.Windows.Forms.Button brazenheimColorSimpleButton;
+        private System.Windows.Forms.Button bresenhamFlatBackSimpleButton;
+        private System.Windows.Forms.Button bresenhamFlatColorSimpleButton;
+        private System.Windows.Forms.Button bresenhamIntBackSimpleButton;
+        private System.Windows.Forms.Button bresenhamIntColorSimpleButton;
+        private System.Windows.Forms.Button bresenhamBackSimpleButton;
+        private System.Windows.Forms.Button bresenhamColorSimpleButton;
         private System.Windows.Forms.Button standartColorButton;
         private System.Windows.Forms.Button vuColorButton;
-        private System.Windows.Forms.Button brezenheimFlatColorButton;
-        private System.Windows.Forms.Button brezenheimIntColorButton;
-        private System.Windows.Forms.Button brezenheimColorButton;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label BrezenhaimSimpleLabel;
+        private System.Windows.Forms.Button bresenhamFlatColorButton;
+        private System.Windows.Forms.Button bresenhamIntColorButton;
+        private System.Windows.Forms.Button bresenhamColorButton;
+        private System.Windows.Forms.Label standartLabel;
+        private System.Windows.Forms.Label vuLabel;
+        private System.Windows.Forms.Label bresenhamFlatLabel;
+        private System.Windows.Forms.Label bresenhamIntLabel;
+        private System.Windows.Forms.Label bresenhamSimpleLabel;
         private System.Windows.Forms.Label labelDigitAnalyzator;
         private System.Windows.Forms.Label labelYFirst;
         private System.Windows.Forms.Label labelXSecond;
