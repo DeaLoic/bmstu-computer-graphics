@@ -19,6 +19,9 @@ namespace lab_04
         Graphics graph;
         Bitmap workBitmap;
 
+        delegate void ProcessingCircle(DrawHelper.DrawCircleMethod method, Color workColor);
+        delegate void ProcessingEllipse(DrawHelper.DrawEllipseMethod method, Color workColor);
+
         public MainForm()
         {
             InitializeComponent();
@@ -85,7 +88,7 @@ namespace lab_04
         }
 
 
-        private bool GetCircleDataCompareWithError(out int type, out int startRadius, out int endRadius, out int circleCount, out int step)
+        private bool GetCircleDataCompareWithError(out CompareType type, out int startRadius, out int endRadius, out int circleCount, out int step)
         {
             bool error = false;
 
@@ -94,7 +97,8 @@ namespace lab_04
             textBoxRadiusStep.BackColor = inputColor;
             textBoxCircleCount.BackColor = inputColor;
 
-            type = 0;
+            int tempType = 0;
+            type = new CompareType();
             startRadius = 0;
             endRadius = 0;
             circleCount = 0;
@@ -111,37 +115,37 @@ namespace lab_04
             {
                 if (checkedListBox.GetItemChecked(0))
                 {
-                    type += 1000;
+                    tempType += 1000;
                 }
 
-                if (checkedListBox.GetItemChecked(0))
+                if (checkedListBox.GetItemChecked(1))
                 {
-                    type += 100;
+                    tempType += 100;
                 }
 
-                if (checkedListBox.GetItemChecked(0))
+                if (checkedListBox.GetItemChecked(2))
                 {
-                    type += 10;
+                    tempType += 10;
                 }
 
-                if (checkedListBox.GetItemChecked(0))
+                if (checkedListBox.GetItemChecked(3))
                 {
-                    type += 1;
+                    tempType += 1;
                 }
 
-                switch (type)
+                switch (tempType)
                 {
                     case 0111:
-                        type = 1;
+                        type = CompareType.EndCountStep;
                         break;
                     case 1011:
-                        type = 2;
+                        type = CompareType.StartCountStep;
                         break;
                     case 1101:
-                        type = 3;
+                        type = CompareType.StartEndCount;
                         break;
                     case 1110:
-                        type = 4;
+                        type = CompareType.StartEndStep;
                         break;
                 }
 
@@ -178,9 +182,104 @@ namespace lab_04
             return !error;
         }
 
+        private bool GetEllipseDataSimpleWithError(out Point centre, out int radiusX, out int radiusY)
+        {
+            bool error = false;
+
+            centre = new Point();
+
+            textBoxXEllipse.BackColor = inputColor;
+            textBoxYEllipse.BackColor = inputColor;
+            textBoxXEllipse.BackColor = inputColor;
+            textBoxYEllipse.BackColor = inputColor;
+
+
+            int x, y;
+            if (!int.TryParse(textBoxXEllipse.Text.Replace('.', ','), out x))
+            {
+                textBoxX0.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxYEllipse.Text.Replace('.', ','), out y))
+            {
+                textBoxY0.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxSimpleRadiusX.Text.Replace('.', ','), out radiusX))
+            {
+                textBoxSimpleRadius.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxSimpleRadiusY.Text.Replace('.', ','), out radiusY))
+            {
+                textBoxSimpleRadius.BackColor = errorColor;
+                error = true;
+            }
+
+            if (error)
+            {
+                MessageBox.Show("Введите целые числа");
+            }
+            else
+            {
+                centre.X = x;
+                centre.Y = y;
+            }
+
+            return !error;
+        }
+
+
+        private bool GetEllipseDataCompareWithError(out int startX, out int startY, out int ellipseCount, out int stepX, out int stepY)
+        {
+            bool error = false;
+
+            textBoxStartX.BackColor = inputColor;
+            textBoxStartY.BackColor = inputColor;
+            textBoxStepX.BackColor = inputColor;
+            textBoxStepY.BackColor = inputColor;
+            textBoxEllipseCount.BackColor = inputColor;
+
+            if (!int.TryParse(textBoxStartX.Text.Replace('.', ','), out startX))
+            {
+                textBoxX0.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxStartY.Text.Replace('.', ','), out startY))
+            {
+                textBoxY0.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxEllipseCount.Text.Replace('.', ','), out ellipseCount))
+            {
+                textBoxSimpleRadius.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxStepX.Text.Replace('.', ','), out stepX))
+            {
+                textBoxSimpleRadius.BackColor = errorColor;
+                error = true;
+            }
+
+            if (!int.TryParse(textBoxStepY.Text.Replace('.', ','), out stepY))
+            {
+                textBoxSimpleRadius.BackColor = errorColor;
+                error = true;
+            }
+
+            return !error;
+        }
+
         private void CircleCompareProcessing(DrawHelper.DrawCircleMethod method, Color workColor)
         {
-            int type, startRadius, endRadius, circleCount, step;
+            int startRadius, endRadius, circleCount, step;
+            CompareType type;
 
             if (GetCircleDataCompareWithError(out type, out startRadius, out endRadius, out circleCount, out step))
             {
@@ -194,17 +293,19 @@ namespace lab_04
             }
         }
 
-        private void CircleCompareProcessingStandart(Color workColor)
+        private void EllipseCompareProcessing(DrawHelper.DrawEllipseMethod method, Color workColor)
         {
-            int type, startRadius, endRadius, circleCount, step;
+            int startX, startY, ellipseCount, stepX, stepY;
 
-            if (GetCircleDataCompareWithError(out type, out startRadius, out endRadius, out circleCount, out step))
+            if (GetEllipseDataCompareWithError(out startX, out startY, out ellipseCount, out stepX, out stepY))
             {
                 Point center = Point.Empty;
                 center.X = workBitmap.Width / 2;
                 center.Y = workBitmap.Height / 2;
 
-                DrawHelper.DrawCircleCompareStandart(graph, workColor, center, type, startRadius, endRadius, circleCount, step);
+                DrawHelper.DrawEllipseCompare(workBitmap, method, workColor, center, startX, startY, ellipseCount, stepX, stepY);
+                graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
         }
 
@@ -221,124 +322,17 @@ namespace lab_04
             }
         }
 
-        private void CanonColorSimpleBtn_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleCanonical), canonColorSimpleBtn.BackColor);
-        }
-
-        private void CanonBackSimpleBtn_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleCanonical), workBackColor);
-        }
-
-        private void BresenhamColorSimpleButton_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleBresenham), bresenhamColorSimpleButton.BackColor);
-        }
-
-        private void BresenhamBackSimpleButton_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleBresenham), workBackColor);
-        }
-
-        private void ParamColorSimpleButton_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleParam), paramColorSimpleButton.BackColor);
-        }
-
-        private void ParamBackSimpleButton_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleParam), workBackColor);
-        }
-
-        private void MiddleColorSimpleButton_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleMiddle), middleColorSimpleButton.BackColor);
-        }
-
-        private void MiddleBackSimpleButton_Click(object sender, EventArgs e)
-        {
-            SimpleCircleProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleMiddle), workBackColor);
-        }
-
-        private void StandartColorSimpleButton_Click(object sender, EventArgs e)
+        private void SimpleEllipseProcessing(DrawHelper.DrawEllipseMethod method, Color workColor)
         {
             Point center = Point.Empty;
-            int radius;
+            int radiusX, radiusY;
 
-            if (GetCircleDataSimpleWithError(out center, out radius))
+            if (GetEllipseDataSimpleWithError(out center, out radiusX, out radiusY))
             {
-                graph.DrawEllipse(new Pen(standartColorButton.BackColor), center.X - radius, center.Y - radius,
-                                                                          radius * 2, radius * 2);
+                DrawHelper.DrawEllipse(workBitmap, method, workColor, center, radiusX, radiusY);
+                graph.DrawImage(workBitmap, 0, 0);
+                workBitmap = new Bitmap(mainCanvas.Width, mainCanvas.Height, graph);
             }
-        }
-
-        private void StandartBackSimpleButton_Click(object sender, EventArgs e)
-        {
-            Point center = Point.Empty;
-            int radius;
-
-            if (GetCircleDataSimpleWithError(out center, out radius))
-            {
-                graph.DrawEllipse(new Pen(workBackColor), center.X - radius, center.Y - radius,
-                                                          radius * 2, radius * 2);
-            }
-        }
-
-
-        private void CanonicalColorSunAct_Click(object sender, EventArgs e)
-        {
-            Color workColor = canonCompareColorButton.BackColor;
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleCanonical), workColor);
-        }
-
-        private void CanonicalBackSunAct_Click(object sender, EventArgs e)
-        {
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleCanonical), workBackColor);
-        }
-
-        private void BresenhamColorSunAct_Click(object sender, EventArgs e)
-        {
-            Color workColor = bresenhamCompareColorButton.BackColor;
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleBresenham), workColor);
-        }
-
-        private void BresenhamBackSunAct_Click(object sender, EventArgs e)
-        {
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleBresenham), workBackColor);
-        }
-
-        private void ParamColorSunAct_Click(object sender, EventArgs e)
-        {
-            Color workColor = paramColorCompareButton.BackColor;
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleParam), workColor);
-        }
-
-        private void ParamBackSunAct_Click(object sender, EventArgs e)
-        {
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleParam), workBackColor);
-        }
-
-        private void MiddleColorSunAct_Click(object sender, EventArgs e)
-        {
-            Color workColor = middleSunColorButton.BackColor;
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleMiddle), workColor);
-        }
-
-        private void MiddleBackSunAct_Click(object sender, EventArgs e)
-        {
-            CircleCompareProcessing(new DrawHelper.DrawCircleMethod(DrawHelper.DrawCircleMiddle), workBackColor);
-        }
-
-        private void standartColorSunAct_Click(object sender, EventArgs e)
-        {
-            Color workColor = standartCompColorButton.BackColor;
-            CircleCompareProcessingStandart(workColor);
-        }
-
-        private void standartBackSunAct_Click(object sender, EventArgs e)
-        {
-            CircleCompareProcessingStandart(workBackColor);
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -351,6 +345,96 @@ namespace lab_04
                 graph.Clear(colorDialog.Color);
                 workBackColor = colorDialog.Color;
             }
+        }
+
+        private void DrawSimpleColorButton_Click(object sender, EventArgs e)
+        {
+            DrawChoose(SimpleCircleProcessing, SimpleEllipseProcessing, colorButton.BackColor);
+        }
+        private void DrawSimpleBackButton_Click(object sender, EventArgs e)
+        {
+            DrawChoose(SimpleCircleProcessing, SimpleEllipseProcessing, workBackColor);
+        }
+        private void DrawCompareColorButton_Click(object sender, EventArgs e)
+        {
+            DrawChoose(CircleCompareProcessing, EllipseCompareProcessing, colorButton.BackColor);
+        }
+        private void DrawCompareBackButton_Click(object sender, EventArgs e)
+        {
+            DrawChoose(CircleCompareProcessing, EllipseCompareProcessing, workBackColor);
+        }
+
+        private void DrawChoose(ProcessingCircle processCircle, ProcessingEllipse processEllipse, Color workColor)
+        {
+            if (canonicalRadioButton.Checked)
+            {
+                if (radioButtonCircle.Checked)
+                {
+                    processCircle(DrawHelper.DrawCircleCanonical, workColor);
+                }
+                else if (radioButtonEllipse.Checked)
+                {
+                    processEllipse(DrawHelper.DrawEllipseCanonical, workColor);
+                }
+            }
+            else if (parametricRadioButton.Checked)
+            {
+                if (radioButtonCircle.Checked)
+                {
+                    processCircle(DrawHelper.DrawCircleParam, workColor);
+                }
+                else if (radioButtonEllipse.Checked)
+                {
+                    processEllipse(DrawHelper.DrawEllipseParam, workColor);
+                }
+            }
+            else if (bresenhamRadioButton.Checked)
+            {
+                if (radioButtonCircle.Checked)
+                {
+                    processCircle(DrawHelper.DrawCircleBresenham, workColor);
+                }
+                else if (radioButtonEllipse.Checked)
+                {
+                    processEllipse(DrawHelper.DrawEllipseBresenham, workColor);
+                }
+            }
+            else if (middleRadioButton.Checked)
+            {
+                if (radioButtonCircle.Checked)
+                {
+                    processCircle(DrawHelper.DrawCircleMiddle, workColor);
+                }
+                else if (radioButtonEllipse.Checked)
+                {
+                    processEllipse(DrawHelper.DrawEllipseMiddle, workColor);
+                }
+            }
+            else if (standartRadioButton.Checked)
+            {
+                if (radioButtonCircle.Checked)
+                {
+                    processCircle(DrawHelper.DrawCircleStandart, workColor);
+                }
+                else if (radioButtonEllipse.Checked)
+                {
+                    processEllipse(DrawHelper.DrawEllipseStandart, workColor);
+                }
+            }
+        }
+
+        private void radioButtonEllipse_CheckedChanged(object sender, EventArgs e)
+        {
+            ellipseDataSimple.Visible = radioButtonEllipse.Checked;
+            ellipseDataCompare.Visible = radioButtonEllipse.Checked;
+            tabControlData.Update();
+        }
+        private void tabControlData_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            ellipseDataSimple.Visible = radioButtonEllipse.Checked;
+            ellipseDataCompare.Visible = radioButtonEllipse.Checked;
+            
+            tabControlData.Update();
         }
     }
 }
