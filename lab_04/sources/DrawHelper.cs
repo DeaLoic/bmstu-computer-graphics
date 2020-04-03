@@ -276,130 +276,65 @@ namespace lab_04
             //error = b^2 * (x+1)^2 + a^2 * (y-1)^2-a^2 * b^2=
             long error = bSqr - aSqrTwice * radiusY + aSqr;
 
+            long dx = 0;
+            long dy = aSqrTwice * y;
+
             DrawSymmetric(workBitmap, workColor, center, x, y);
 
             while (y > 0)
             {
                 if (error < 0)
                 {
-                    if (2 * error + 2 * y * aSqr - aSqr > 0)
+                    if (2 * error + dy - aSqr > 0)
                     {
-                        DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice);
+                        DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice, ref dx, ref dy);
                     }
                     else
                     {
-                        HorizontalStep(ref x, ref y, ref error, ref bSqr, ref bSqrTwice);
+                        HorizontalStep(ref x, ref y, ref error, ref bSqr, ref bSqrTwice, ref dx);
                     }
                 }
                 else if (error > 0)
                 {
-                    if (2 * error - 2 * bSqr * x - bSqr > 0)
+                    if (2 * error - dx - bSqr > 0)
                     {
-                        VerticalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice);
+                        VerticalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref dy);
                     }
                     else
                     {
-                        DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice);
+                        DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice, ref dx, ref dy);
                     }
                 }
                 else
                 {
-                    DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice);
+                    DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice, ref dx, ref dy);
                 }
 
                 DrawSymmetric(workBitmap, workColor, center, x, y);
             }
         }
 
-        private static void DiagonalStep(ref int x, ref int y, ref long error, ref long aSqr, ref long aSqrTwice, ref long bSqr, ref long bSqrTwice)
+        private static void DiagonalStep(ref int x, ref int y, ref long error, ref long aSqr, ref long aSqrTwice, ref long bSqr, ref long bSqrTwice, ref long dx, ref long dy)
         {
             x++;
             y--;
-            error += bSqrTwice * x - aSqrTwice * y + aSqr + bSqr;
+            dx += bSqrTwice;
+            dy -= aSqrTwice;
+            error += dx - dy + aSqr + bSqr;
         }
 
-        private static void HorizontalStep(ref int x, ref int y, ref long error, ref long bSqr, ref long bSqrTwice)
+        private static void HorizontalStep(ref int x, ref int y, ref long error, ref long bSqr, ref long bSqrTwice, ref long dx)
         {
             x++;
-            error += bSqrTwice * x + bSqr;
+            dx += bSqrTwice;
+            error += dx + bSqr;
         }
 
-        private static void VerticalStep(ref int x, ref int y, ref long error, ref long aSqr, ref long aSqrTwice)
+        private static void VerticalStep(ref int x, ref int y, ref long error, ref long aSqr, ref long aSqrTwice, ref long dy)
         {
             y--;
-            error += -aSqrTwice * y + aSqr;
-        }
-
-        private static void DiagonalStepEllipseBack(ref int x, ref int y, ref int rX, ref int rY, ref long error)
-        {
-            y++;
-            x--;
-            error += 2 * rX * rX * y - 2 * rY * rY * x + rY * rY + rX * rX;
-        }
-
-        private static void HorizontalStepEllipseBack(ref int x, ref int y, ref int rX, ref int rY, ref long error)
-        {
-            y++;
-            error += 2 * rX * rX * y + rX * rX;
-        }
-
-        private static void VerticalStepEllipseBack(ref int x, ref int y, ref int rX, ref int rY, ref long error)
-        {
-            x--;
-            error += rY * rY - 2 * x * rY;
-        }
-        public static void DrawEllipseBresenham1(Bitmap workBitmap, Color workColor, Point center, int radiusX, int radiusY)
-        {
-            int x = 0;
-            int y = radiusY;
-            long aSqr = radiusX * radiusX;
-            long bSqr = y * y;
-
-            long aSqrTwice = aSqr * 2;
-            long bSqrTwice = bSqr * 2;
-            long aSqrFour = aSqr * 4;
-            long bSqrFour = bSqr * 4;
-            long aSqrEight = aSqr * 8;
-            long bSqrEight = bSqr * 8;
-
-
-            DrawSymmetric(workBitmap, workColor, center, x, y);
-            // t = (a^2 * y) / (b^2 * x)
-            // a^2 * (y-1/2) ≤ b^2 * (x+1) (координаты дополнительной точки (x+1, y-1/2)
-            long error = bSqrTwice + aSqr - aSqrTwice * radiusY;
-            // a2(2y-1) ≤ 2b2(x+1) - в целых
-            while (bSqrTwice * (x + 1) < aSqr * (2 * y - 1))
-            {
-                x++;
-                if (error > 0)
-                {
-                    error += aSqrFour * (1 - y);
-                    y--;
-                }
-                error += bSqrTwice * (2 * x + 3);
-
-                DrawSymmetric(workBitmap, workColor, center, x, y);
-            }
-
-            error = aSqrTwice + bSqr * (1 - 2 * radiusX);
-
-            x = radiusX;
-            y = 0;
-
-            DrawSymmetric(workBitmap, workColor, center, x, y);
-
-            while (bSqrTwice * (x + 1) >= aSqr * (2 * y - 1))
-            {
-                y++;
-                if (error > 0)
-                {
-                    error += bSqrFour * (1 - x);
-                    x--;
-                }
-
-                error += aSqrTwice * (2 * y + 3);
-                DrawSymmetric(workBitmap, workColor, center, x, y);
-            }
+            dy -= aSqrTwice;
+            error += -dy + aSqr;
         }
 
         public static void DrawEllipseParam(Bitmap workBitmap, Color workColor, Point center, int radiusX, int radiusY)
@@ -407,8 +342,6 @@ namespace lab_04
             double angle = Math.PI / 2;
 
             int x = 0, y = radiusY;
-            int aSqr = radiusX * radiusX;
-            int bSqr = radiusY * radiusY;
 
             double step = 1 / (double)radiusX;
             while (angle > Math.PI / 4)
