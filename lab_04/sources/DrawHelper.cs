@@ -92,13 +92,11 @@ namespace lab_04
         public static void DrawCircleCanonical(Bitmap workBitmap, Color workColor, Point center, int radius)
         {
             int x = 0;
-            int y = 0;
+            int y = 1;
 
             int radiusSqr = radius * radius;
 
-            double quaver = radius / Math.Sqrt(2);
-
-            for (x = 0; x <= quaver; x++)
+            for (x = 0; x < y; x++)
             {
                 y = Convert.ToInt32(Math.Sqrt(radiusSqr - x * x));
 
@@ -119,11 +117,10 @@ namespace lab_04
             int x = 0;
             int y = radius;
 
+            // error = (x + 1)^2 + (y -1)^2 - R^2 =
             int error = 2 * (1 - radius); // ошибка
 
-            double quaver = radius / Math.Sqrt(2);
-
-            for (x = 0; x <= quaver;)
+            while (x <= y)
             {
                 DrawSymmetric(workBitmap, workColor, center, x, y);
                 DrawSymmetric(workBitmap, workColor, center, y, x);
@@ -171,13 +168,13 @@ namespace lab_04
             double angle = 0;
             double delta = 1.0 / radius;
 
-            while (angle <= Math.PI / 4)
+            while (angle <= Math.PI / 4 + delta)
             {
                 double x = (radius * Math.Cos(angle));
                 double y = (radius * Math.Sin(angle));
 
-                DrawSymmetric(workBitmap, workColor, center, Convert.ToInt32(x), Convert.ToInt32(y));
-                DrawSymmetric(workBitmap, workColor, center, Convert.ToInt32(y), Convert.ToInt32(x));
+                DrawSymmetric(workBitmap, workColor, center, (int)Math.Round(x), (int)Math.Round(y));
+                DrawSymmetric(workBitmap, workColor, center, (int)Math.Round(y), (int)Math.Round(x));
 
                 angle += delta;
             }
@@ -187,7 +184,8 @@ namespace lab_04
         {
             int x = 0;
             int y = radius;
-            double p = 5 / 4 - radius;
+            
+            int p = 1 - radius;
 
             DrawSymmetric(workBitmap, workColor, center, x, y);
             DrawSymmetric(workBitmap, workColor, center, y, x);
@@ -448,10 +446,8 @@ namespace lab_04
             int aSqr = radiusX * radiusX;
             int bSqr = radiusY * radiusY;
 
-            int xOptimal = (int)Math.Round(aSqr / Math.Sqrt(aSqr + bSqr));
-
             double step = 1 / (double)radiusX;
-            while (x < xOptimal)
+            while (angle > Math.PI / 4)
             {
                 x = Convert.ToInt32(radiusX * Math.Cos(angle));
                 y = Convert.ToInt32(radiusY * Math.Sin(angle));
@@ -463,14 +459,14 @@ namespace lab_04
 
 
             step = 1 / (double)radiusY;
-            while (y > 0)
+            while (angle > -step)
             {
                 x = Convert.ToInt32(radiusX * Math.Cos(angle));
                 y = Convert.ToInt32(radiusY * Math.Sin(angle));
 
                 DrawSymmetric(workBitmap, workColor, center, x, y);
 
-                angle += step;
+                angle -= step;
             }
         }
 
@@ -483,6 +479,8 @@ namespace lab_04
 
             long aSqrTwice = aSqr * 2;
             long bSqrTwice = bSqr * 2;
+
+            // Начальная ошибка
             long p = (long)Math.Round(bSqr - aSqr * radiusY + (aSqr * 0.25));
 
             DrawSymmetric(workBitmap, workColor, center, x, y);
@@ -490,36 +488,41 @@ namespace lab_04
             // t = (a^2 * y) / (b^2 * x)
             // a^2 * (y-1/2) ≤ b^2 * (x+1) (координаты дополнительной точки (x+1, y-1/2)
             // a2(2y-1) ≤ 2b2(x+1) - в целых
-            while (bSqrTwice * (x + 1) < aSqr * (2 * y - 1))
+            long dx = bSqrTwice * x;
+            long dy = aSqrTwice * y;
+            while (dx < dy)
             {
                 x++;
+                dx += bSqrTwice;
                 if (p < 0)
                 {
-                    p += bSqrTwice * x + bSqr;
+                    p += dx + bSqr;
                 }
                 else
                 {
                     y--;
-                    p += bSqrTwice * x - aSqrTwice * y + bSqr;
+                    dy -= aSqrTwice;
+                    p += dx - dy + bSqr;
                 }
 
                 DrawSymmetric(workBitmap, workColor, center, x, y);
             }
 
-            p = (long)Math.Round(bSqr * (x + 0.5) * (x + 0.5)) + aSqr * (y - 1) * (y - 1) - bSqr * aSqr;
+            p += (long)Math.Round((aSqr - bSqr) * 0.75) - (dx + dy) / 2;
 
-            DrawSymmetric(workBitmap, workColor, center, x, y);
             while (y > 0)
             {
                 y--;
+                dy -= aSqrTwice;
                 if (p > 0)
                 {
-                    p += -aSqrTwice * y - aSqr;
+                    p += -dy + aSqr;
                 }
                 else
                 {
                     x++;
-                    p += bSqrTwice * x - aSqrTwice * y + aSqr;
+                    dx += bSqrTwice;
+                    p += dx - dy + aSqr;
                 }
                 DrawSymmetric(workBitmap, workColor, center, x, y);
             }
