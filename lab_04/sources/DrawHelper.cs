@@ -272,98 +272,62 @@ namespace lab_04
 
             long aSqrTwice = aSqr * 2;
             long bSqrTwice = bSqr * 2;
-            long aSqrFour = aSqr * 4;
-            long bSqrFour = bSqr * 4;
 
-            long error = bSqr * (x + 1) * (x + 1) + aSqr * ((y - 1) * (y - 1)) - 2 * aSqr * bSqr;
-            error = bSqr / 2 - aSqr * radiusY * 2 + aSqr / 2;
+            //error = b^2 * (x+1)^2 + a^2 * (y-1)^2-a^2 * b^2=
+            long error = bSqr - aSqrTwice * radiusY + aSqr;
+
             DrawSymmetric(workBitmap, workColor, center, x, y);
 
-            while (bSqrTwice * (x + 1) < aSqr * (2 * y - 1))
+            while (y > 0)
             {
                 if (error < 0)
                 {
                     if (2 * error + 2 * y * aSqr - aSqr > 0)
                     {
-                        DiagonalStepEllipse(ref x, ref y, ref radiusX, ref radiusY, ref error);
+                        DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice);
                     }
                     else
                     {
-                        HorizontalStepEllipse(ref x, ref y, ref radiusX, ref radiusY, ref error);
+                        HorizontalStep(ref x, ref y, ref error, ref bSqr, ref bSqrTwice);
                     }
                 }
                 else if (error > 0)
                 {
                     if (2 * error - 2 * bSqr * x - bSqr > 0)
                     {
-                        VerticalStepEllipse(ref x, ref y, ref radiusX, ref radiusY, ref error);
+                        VerticalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice);
                     }
                     else
                     {
-                        DiagonalStepEllipse(ref x, ref y, ref radiusX, ref radiusY, ref error);
+                        DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice);
                     }
                 }
                 else
                 {
-                    DiagonalStepEllipse(ref x, ref y, ref radiusX, ref radiusY, ref error);
-                }
-
-                DrawSymmetric(workBitmap, workColor, center, x, y);
-            }
-
-            error = bSqr / 2 - bSqr * radiusX * 2 + aSqr / 2;
-            y = 0;
-            x = radiusX;
-            while (bSqrTwice * (x + 1) >= aSqr * (2 * y - 1))
-            {
-                if (error < 0)
-                {
-                    if (2 * error + 2 * x * bSqr - bSqr > 0)
-                    {
-                        DiagonalStepEllipseBack(ref x, ref y, ref radiusX, ref radiusY, ref error);
-                    }
-                    else
-                    {
-                        HorizontalStepEllipseBack(ref x, ref y, ref radiusX, ref radiusY, ref error);
-                    }
-                }
-                else if (error > 0)
-                {
-                    if (2 * error - 2 * bSqr * x - bSqr > 0)
-                    {
-                        VerticalStepEllipseBack(ref x, ref y, ref radiusX, ref radiusY, ref error);
-                    }
-                    else
-                    {
-                        DiagonalStepEllipseBack(ref x, ref y, ref radiusX, ref radiusY, ref error);
-                    }
-                }
-                else
-                {
-                    DiagonalStepEllipseBack(ref x, ref y, ref radiusX, ref radiusY, ref error);
+                    DiagonalStep(ref x, ref y, ref error, ref aSqr, ref aSqrTwice, ref bSqr, ref bSqrTwice);
                 }
 
                 DrawSymmetric(workBitmap, workColor, center, x, y);
             }
         }
 
-        private static void DiagonalStepEllipse(ref int x, ref int y, ref int rX, ref int rY, ref long error)
+        private static void DiagonalStep(ref int x, ref int y, ref long error, ref long aSqr, ref long aSqrTwice, ref long bSqr, ref long bSqrTwice)
         {
             x++;
             y--;
-            error += 2 * rY * rY * x - 2 * rX * rX * y + rX * rX + rY * rY;
+            error += bSqrTwice * x - aSqrTwice * y + aSqr + bSqr;
         }
 
-        private static void HorizontalStepEllipse(ref int x, ref int y, ref int rX, ref int rY, ref long error)
+        private static void HorizontalStep(ref int x, ref int y, ref long error, ref long bSqr, ref long bSqrTwice)
         {
             x++;
-            error += 2 * rY * rY * x + rY * rY;
+            error += bSqrTwice * x + bSqr;
         }
 
-        private static void VerticalStepEllipse(ref int x, ref int y, ref int rX, ref int rY, ref long error)
+        private static void VerticalStep(ref int x, ref int y, ref long error, ref long aSqr, ref long aSqrTwice)
         {
             y--;
-            error += rX * rX - 2 * y * rX;
+            error += -aSqrTwice * y + aSqr;
         }
 
         private static void DiagonalStepEllipseBack(ref int x, ref int y, ref int rX, ref int rY, ref long error)
