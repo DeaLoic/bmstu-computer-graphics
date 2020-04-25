@@ -124,11 +124,11 @@ namespace lab_06
 
         private void MainFillLogic(Point seed)
         {
-            if (polygons.Count >= 1 && currentPolygon.Count == 0)
+            if (true)
             {
                 if (radioButtonWayQuick.Checked)
                 {
-                    if (!agregator.isEmpty)
+                    if (!agregator.IsEmpty)
                     {
                         Redraw();
                     }
@@ -141,18 +141,18 @@ namespace lab_06
                     resultMessage.Text = String.Format("Результат: {0}ms", resultMillisecondsTime.ToString());
                     UpdateByBitmap(workBitmap);
                 }
-                else if (radioButtonWayStep.Checked)
+                else
                 {
-                    /*
-                    agregator = new Agregator(ExtractRibs(polygons), maxX, colorButton.BackColor, workBackColor, workBitmap);
+                    if (agregator.IsEmpty)
+                    {
+                        agregator = new Agregator(seed, buttonColorFill.BackColor, colorButton.BackColor, workBitmap);
+                    }
                     while (!agregator.NextStep())
                     {
                         UpdateByBitmap(agregator.workBitmap);
                         Thread.Sleep(10);
                     }
-                    Agregator.DrawRibs(workBitmap, ExtractRibs(polygons), colorButton.BackColor);
                     UpdateByBitmap(agregator.workBitmap);
-                    */
                 }
             }
             else

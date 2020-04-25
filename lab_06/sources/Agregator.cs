@@ -13,20 +13,16 @@ namespace lab_06
         Point seed = Point.Empty;
         Color workColor = Color.Black;
         Color borderColor = Color.White;
-
-        internal bool isEmpty = true;
+        Stack<Point> stack;
         internal Bitmap workBitmap;
 
-        int currentRib = 0;
-        double currentX = 0;
-        int currentY = 0;
-        int currentStep = 0;
-        double dX = 0;
-        int dY = 0;
-        bool isHandleStart = false;
+        public bool IsEmpty
+        {
+            get { return stack?.IsEmpty ?? true; }
+        }
+
         internal Agregator()
         {
-            isEmpty = true;
         }
 
         internal Agregator(Point seed, Color workColor, Color borderColor, Bitmap workBitmap)
@@ -35,9 +31,53 @@ namespace lab_06
             this.workColor = workColor;
             this.borderColor = borderColor;
             this.workBitmap = workBitmap;
-            isEmpty = false;
+
+            stack = new Stack<Point>();
+            stack.Push(seed);
         }
 
+        internal bool NextStep()
+        {
+            if (!stack.IsEmpty)
+            {
+                Point currentPoint = stack.Pop();
+                int X = currentPoint.X;
+                int Y = currentPoint.Y;
+
+                Color curColor = workBitmap.GetPixel(X, Y);
+                while (!IsColorEquals(curColor, borderColor) && X + 1 < workBitmap.Width)
+                {
+                    workBitmap.SetPixel(X, Y, workColor);
+                    X++;
+                    curColor = workBitmap.GetPixel(X, Y);
+                }
+
+                int xRight = X - 1;
+                X = currentPoint.X;
+
+                X--;
+                curColor = workBitmap.GetPixel(X, Y);
+                while (!IsColorEquals(curColor, borderColor) && X > 0)
+                {
+                    workBitmap.SetPixel(X, Y, workColor);
+                    X--;
+                    curColor = workBitmap.GetPixel(X, Y);
+                }
+                X++;
+                int xLeft = X;
+
+                if (Y + 1 < workBitmap.Height)
+                {
+                    FindSeed(stack, xLeft, xRight, Y + 1, workColor, borderColor, workBitmap);
+                }
+                if (Y > 0)
+                {
+                    FindSeed(stack, xLeft, xRight, Y - 1, workColor, borderColor, workBitmap);
+                }
+            }
+
+            return stack.IsEmpty;
+        }
         private static bool IsColorEquals(Color first, Color second)
         {
             return first.R == second.R && first.G == second.G && first.B == second.B;
