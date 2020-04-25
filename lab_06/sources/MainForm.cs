@@ -19,7 +19,6 @@ namespace lab_06
         Bitmap workBitmap;
 
         List<List<Point> > polygons = new List<List<Point>>();
-
         List<Point> currentPolygon = new List<Point>();
 
         int maxX = 0;
@@ -76,7 +75,6 @@ namespace lab_06
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             Redraw();
-
         }
 
         private void Redraw()
@@ -124,7 +122,7 @@ namespace lab_06
             expectedHorizontal = false;
         }
 
-        private void ButtonMain_Click(object sender, EventArgs e)
+        private void MainFillLogic(Point seed)
         {
             if (polygons.Count >= 1 && currentPolygon.Count == 0)
             {
@@ -136,20 +134,16 @@ namespace lab_06
                     }
                     var startTime = System.Diagnostics.Stopwatch.StartNew();
                     UpdateMainBitmap();
-                    workBitmap.SetPixel(1, 1, Color.Black);
-                    for (int i = 0; i < 1; i++)
-                    {
-                        Agregator.FillPolygon(ExtractRibs(polygons), maxX, colorButton.BackColor, workBackColor, workBitmap);
-                    }
+                    Agregator.FillPolygon(seed, buttonColorFill.BackColor, colorButton.BackColor, workBitmap);
 
                     startTime.Stop();
                     var resultMillisecondsTime = startTime.Elapsed.TotalMilliseconds / 100;
                     resultMessage.Text = String.Format("Результат: {0}ms", resultMillisecondsTime.ToString());
-
                     UpdateByBitmap(workBitmap);
                 }
                 else if (radioButtonWayStep.Checked)
                 {
+                    /*
                     agregator = new Agregator(ExtractRibs(polygons), maxX, colorButton.BackColor, workBackColor, workBitmap);
                     while (!agregator.NextStep())
                     {
@@ -158,18 +152,22 @@ namespace lab_06
                     }
                     Agregator.DrawRibs(workBitmap, ExtractRibs(polygons), colorButton.BackColor);
                     UpdateByBitmap(agregator.workBitmap);
+                    */
                 }
             }
             else
             {
+                string errorString = "";
                 if (polygons.Count == 0)
                 {
-                    MessageBox.Show("Введите хотя бы один многоугольник");
+                    errorString += "Введите хотя бы один многоугольник\n\n";
                 }
                 if (currentPolygon.Count != 0)
                 {
-                    MessageBox.Show("Текущий вводимый многоугольник незамкнут");
+                    errorString += "Текущий вводимый многоугольник незамкнут\n\n";
                 }
+
+                MessageBox.Show(errorString);
             }
         }
 
@@ -197,23 +195,32 @@ namespace lab_06
         private void mainCanvas_MouseClick(object sender, MouseEventArgs e)
         {
             Point point = e.Location;
-            if (expectedHorizontal)
+            Console.WriteLine(e.Button);
+
+            if (e.Button == MouseButtons.Left)
             {
-                if (currentPolygon.Count > 0)
+                if (expectedHorizontal)
                 {
-                    point.Y = currentPolygon[currentPolygon.Count - 1].Y;
-                    expectedHorizontal = false;
+                    if (currentPolygon.Count > 0)
+                    {
+                        point.Y = currentPolygon[currentPolygon.Count - 1].Y;
+                        expectedHorizontal = false;
+                    }
                 }
+                else if (expectedVertical)
+                {
+                    if (currentPolygon.Count > 0)
+                    {
+                        point.X = currentPolygon[currentPolygon.Count - 1].X;
+                        expectedVertical = false;
+                    }
+                }
+                EnterDot(point);
             }
-            else if (expectedVertical)
+            else if (e.Button == MouseButtons.Right)
             {
-                if (currentPolygon.Count > 0)
-                {
-                    point.X = currentPolygon[currentPolygon.Count - 1].X;
-                    expectedVertical = false;
-                }
+                MainFillLogic(point);
             }
-            EnterDot(point);
         }
 
         private void EnterDot(Point point)

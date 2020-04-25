@@ -10,10 +10,9 @@ namespace lab_06
 
     internal class Agregator
     {
-        List<(Point, Point)> ribs;
-        int maxX = 0;
+        Point seed = Point.Empty;
         Color workColor = Color.Black;
-        Color backColor = Color.White;
+        Color borderColor = Color.White;
 
         internal bool isEmpty = true;
         internal Bitmap workBitmap;
@@ -30,73 +29,88 @@ namespace lab_06
             isEmpty = true;
         }
 
-        internal Agregator(List<(Point, Point)> ribs, int maxX, Color workColor, Color backColor, Bitmap workBitmap)
+        internal Agregator(Point seed, Color workColor, Color borderColor, Bitmap workBitmap)
         {
-            this.ribs = ribs;
-            this.maxX = maxX;
+            this.seed = seed;
             this.workColor = workColor;
-            this.backColor = backColor;
+            this.borderColor = borderColor;
             this.workBitmap = workBitmap;
             isEmpty = false;
         }
 
-        internal static void FillPolygon(List<(Point, Point)> ribs, int maxX, Color workColor, Color backColor, Bitmap workBitmap)
+        private static bool IsColorEquals(Color first, Color second)
         {
-            Point first;
-            Point second;
-            int dY;
-            double dX;
-            int currentY;
-            double currentX;
+            return first.R == second.R && first.G == second.G && first.B == second.B;
+        }
+        internal static void FillPolygon(Point seed, Color workColor, Color borderColor, Bitmap workBitmap)
+        {
+            Stack<Point> pointStack = new Stack<Point>();
+            pointStack.Push(seed);
 
-            foreach (var rib in ribs)
+            while (!pointStack.IsEmpty)
             {
-                first = rib.Item1;
-                second = rib.Item2;
+                Point currentPoint = pointStack.Pop();
+                int X = currentPoint.X;
+                int Y = currentPoint.Y;
 
-                // Игнорируем горизонтальные ребра
-                if (first.Y == second.Y)
+                Color curColor = workBitmap.GetPixel(X, Y);
+                while (!IsColorEquals(curColor, borderColor) && X + 1 < workBitmap.Width)
                 {
-                    continue;
-                }
-                else if (first.Y > second.Y)
-                {
-                    Point temp = first;
-                    first = second;
-                    second = temp;
+                    workBitmap.SetPixel(X, Y, workColor);
+                    X++;
+                    curColor = workBitmap.GetPixel(X, Y);
                 }
 
-                dY = second.Y - first.Y;
-                dX = (double)(second.X - first.X) / dY;
-                currentX = first.X + 1; // начинаем с ближайшего правого пиксела
-                currentY = first.Y;
+                int xRight = X - 1;
+                X = currentPoint.X;
 
-                for (int i = 0; i < dY; i++)
+                X--;
+                curColor = workBitmap.GetPixel(X, Y);
+                while (!IsColorEquals(curColor, borderColor) && X > 0)
                 {
-                    for (int x = (int)currentX; x < maxX; x++)
-                    {
-                        // т.к цвет заливки может не быть дополнением фонового,
-                        // то надо смотреть на цвет пикселя =>
-                        // лишнее сравнение и долгие операции считывания/записи
+                    workBitmap.SetPixel(X, Y, workColor);
+                    X--;
+                    curColor = workBitmap.GetPixel(X, Y);
+                }
+                X++;
+                int xLeft = X;
 
-                        Color tempColor = workBitmap.GetPixel(x, currentY);
-
-                        if (tempColor.R == backColor.R && tempColor.G == backColor.G && tempColor.B == backColor.B)
-                        {
-                            workBitmap.SetPixel(x, currentY, workColor);
-                        }
-                        else
-                        {
-                            workBitmap.SetPixel(x, currentY, backColor);
-                        }
-                    }
-
-                    currentX += dX;
-                    currentY += 1;
+                if (Y + 1 < workBitmap.Height)
+                {
+                    FindSeed(pointStack, xLeft, xRight, Y + 1, workColor, borderColor, workBitmap);
+                }
+                if (Y > 0)
+                {
+                    FindSeed(pointStack, xLeft, xRight, Y - 1, workColor, borderColor, workBitmap);
                 }
             }
+        }
 
-            DrawRibs(workBitmap, ribs, workColor);
+        private static void FindSeed(Stack<Point> pointStack, int X, int xRight, int Y, Color workColor, Color borderColor, Bitmap workBitmap)
+        {
+            bool finded = false;
+            Color curColor = workBitmap.GetPixel(X, Y);
+
+            while (X <= xRight)
+            {
+                while (!IsColorEquals(curColor, borderColor) && !IsColorEquals(curColor, workColor) && X <= xRight)
+                {
+                    finded = true;
+                    X++;
+                    curColor = workBitmap.GetPixel(X, Y);
+                }
+
+                if (finded)
+                {
+                    pointStack.Push(new Point(X - 1, Y));
+                }
+
+                while ((IsColorEquals(curColor, borderColor) || IsColorEquals(curColor, workColor)) && X <= xRight)
+                {
+                    X++;
+                    curColor = workBitmap.GetPixel(X, Y);
+                }
+            }
         }
 
         internal static void DrawRibs(Bitmap workBitmap, List<(Point, Point)> ribs, Color workColor)
@@ -107,134 +121,6 @@ namespace lab_06
             {
                 graph.DrawLine(pen, rib.Item1, rib.Item2);
             }
-        }
-
-        internal bool NextStep()
-        {
-            if (isHandleStart)
-            {
-                if (currentStep + 1 < dY)
-                {
-                    currentStep++;
-                    currentX += dX;
-                    currentY += 1;
-
-                    for (int x = (int)currentX; x < maxX; x++)
-                    {
-                        // т.к цвет заливки может не быть дополнением фонового,
-                        // то надо смотреть на цвет пикселя => лишнее сравнение
-
-                        Color tempColor = workBitmap.GetPixel(x, currentY);
-
-                        if (tempColor.R == backColor.R && tempColor.G == backColor.G && tempColor.B == backColor.B)
-                        {
-                            workBitmap.SetPixel(x, currentY, workColor);
-                        }
-                        else
-                        {
-                            workBitmap.SetPixel(x, currentY, backColor);
-                        }
-                    }
-                }
-                else if (currentRib + 1 < ribs.Count)
-                {
-                    currentRib++;
-                    Point first = ribs[currentRib].Item1;
-                    Point second = ribs[currentRib].Item2;
-                    dY = 0;
-                    currentStep = 0;
-
-                    // Игнорируем горизонтальные ребра
-                    if (first.Y == second.Y)
-                    {
-                        return NextStep();
-                    }
-                    else if (first.Y > second.Y)
-                    {
-                        Point temp = first;
-                        first = second;
-                        second = temp;
-                    }
-
-                    dY = second.Y - first.Y;
-                    dX = (double)(second.X - first.X) / dY;
-                    currentX = first.X + 0.5; // 0.5 для удобного округления (отброс дробной части)
-                    currentY = first.Y;
-
-                    for (int x = (int)currentX; x < maxX; x++)
-                    {
-                        // т.к цвет заливки может не быть дополнением фонового,
-                        // то надо смотреть на цвет пикселя => лишнее сравнение
-
-                        Color tempColor = workBitmap.GetPixel(x, currentY);
-
-                        if (tempColor.R == backColor.R && tempColor.G == backColor.G && tempColor.B == backColor.B)
-                        {
-                            workBitmap.SetPixel(x, currentY, workColor);
-                        }
-                        else
-                        {
-                            workBitmap.SetPixel(x, currentY, backColor);
-                        }
-                    }
-                }
-                else
-                {
-                    isEmpty = true;
-                    isHandleStart = false;
-                }
-            }
-            else if (!isEmpty)
-            {
-                if (ribs.Count == 0)
-                {
-                    isEmpty = true;
-                    isHandleStart = false;
-                    return isEmpty;
-                }
-                isHandleStart = true;
-
-                Point first = ribs[0].Item1;
-                Point second = ribs[0].Item2;
-                dY = 0;
-                currentStep = 0;
-
-                // Игнорируем горизонтальные ребра
-                if (first.Y == second.Y)
-                {
-                    NextStep();
-                }
-                else if (first.Y > second.Y)
-                {
-                    Point temp = first;
-                    first = second;
-                    second = temp;
-                }
-
-                dY = second.Y - first.Y;
-                dX = (double)(second.X - first.X) / dY;
-                currentX = first.X + 0.5; // 0.5 для удобного округления (отброс дробной части)
-                currentY = first.Y;
-
-                for (int x = (int)currentX; x < maxX; x++)
-                {
-                    // т.к цвет заливки может не быть дополнением фонового,
-                    // то надо смотреть на цвет пикселя => лишнее сравнение
-
-                    Color tempColor = workBitmap.GetPixel(x, currentY);
-
-                    if (tempColor.R == backColor.R && tempColor.G == backColor.G && tempColor.B == backColor.B)
-                    {
-                        workBitmap.SetPixel(x, currentY, workColor);
-                    }
-                    else
-                    {
-                        workBitmap.SetPixel(x, currentY, backColor);
-                    }
-                }
-            }
-
-            return isEmpty;
         }
     }
 }

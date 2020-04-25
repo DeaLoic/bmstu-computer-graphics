@@ -37,7 +37,6 @@
             this.radioButtonWayQuick = new System.Windows.Forms.RadioButton();
             this.radioButtonWayStep = new System.Windows.Forms.RadioButton();
             this.groupBoxWay = new System.Windows.Forms.GroupBox();
-            this.buttonMain = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonHorizontal = new System.Windows.Forms.Button();
             this.buttonVertical = new System.Windows.Forms.Button();
@@ -49,7 +48,8 @@
             this.textBoxX = new System.Windows.Forms.TextBox();
             this.textBoxY = new System.Windows.Forms.TextBox();
             this.buttonEnterPeak = new System.Windows.Forms.Button();
-            this.buttonEnterSeed = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonColorFill = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainCanvas)).BeginInit();
             this.groupColor.SuspendLayout();
             this.groupBoxWay.SuspendLayout();
@@ -100,11 +100,13 @@
             // 
             // groupColor
             // 
+            this.groupColor.Controls.Add(this.buttonColorFill);
+            this.groupColor.Controls.Add(this.label3);
             this.groupColor.Controls.Add(this.label6);
             this.groupColor.Controls.Add(this.colorButton);
             this.groupColor.Location = new System.Drawing.Point(631, 70);
             this.groupColor.Name = "groupColor";
-            this.groupColor.Size = new System.Drawing.Size(185, 59);
+            this.groupColor.Size = new System.Drawing.Size(185, 82);
             this.groupColor.TabIndex = 53;
             this.groupColor.TabStop = false;
             this.groupColor.Text = "Выбор цвета";
@@ -114,9 +116,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(7, 27);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 13);
+            this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 36;
-            this.label6.Text = "Выбранный цвет: ";
+            this.label6.Text = "Цвет границ: ";
             // 
             // radioButtonWayQuick
             // 
@@ -144,22 +146,12 @@
             // 
             this.groupBoxWay.Controls.Add(this.radioButtonWayQuick);
             this.groupBoxWay.Controls.Add(this.radioButtonWayStep);
-            this.groupBoxWay.Location = new System.Drawing.Point(631, 135);
+            this.groupBoxWay.Location = new System.Drawing.Point(631, 158);
             this.groupBoxWay.Name = "groupBoxWay";
             this.groupBoxWay.Size = new System.Drawing.Size(185, 66);
             this.groupBoxWay.TabIndex = 56;
             this.groupBoxWay.TabStop = false;
             this.groupBoxWay.Text = "Способ вывода";
-            // 
-            // buttonMain
-            // 
-            this.buttonMain.Location = new System.Drawing.Point(641, 422);
-            this.buttonMain.Name = "buttonMain";
-            this.buttonMain.Size = new System.Drawing.Size(168, 40);
-            this.buttonMain.TabIndex = 57;
-            this.buttonMain.Text = "Заполнить";
-            this.buttonMain.UseVisualStyleBackColor = true;
-            this.buttonMain.Click += new System.EventHandler(this.ButtonMain_Click);
             // 
             // buttonCancel
             // 
@@ -196,7 +188,7 @@
             this.groupBoxSpecific.Controls.Add(this.buttonLastDelete);
             this.groupBoxSpecific.Controls.Add(this.buttonVertical);
             this.groupBoxSpecific.Controls.Add(this.buttonHorizontal);
-            this.groupBoxSpecific.Location = new System.Drawing.Point(631, 207);
+            this.groupBoxSpecific.Location = new System.Drawing.Point(631, 230);
             this.groupBoxSpecific.Name = "groupBoxSpecific";
             this.groupBoxSpecific.Size = new System.Drawing.Size(185, 109);
             this.groupBoxSpecific.TabIndex = 61;
@@ -216,7 +208,7 @@
             // resultMessage
             // 
             this.resultMessage.AutoSize = true;
-            this.resultMessage.Location = new System.Drawing.Point(631, 576);
+            this.resultMessage.Location = new System.Drawing.Point(634, 442);
             this.resultMessage.Name = "resultMessage";
             this.resultMessage.Size = new System.Drawing.Size(75, 13);
             this.resultMessage.TabIndex = 62;
@@ -225,7 +217,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(642, 327);
+            this.label1.Location = new System.Drawing.Point(642, 350);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 13);
             this.label1.TabIndex = 63;
@@ -234,7 +226,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(737, 325);
+            this.label2.Location = new System.Drawing.Point(737, 348);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 64;
@@ -242,43 +234,54 @@
             // 
             // textBoxX
             // 
-            this.textBoxX.Location = new System.Drawing.Point(662, 322);
+            this.textBoxX.Location = new System.Drawing.Point(662, 345);
             this.textBoxX.Name = "textBoxX";
             this.textBoxX.Size = new System.Drawing.Size(47, 20);
             this.textBoxX.TabIndex = 65;
+            this.textBoxX.Text = "100";
             // 
             // textBoxY
             // 
-            this.textBoxY.Location = new System.Drawing.Point(757, 322);
+            this.textBoxY.Location = new System.Drawing.Point(757, 345);
             this.textBoxY.Name = "textBoxY";
             this.textBoxY.Size = new System.Drawing.Size(47, 20);
             this.textBoxY.TabIndex = 66;
+            this.textBoxY.Text = "100";
             // 
             // buttonEnterPeak
             // 
-            this.buttonEnterPeak.Location = new System.Drawing.Point(641, 348);
+            this.buttonEnterPeak.Location = new System.Drawing.Point(641, 371);
             this.buttonEnterPeak.Name = "buttonEnterPeak";
-            this.buttonEnterPeak.Size = new System.Drawing.Size(84, 56);
+            this.buttonEnterPeak.Size = new System.Drawing.Size(163, 35);
             this.buttonEnterPeak.TabIndex = 67;
             this.buttonEnterPeak.Text = "Ввести вершину";
             this.buttonEnterPeak.UseVisualStyleBackColor = true;
             this.buttonEnterPeak.Click += new System.EventHandler(this.buttonEnter_Click);
             // 
-            // buttonEnterSeed
+            // label3
             // 
-            this.buttonEnterSeed.Location = new System.Drawing.Point(731, 348);
-            this.buttonEnterSeed.Name = "buttonEnterSeed";
-            this.buttonEnterSeed.Size = new System.Drawing.Size(82, 56);
-            this.buttonEnterSeed.TabIndex = 68;
-            this.buttonEnterSeed.Text = "Ввести затравочную точку";
-            this.buttonEnterSeed.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 57);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Цвет заполнения";
+            // 
+            // buttonColorFill
+            // 
+            this.buttonColorFill.BackColor = System.Drawing.Color.Black;
+            this.buttonColorFill.Location = new System.Drawing.Point(111, 49);
+            this.buttonColorFill.Name = "buttonColorFill";
+            this.buttonColorFill.Size = new System.Drawing.Size(63, 27);
+            this.buttonColorFill.TabIndex = 38;
+            this.buttonColorFill.UseVisualStyleBackColor = false;
+            this.buttonColorFill.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 641);
-            this.Controls.Add(this.buttonEnterSeed);
             this.Controls.Add(this.buttonEnterPeak);
             this.Controls.Add(this.textBoxY);
             this.Controls.Add(this.textBoxX);
@@ -287,7 +290,6 @@
             this.Controls.Add(this.resultMessage);
             this.Controls.Add(this.groupBoxSpecific);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonMain);
             this.Controls.Add(this.groupBoxWay);
             this.Controls.Add(this.groupColor);
             this.Controls.Add(this.clearButton);
@@ -318,7 +320,6 @@
         private System.Windows.Forms.RadioButton radioButtonWayQuick;
         private System.Windows.Forms.RadioButton radioButtonWayStep;
         private System.Windows.Forms.GroupBox groupBoxWay;
-        private System.Windows.Forms.Button buttonMain;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonHorizontal;
         private System.Windows.Forms.Button buttonVertical;
@@ -330,7 +331,8 @@
         private System.Windows.Forms.TextBox textBoxX;
         private System.Windows.Forms.TextBox textBoxY;
         private System.Windows.Forms.Button buttonEnterPeak;
-        private System.Windows.Forms.Button buttonEnterSeed;
+        private System.Windows.Forms.Button buttonColorFill;
+        private System.Windows.Forms.Label label3;
     }
 }
 
