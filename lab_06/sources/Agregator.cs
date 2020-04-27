@@ -133,6 +133,7 @@ namespace lab_06
 
             while (X <= xRight)
             {
+                finded = false;
                 while (!IsColorEquals(curColor, borderColor) && !IsColorEquals(curColor, workColor) && X <= xRight)
                 {
                     finded = true;
@@ -145,11 +146,12 @@ namespace lab_06
                     pointStack.Push(new Point(X - 1, Y));
                 }
 
-                while ((IsColorEquals(curColor, borderColor) || IsColorEquals(curColor, workColor)) && X <= xRight)
+                do
                 {
                     X++;
                     curColor = workBitmap.GetPixel(X, Y);
                 }
+                while ((IsColorEquals(curColor, borderColor) || IsColorEquals(curColor, workColor)) && X < xRight);
             }
         }
 
