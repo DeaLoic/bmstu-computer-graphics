@@ -37,7 +37,6 @@
             this.radioButtonEnterHyperbOne = new System.Windows.Forms.RadioButton();
             this.groupBoxType = new System.Windows.Forms.GroupBox();
             this.radioButtonEnterHyperbParab = new System.Windows.Forms.RadioButton();
-            this.radioButtonEnterHyperbTwo = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxStartX = new System.Windows.Forms.TextBox();
@@ -125,10 +124,10 @@
             this.radioButtonEnterEllipsoid.Checked = true;
             this.radioButtonEnterEllipsoid.Location = new System.Drawing.Point(10, 19);
             this.radioButtonEnterEllipsoid.Name = "radioButtonEnterEllipsoid";
-            this.radioButtonEnterEllipsoid.Size = new System.Drawing.Size(80, 17);
+            this.radioButtonEnterEllipsoid.Size = new System.Drawing.Size(104, 17);
             this.radioButtonEnterEllipsoid.TabIndex = 54;
             this.radioButtonEnterEllipsoid.TabStop = true;
-            this.radioButtonEnterEllipsoid.Text = "Эллипсоид";
+            this.radioButtonEnterEllipsoid.Text = "y = sin(x) * cos(x)";
             this.radioButtonEnterEllipsoid.UseVisualStyleBackColor = true;
             this.radioButtonEnterEllipsoid.CheckedChanged += new System.EventHandler(this.radioButtonEnterEllipsoid_CheckedChanged);
             // 
@@ -137,21 +136,20 @@
             this.radioButtonEnterHyperbOne.AutoSize = true;
             this.radioButtonEnterHyperbOne.Location = new System.Drawing.Point(10, 42);
             this.radioButtonEnterHyperbOne.Name = "radioButtonEnterHyperbOne";
-            this.radioButtonEnterHyperbOne.Size = new System.Drawing.Size(174, 17);
+            this.radioButtonEnterHyperbOne.Size = new System.Drawing.Size(64, 17);
             this.radioButtonEnterHyperbOne.TabIndex = 55;
-            this.radioButtonEnterHyperbOne.Text = "Однополостный гиперболоид";
+            this.radioButtonEnterHyperbOne.Text = "y = x + z";
             this.radioButtonEnterHyperbOne.UseVisualStyleBackColor = true;
             this.radioButtonEnterHyperbOne.CheckedChanged += new System.EventHandler(this.radioButtonEnterHyperbOne_CheckedChanged);
             // 
             // groupBoxType
             // 
             this.groupBoxType.Controls.Add(this.radioButtonEnterHyperbParab);
-            this.groupBoxType.Controls.Add(this.radioButtonEnterHyperbTwo);
             this.groupBoxType.Controls.Add(this.radioButtonEnterEllipsoid);
             this.groupBoxType.Controls.Add(this.radioButtonEnterHyperbOne);
-            this.groupBoxType.Location = new System.Drawing.Point(631, 134);
+            this.groupBoxType.Location = new System.Drawing.Point(631, 145);
             this.groupBoxType.Name = "groupBoxType";
-            this.groupBoxType.Size = new System.Drawing.Size(185, 120);
+            this.groupBoxType.Size = new System.Drawing.Size(185, 97);
             this.groupBoxType.TabIndex = 56;
             this.groupBoxType.TabStop = false;
             this.groupBoxType.Text = "Ввод";
@@ -159,24 +157,13 @@
             // radioButtonEnterHyperbParab
             // 
             this.radioButtonEnterHyperbParab.AutoSize = true;
-            this.radioButtonEnterHyperbParab.Location = new System.Drawing.Point(10, 88);
+            this.radioButtonEnterHyperbParab.Location = new System.Drawing.Point(6, 65);
             this.radioButtonEnterHyperbParab.Name = "radioButtonEnterHyperbParab";
             this.radioButtonEnterHyperbParab.Size = new System.Drawing.Size(177, 17);
             this.radioButtonEnterHyperbParab.TabIndex = 57;
             this.radioButtonEnterHyperbParab.Text = "Гиперболический параболоид";
             this.radioButtonEnterHyperbParab.UseVisualStyleBackColor = true;
             this.radioButtonEnterHyperbParab.CheckedChanged += new System.EventHandler(this.radioButtonEnterHyperbParab_CheckedChanged);
-            // 
-            // radioButtonEnterHyperbTwo
-            // 
-            this.radioButtonEnterHyperbTwo.AutoSize = true;
-            this.radioButtonEnterHyperbTwo.Location = new System.Drawing.Point(10, 65);
-            this.radioButtonEnterHyperbTwo.Name = "radioButtonEnterHyperbTwo";
-            this.radioButtonEnterHyperbTwo.Size = new System.Drawing.Size(168, 17);
-            this.radioButtonEnterHyperbTwo.TabIndex = 56;
-            this.radioButtonEnterHyperbTwo.Text = "Двуполостный гиперболоид";
-            this.radioButtonEnterHyperbTwo.UseVisualStyleBackColor = true;
-            this.radioButtonEnterHyperbTwo.CheckedChanged += new System.EventHandler(this.radioButtonEnterHyperbTwo_CheckedChanged);
             // 
             // label1
             // 
@@ -340,7 +327,7 @@
             // 
             // textBoxRotateY
             // 
-            this.textBoxRotateY.Location = new System.Drawing.Point(28, 45);
+            this.textBoxRotateY.Location = new System.Drawing.Point(28, 21);
             this.textBoxRotateY.Name = "textBoxRotateY";
             this.textBoxRotateY.Size = new System.Drawing.Size(47, 20);
             this.textBoxRotateY.TabIndex = 73;
@@ -365,7 +352,7 @@
             // 
             // textBoxRotateX
             // 
-            this.textBoxRotateX.Location = new System.Drawing.Point(28, 19);
+            this.textBoxRotateX.Location = new System.Drawing.Point(28, 45);
             this.textBoxRotateX.Name = "textBoxRotateX";
             this.textBoxRotateX.Size = new System.Drawing.Size(47, 20);
             this.textBoxRotateX.TabIndex = 70;
@@ -434,7 +421,6 @@
         private System.Windows.Forms.Button buttonDraw;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButtonEnterHyperbParab;
-        private System.Windows.Forms.RadioButton radioButtonEnterHyperbTwo;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonRotate;
         private System.Windows.Forms.TextBox textBoxRotateY;

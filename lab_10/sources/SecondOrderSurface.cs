@@ -30,9 +30,6 @@ namespace lab_10
         List<int> top;
 
         private Func<double, double, double> function2d;  // y = f(x, z)
-        DotsDistance borderX;
-        DotsDistance borderY;
-        double coef;
 
         public SecondOrderSurface(Func<double, double, double> function)
         {
@@ -85,7 +82,8 @@ namespace lab_10
                 return;
             if (first.X < 0 || first.X > screenSize.Width - 1)
                 return;
-
+            float x_center = screenSize.Width / 2;
+            float y_center = screenSize.Height / 2;
             if (second.X < first.X)
             {
                 Swap(ref first, ref second);
@@ -96,11 +94,7 @@ namespace lab_10
                 bottom[second.X] = Math.Min(bottom[second.X], second.Y);
                 if (second.X >= 0 && second.X <= screenSize.Width)
                 {
-                    first.X = (int)Math.Round((first.X) * coef  + screenSize.Width / 2 - ((first.X) * coef / 2));
-                    second.X = (int)Math.Round((second.X) * coef + screenSize.Width / 2 - ((second.X) * coef / 2));
-                    first.Y = (int)Math.Round((first.Y) * coef + screenSize.Height / 2 - ((first.Y) * coef / 2));
-                    second.Y = (int)Math.Round((second.Y) * coef + screenSize.Height / 2 - ((second.Y) * coef / 2));
-                    painter.DrawLine(pen, first, second);
+                    painter.DrawLine(pen, (float)first.X * 35 + x_center, first.Y * 35 + y_center, second.X * 35 + x_center, second.Y * 35 + y_center);
                 }
             }
             else
@@ -115,12 +109,7 @@ namespace lab_10
                     bottom[x] = Math.Min(bottom[x], y);
                     if (x >= 0 && x <= screenSize.Width)
                     {
-                        x_prev = (int)Math.Round(( x_prev) * coef + screenSize.Width / 2 - ((x_prev) * coef / 2));
-                        x = (int)Math.Round(( x) * coef + screenSize.Width / 2 - ((x) * coef / 2));
-                        y_prev = (int)Math.Round(y_prev * coef + screenSize.Height / 2 - ((y_prev) * coef / 2));
-                        y = (int)Math.Round(( y) * coef + screenSize.Height / 2 - ((y) * coef / 2));
-
-                        painter.DrawLine(pen, x_prev, y_prev, x, y);
+                        painter.DrawLine(pen, x_prev * 35 + x_center, y_prev * 35 + y_center, x * 35 + x_center, y * 35 + y_center);
                     }
                 }
             }
@@ -129,7 +118,7 @@ namespace lab_10
         // Обработка ребер
         void ProcessEdge(Point current, ref Point past, Graphics painter, Pen pen)
         {
-            if (past.X != -1)
+            if (past.X != -1) // если точка не первая, соединить с предыдущей
             {
                 Horizon(past, current, painter, pen);
             }
@@ -141,37 +130,34 @@ namespace lab_10
         {
             int Visible = -1;
 
-            if (dot.Y < screenSize.Height && dot.X < screenSize.Width && dot.X > 0 && dot.Y > 0)
+            if (dot.Y < top[dot.X] && dot.Y > bottom[dot.X])
             {
-                if (dot.Y < top[dot.X] && dot.Y > bottom[dot.X])
-                {
-                    Visible = 0;
-                }
-                if (dot.Y >= top[dot.X])
-                {
-                    Visible = 1;
-                }
+                Visible = 0;
+            }
+            if (dot.Y >= top[dot.X])
+            {
+                Visible = 1;
             }
 
             return Visible;
         }
 
         // Преобразование координат
-        void rotate_x(ref double x, ref double y, ref double z, double ox)
+        void rotate_x(ref double y, ref double z, double ox)
         {
             ox = ox * Math.PI / 180;
             double buf = y;
             y = Math.Cos(ox) * y - Math.Sin(ox) * z;
             z = Math.Cos(ox) * z + Math.Sin(ox) * buf;
         }
-        void rotate_y(ref double x, ref double y, ref double z, double oy)
+        void rotate_y(ref double x, ref double z, double oy)
         {
             oy = oy * Math.PI / 180;
             double buf = x;
             x = Math.Cos(oy) * x - Math.Sin(oy) * z;
             z = Math.Cos(oy) * z + Math.Sin(oy) * buf;
         }
-        void rotate_z(ref double x, ref double y, ref double z, double oz)
+        void rotate_z(ref double x, ref double y, double oz)
         {
             oz = oz * Math.PI / 180;
             double buf = x;
@@ -182,35 +168,23 @@ namespace lab_10
         {
             double x_center = screenSize.Width / 2;
             double y_center = screenSize.Height / 2;
-            rotate_x(ref x, ref y, ref z, ox);
-            rotate_y(ref x, ref y, ref z, oy);
-            rotate_z(ref x, ref y, ref z, oz);
-            this.coef = 35;// Math.Min(Math.Abs(screenSize.Width / (borderX.max - borderX.min)), Math.Abs(screenSize.Height / (borderY.max - borderY.min + 1)));
-
-            if (y < borderY.min)
-            {
-                borderY.min = y;
-            }
-            if (y > borderY.max)
-            {
-                borderY.max = y;
-            }
+            double x_tmp = x;
+            double y_tmp = y;
+            double z_tmp = z;
+            rotate_x(ref y_tmp, ref z_tmp, ox);
+            rotate_y(ref x_tmp, ref z_tmp, oy);
+            rotate_z(ref x_tmp, ref y_tmp, oz);
 
             Point result = new Point();
-            result.X = (int)(Math.Round(x));
-            result.Y = (int)(Math.Round(y));
+            result.X = (int)(Math.Round(x_tmp));
+            result.Y = (int)(Math.Round(y_tmp ));
 
             return result;
         }
 
         public void HorizontDraw(DotsDistance borderX, DotsDistance borderZ, double ox, double oy, double oz, Size size, Graphics painter, Pen pen)
         {
-            // для масштабирования.
             screenSize = size;
-            this.borderX = borderX;
-            this.borderY.max = 0;
-            this.borderY.min = size.Height;
-
             PrepareArraysFill();
 
             Point left = new Point(-1, -1);
@@ -220,9 +194,10 @@ namespace lab_10
             for (double z = borderZ.max; z >= borderZ.min; z -= borderZ.step)
             {
                 double yTemp = function2d(borderX.min, z);
+
                 previos = Transform(borderX.min, yTemp, z, ox, oy, oz);  // для обработки поворотов
                 ProcessEdge(previos, ref left, painter, pen);           // обработка левой границы
-                int Pflag = Visible(previos);
+                int prevVisible = Visible(previos);
 
                 for (double x = borderX.min; x <= borderX.max; x += borderX.step)
                 {
@@ -231,18 +206,18 @@ namespace lab_10
 
                     yTemp = function2d(x, z);
                     current = Transform(x, yTemp, z, ox, oy, oz);     // для обработки поворотов
-                    int Tflag = Visible(current);
+                    int curVisible = Visible(current);
 
-                    if (Tflag == Pflag) // если видимость не изменилась
+                    if (curVisible == prevVisible) // если видимость не изменилась
                     {
-                        if (Pflag != 0) // и точка видима
+                        if (prevVisible != 0) // и точка видима
                         {
                             Horizon(previos, current, painter, pen);  // отрисовать участок и обновить массивы горизонтов
                         }
                     }
-                    else if (Tflag == 0) // если точка стала невидима
+                    else if (curVisible == 0) // если точка стала невидима
                     {
-                        if (Pflag == 1)  // а была выше top
+                        if (prevVisible == 1)  // а была выше top
                         {
                             intersection = GetIntersection(previos, current, top);
                         }
@@ -254,9 +229,9 @@ namespace lab_10
                         // отрисовать
                         Horizon(previos, intersection, painter, pen);
                     }
-                    else if (Tflag == 1) // если точка стала видима и выше top
+                    else if (curVisible == 1) // если точка стала видима и выше top
                     {
-                        if (Pflag == 0) // а была невидима
+                        if (prevVisible == 0) // а была невидима
                         {
                             intersection = GetIntersection(previos, current, top);
                             Horizon(previos, intersection, painter, pen);
@@ -271,7 +246,7 @@ namespace lab_10
                     }
                     else   // аналогично предыдущему
                     {
-                        if (Pflag == 0)
+                        if (prevVisible == 0)
                         {
                             intersection = GetIntersection(previos, current, bottom);
                             Horizon(previos, intersection, painter, pen);
@@ -284,7 +259,7 @@ namespace lab_10
                             Horizon(intersection, current, painter, pen);
                         }
                     }
-                    Pflag = Tflag; // видимость предыдущей точки
+                    prevVisible = curVisible; // видимость предыдущей точки
                     previos = current;
                 }
                 ProcessEdge(previos, ref right, painter, pen); // обработать правое ребро
